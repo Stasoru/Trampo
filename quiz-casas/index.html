@@ -1054,8 +1054,9 @@ window.ZAMAK = {
     renderer.setSize(VW, VH, false);
     cam.aspect = VW/VH;
     const largo = VW >= 900;
-    const cx = largo ? VW*.7 : VW*.5, cy = largo ? VH*.5 : VH*.34;
-    const rw = largo ? VW*.54 : VW*.98, rh = largo ? VH*.86 : VH*.56;
+    const o = window.ABERTURA_QUADRO || {};   // ajuste opcional, usado só para gerar artes
+    const cx = largo ? VW*.7 : VW*.5, cy = largo ? VH*.5 : VH*(o.cy || .34);
+    const rw = largo ? VW*.54 : VW*.98, rh = largo ? VH*.86 : VH*(o.rh || .56);
     const t = Math.tan(THREE.MathUtils.degToRad(cam.fov/2));
     const meiaA = 1.95, meiaL = 2.45;
     dist = Math.max(meiaA*VH/(t*rh), meiaL*VH/(t*rw));
