@@ -7,7 +7,7 @@
 <meta name="description" content="Responda dez perguntas e descubra a sua casa. Um quiz de fã da Beco Diagonal Personalizados.">
 <meta name="theme-color" content="#0D0D0D">
 <meta property="og:title" content="Quiz das Casas · Beco Diagonal Personalizados">
-<meta property="og:description" content="10 perguntas pra descobrir a sua casa. No fim, o emblema sai com o seu nome.">
+<meta property="og:description" content="10 perguntas pra descobrir a sua casa. O brinde é o chaveiro de Zamak em ouro velho com o símbolo dela.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D0D0D'/%3E%3Cpath d='M32 10c8 0 16 2 22 5 0 18-6 30-22 40C16 45 10 33 10 15c6-3 14-5 22-5z' fill='%23F0AD33'/%3E%3C/svg%3E">
@@ -99,8 +99,14 @@ p{margin:0;text-wrap:pretty}
 @media (min-width:800px){.card{padding:0 48px 48px}}
 
 /* ===== Palco do quiz ===== */
-.stage{display:grid;gap:14px;justify-items:center;text-align:center;padding:44px 0 36px;scroll-margin-top:0}
-.emblem{width:min(62vw,280px);aspect-ratio:240/310;filter:drop-shadow(0 18px 22px rgba(0,0,0,.7)) drop-shadow(0 2px 3px rgba(0,0,0,.6))}
+.stage{display:grid;gap:14px;justify-items:center;text-align:center;padding:72px 0 56px;scroll-margin-top:0}
+.kc{position:relative;width:min(62vw,280px);aspect-ratio:240/310;transition:width .5s var(--ease-out)}
+.kc .emblem{width:100%;height:100%;filter:drop-shadow(0 18px 22px rgba(0,0,0,.7)) drop-shadow(0 2px 3px rgba(0,0,0,.6))}
+#kcgl{position:absolute;inset:-6% -14%;width:128%;height:112%;display:none;touch-action:pan-y;cursor:grab}
+#kcgl:active{cursor:grabbing}
+.kc.gl-on #kcgl{display:block}
+.kc.gl-on .emblem{visibility:hidden}
+#emblemSvg .keep:last-of-type,#plateText,#plateShade{display:none}
 .hero-title{font-size:clamp(34px,8.6vw,64px);max-width:14ch;text-transform:uppercase}
 .hero-title em{font-style:normal;color:var(--gold)}
 .lead{color:var(--print-2);max-width:38ch;font-size:18px;font-weight:300}
@@ -121,13 +127,13 @@ p{margin:0;text-wrap:pretty}
 @media (min-width:900px){
   body:not(.quizzing) .stage{min-height:min(760px,100svh)}
   .stage{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:72px;align-items:center;text-align:left;justify-items:start;padding:72px 0}
-  .stage>.emblem{grid-column:1;grid-row:1 / span 2;width:100%;max-width:360px;justify-self:center}
+  .stage>.kc{grid-column:1;grid-row:1 / span 2;width:100%;max-width:360px;justify-self:center}
   .hero-copy,#screen{grid-column:2}
   body:not(.quizzing) .stage{align-content:center;row-gap:28px}
   .hero-copy{align-self:end}
   #screen{align-self:start}
   .qbox.intro{text-align:left;justify-items:start}
-  body.quizzing .stage>.emblem{width:100%;max-width:320px;align-self:start;position:sticky;top:32px}
+  body.quizzing .stage>.kc{width:100%;max-width:340px;align-self:start;position:sticky;top:32px}
   body.quizzing .stage{align-items:start;padding-top:56px}
   .stage .result{justify-items:start;text-align:left}
 }
@@ -166,8 +172,8 @@ p{margin:0;text-wrap:pretty}
 /* ===== Modo quiz ===== */
 body.quizzing .land, body.quizzing .open{display:none}
 body.quizzing .stage{padding-bottom:28px}
-body.quizzing .emblem{width:min(36vw,168px)}
-body.done .emblem{width:min(58vw,260px)}
+body.quizzing .kc{width:min(40vw,180px)}
+body.done .kc{width:min(64vw,280px)}
 body.quizzing .hero-copy{display:none}
 .qbox{width:100%;max-width:580px;display:grid;gap:20px;text-align:left}
 .qtop{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -206,7 +212,8 @@ body.quizzing .hero-copy{display:none}
 /* ===== Resultado ===== */
 .result{width:100%;display:grid;gap:22px;justify-items:center;text-align:center}
 .result .who{font-size:17px;color:var(--print-2);font-weight:300}
-.result h1{font-size:clamp(52px,14vw,104px);color:var(--print);text-transform:uppercase;letter-spacing:-.045em}
+.result h1{font-size:clamp(44px,12.5vw,88px);color:var(--print);text-transform:uppercase;letter-spacing:-.045em}
+.letras .w{display:inline-block;white-space:nowrap}
 .motto{font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);max-width:32ch;line-height:1.5}
 .band{width:100%;border-radius:4px;padding:24px 22px;background:var(--hc);color:var(--hon);text-align:left;display:grid;gap:16px}
 @media (min-width:800px){.band{padding:30px 34px}}
@@ -237,10 +244,37 @@ body.quizzing .hero-copy{display:none}
 .crest{opacity:0;transform-box:fill-box;transform-origin:50% 50%;transform:scale(1.04)}
 .crest.on{opacity:1;transform:none;transition:opacity .5s,transform .6s var(--ease-out)}
 @media (prefers-reduced-motion:reduce){
-  .flood.go,.crest.on,.bar .t b,.emblem,.shieldBody{transition:none}
+  .flood.go,.crest.on,.bar .t b,.kc,.shieldBody{transition:none}
   .stratum{animation:none}
   .qin{animation:none}
   .js .open-copy>*{animation:none}
+}
+
+/* ===== Transições 3D entre as perguntas ===== */
+#screen{perspective:1200px;perspective-origin:50% 0}
+.q h2{animation:qh .6s var(--ease-out) both;transform-origin:50% 100%}
+@keyframes qh{from{opacity:0;transform:rotateX(-38deg) translateY(14px);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+.q .qtop{animation:qin .3s var(--ease-out) both}
+.q .opt{animation:deal .62s var(--ease-out) both;animation-delay:calc(120ms + var(--n)*60ms);transform-origin:50% 0;backface-visibility:hidden}
+@keyframes deal{from{opacity:0;transform:rotateX(-82deg) translateZ(-30px)}to{opacity:1;transform:none}}
+.q .qnav{animation:qin .4s var(--ease-out) .42s both}
+.opts.feito .opt:not(.picked){animation:none;opacity:0;transform:rotateX(70deg) translateY(8px);transition:opacity .26s ease-in,transform .3s ease-in;transition-delay:calc(var(--n)*30ms)}
+.opts.feito .opt.picked{animation:none;transform:translateZ(30px) scale(1.02);transition:transform .25s var(--ease-out)}
+#screen.sai>*{transition:opacity .24s ease-in,transform .3s cubic-bezier(.5,0,.75,0);opacity:0;transform:rotateX(24deg) translateY(-18px) translateZ(-80px)}
+#screen.sai .opt.picked{transform:translateZ(-40px) scale(.9)}
+.gota{position:fixed;z-index:12;width:18px;height:18px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 35% 30%,#fff6dc,var(--c) 45%,color-mix(in srgb,var(--c) 60%,#000));
+  box-shadow:0 0 18px 4px color-mix(in srgb,var(--c) 70%,transparent),0 0 40px 10px rgba(240,173,51,.25)}
+.letras span{display:inline-block;animation:letra .7s var(--ease-out) both;animation-delay:calc(var(--i)*45ms + .1s);transform-origin:50% 100%}
+@keyframes letra{from{opacity:0;transform:rotateX(-90deg) translateY(.2em)}to{opacity:1;transform:none}}
+.result>*:not(h1){animation:qin .5s var(--ease-out) both}
+.result>*:nth-child(3){animation-delay:.35s}.result>*:nth-child(4){animation-delay:.45s}.result>*:nth-child(5){animation-delay:.55s}.result>*:nth-child(6){animation-delay:.65s}
+.tie button{transform-style:preserve-3d;transition:border-color .18s,transform .2s var(--ease-out)}
+.tie button .chip{transform:translateZ(24px)}
+body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--casa,#F0AD33) 16%,transparent),transparent 70%) var(--bg) no-repeat}
+@media (prefers-reduced-motion:reduce){
+  .q h2,.q .opt,.q .qtop,.q .qnav,.letras span,.result>*{animation:none!important}
+  #screen.sai>*,.opts.feito .opt{transition:none!important}
 }
 </style>
 </head>
@@ -252,7 +286,7 @@ body.quizzing .hero-copy{display:none}
   <div class="open-fallback" aria-hidden="true" id="fallback"></div>
   <div class="open-copy">
     <h1 class="mega" id="titulo">Qual casa vai no seu <em>chaveiro?</em></h1>
-    <p class="open-lead">10 perguntas, uns 3 minutos, e você descobre a sua casa. O chaveiro de metal com o brasão dela é o seu brinde.</p>
+    <p class="open-lead">10 perguntas, uns 3 minutos, e você descobre a sua casa. O brinde é o chaveiro de Zamak em ouro velho com o símbolo dela.</p>
     <div class="cta">
       <a class="btn" href="#stage" data-go>Fazer o quiz</a>
       <a class="btn line" href="#como">Como funciona</a>
@@ -264,9 +298,9 @@ body.quizzing .hero-copy{display:none}
 <div class="card" id="card">
   <main>
     <section class="stage" id="stage" aria-label="Quiz">
-      <!--EMBLEM-->
+      <div class="kc" id="kc"><canvas id="kcgl" aria-hidden="true"></canvas><!--EMBLEM--></div>
       <div class="hero-copy" id="hero">
-        <h2 class="hero-title">Grave o seu nome no <em>chaveiro</em></h2>
+        <h2 class="hero-title">Vamos fundir o seu <em>chaveiro</em></h2>
       </div>
       <div id="screen" class="qbox intro"></div>
     </section>
@@ -279,15 +313,15 @@ body.quizzing .hero-copy{display:none}
           <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="5" width="28" height="34" rx="4"/><path d="M15 15h14M15 22h14M15 29h8"/></svg></span>
             <div><b>Responda dez perguntas</b><span>Escolhas simbólicas e alguns dilemas. As perguntas mudam a cada rodada.</span></div></li>
           <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4c6 9 12 15 12 23a12 12 0 0 1-24 0c0-8 6-14 12-23z"/><path d="M16 28a6 6 0 0 0 6 6"/></svg></span>
-            <div><b>Veja o esmalte encher</b><span>Cada resposta pinga a cor de uma casa no emblema. A que encher mais é a sua.</span></div></li>
+            <div><b>Veja o molde encher</b><span>Cada resposta derrama no molde o metal na cor de uma casa. A que encher mais é a sua.</span></div></li>
           <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="18" width="32" height="20" rx="1"/><path d="M4 12h36v6H4zM22 12v26"/><path d="M22 12c-3-6-10-7-10-3s6 3 10 3c4 0 10 1 10-3s-7-3-10 3"/></svg></span>
-            <div><b>Ganhe o chaveiro</b><span>O chaveiro de metal da sua casa é o brinde da loja. Mostre o resultado e garanta o seu.</span></div></li>
+            <div><b>Ganhe o chaveiro</b><span>De Zamak em ouro velho, com o símbolo da sua casa. Mostre o resultado na loja e garanta o seu.</span></div></li>
         </ol>
       </section>
 
       <section class="sec" aria-labelledby="casas">
         <h2 id="casas">As quatro <em>casas</em></h2>
-        <p>Cada casa tem a sua cor de esmalte. Qual delas vai ficar no seu?</p>
+        <p>Cada casa tem a sua cor e o seu símbolo. Qual deles vai ficar no seu chaveiro?</p>
         <ul class="chart" id="chart"></ul>
       </section>
 
@@ -295,7 +329,7 @@ body.quizzing .hero-copy{display:none}
         <svg class="tag" viewBox="0 0 300 116" aria-hidden="true" id="giftTag"></svg>
         <div>
           <h2 id="brinde">O chaveiro existe <em>de verdade</em></h2>
-          <p>É de metal, com o emblema da sua casa, e sai de brinde pra quem faz o quiz. Termine, mostre o resultado pra loja e a gente separa o seu.</p>
+          <p>É de Zamak na cor ouro velho, só com o símbolo da sua casa em relevo, e sai de brinde pra quem faz o quiz. Termine, mostre o resultado pra loja e a gente separa o seu.</p>
           <div class="acts">
             <a class="btn" href="#stage" data-go>Fazer o quiz</a>
             <a class="btn line" id="shopLink" hidden target="_blank" rel="noopener">Ver os produtos da loja</a>
@@ -457,6 +491,7 @@ function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function limpaNome(s){return s.replace(/\s+/g," ").trim().slice(0,24)}
 
+const emit = (n,d) => dispatchEvent(new CustomEvent("quiz:"+n,{detail:d}));
 /* --- emblema --- */
 const emb = {
   bands:document.getElementById("bands"),
@@ -490,11 +525,13 @@ function enche(){
     r.setAttribute("fill",CASAS[k].cor); r.setAttribute("class","stratum");
     emb.bands.appendChild(r);
   });
+  emit("enche");
 }
 function zeraEmblema(){
   emb.flood.classList.remove("go"); emb.flood.style.transform="";
   emb.crest.classList.remove("on"); emb.crest.setAttribute("href",""); emb.body.classList.remove("off");
   emb.bands.replaceChildren();
+  emit("zera");
 }
 
 /* --- telas --- */
@@ -506,14 +543,15 @@ function render(html, cls=""){
 function inicio(){
   document.body.classList.remove("quizzing","done");
   if(window.cena3d) window.cena3d.acorda();
+  document.body.style.removeProperty("--casa");
   $("#hero").hidden = false;
   zeraEmblema(); gravar(st.nome || "SEU NOME");
   const ultimo = store.get("bd_ultimo");
   
   render(`
-    <p class="lead">10 perguntas, uns 3 minutos. No fim, a sua casa sai com o seu nome gravado.</p>
+    <p class="lead">10 perguntas, uns 3 minutos. A cada resposta, o molde do chaveiro recebe um pouco de metal. No fim, o símbolo da sua casa aparece.</p>
     <form class="start" id="f" novalidate>
-      <div class="field"><label for="nome">Seu nome no emblema (opcional)</label>
+      <div class="field"><label for="nome">Seu nome (opcional)</label>
         <input id="nome" name="nome" autocomplete="given-name" maxlength="24" placeholder="Como você se chama?" value="${esc(st.nome)}" enterkeyhint="go"></div>
       <button class="btn" type="submit">Começar o quiz</button>
     </form>
@@ -530,6 +568,7 @@ function comecar(){
   st.i = 0; st.hist = []; st.pts = zero();
   zeraEmblema(); gravar(st.nome || "");
   document.body.classList.add("quizzing");
+  emit("comeca");
   $("#hero").hidden = true;
   window.scrollTo({top:0});
   pergunta();
@@ -542,12 +581,12 @@ function pergunta(){
       <span class="count">${st.i+1} / ${n}</span>
     </div>
     <h2 id="q" tabindex="-1">${esc(p.q)}</h2>
-    <div class="opts" role="group" aria-labelledby="q">${p.a.map((o,k)=>`<button class="opt" type="button" data-k="${k}"><kbd aria-hidden="true">${k+1}</kbd><span>${esc(o[0])}</span></button>`).join("")}</div>
+    <div class="opts" role="group" aria-labelledby="q">${p.a.map((o,k)=>`<button class="opt" type="button" data-k="${k}" style="--n:${k}"><kbd aria-hidden="true">${k+1}</kbd><span>${esc(o[0])}</span></button>`).join("")}</div>
     <div class="qnav">
       <button class="link" type="button" id="back" ${st.i===0?"disabled":""}>Voltar uma pergunta</button>
       <button class="link" type="button" id="quit">Recomeçar</button>
     </div>
-  `, "qin");
+  `, "q");
   $("#q").focus({preventScroll:true});
   screen.querySelectorAll(".opt").forEach(b => b.onclick = () => escolhe(b));
   $("#back").onclick = volta;
@@ -557,16 +596,36 @@ function escolhe(b){
   if(screen.dataset.busy) return;
   screen.dataset.busy = "1";
   const p = st.perguntas[st.i], w = p.a[+b.dataset.k][1];
+  const k = Object.keys(w).sort((x,y)=>w[y]-w[x])[0];
   screen.querySelectorAll(".opt").forEach(x => x.disabled = true);
-  b.classList.add("picked");
+  b.classList.add("picked"); b.parentElement.classList.add("feito");
   st.hist.push(w);
-  for(const k in w) st.pts[k] += w[k];
-  enche();
-  setTimeout(()=>{
-    delete screen.dataset.busy;
-    st.i++;
-    st.i < st.perguntas.length ? pergunta() : decidir();
-  }, reduz ? 120 : 420);
+  for(const c in w) st.pts[c] += w[c];
+  const segue = () => { delete screen.dataset.busy; st.i++; st.i < st.perguntas.length ? pergunta() : decidir(); };
+  if(reduz){ enche(); setTimeout(segue, 120); return; }
+  /* a resposta vira uma gota de metal que voa até o molde; depois a pergunta sai em 3D */
+  gota(b, CASAS[k].cor).then(()=>{
+    enche();
+    screen.classList.add("sai");
+    setTimeout(()=>{ screen.classList.remove("sai"); segue(); }, 310);
+  });
+}
+function gota(de, cor){
+  return new Promise(ok=>{
+    const kc = $("#kc"), a = de.getBoundingClientRect(), z = kc.getBoundingClientRect();
+    if(!z.width || z.bottom < 0){ ok(); return; }
+    const g = document.createElement("i"); g.className = "gota"; g.style.setProperty("--c", cor); document.body.appendChild(g);
+    const x0 = a.left + 31, y0 = a.top + a.height/2, x1 = z.left + z.width/2, y1 = z.top + z.height*.45;
+    const mx = (x0+x1)/2 + (x1 < x0 ? -30 : 30), my = Math.min(y0,y1) - 70;
+    const an = g.animate([
+      {transform:`translate(${x0-9}px,${y0-9}px) scale(.5)`, opacity:0},
+      {transform:`translate(${(x0+mx)/2-9}px,${(y0+my)/2-9}px) scale(1.1)`, opacity:1, offset:.25},
+      {transform:`translate(${mx-9}px,${my-9}px) scale(1.25)`, offset:.5},
+      {transform:`translate(${(mx+x1)/2-9}px,${(my+y1)/2-9}px) scale(.9)`, offset:.75},
+      {transform:`translate(${x1-9}px,${y1-9}px) scale(.3)`, opacity:.6}
+    ], {duration:560, easing:"cubic-bezier(.4,0,.25,1)"});
+    an.onfinish = () => { g.remove(); ok(); };
+  });
 }
 function volta(){
   if(!st.i) return;
@@ -589,11 +648,18 @@ function desempate(casas){
     <div class="tie">${shuffle(casas).map(k=>`<button type="button" data-k="${k}">${chipSVG(k)}<b>${CASAS[k].nome}</b><span>${CASAS[k].tracos[0]}</span></button>`).join("")}</div>
   `, "qin");
   $("#q").focus({preventScroll:true});
+  if(!reduz) screen.querySelectorAll(".tie button").forEach(b=>{
+    b.onpointermove = e => { const r = b.getBoundingClientRect(), x = (e.clientX-r.left)/r.width-.5, y = (e.clientY-r.top)/r.height-.5;
+      b.style.transform = `perspective(600px) rotateY(${x*18}deg) rotateX(${-y*18}deg)`; };
+    b.onpointerleave = () => b.style.transform = "";
+  });
   screen.querySelectorAll(".tie button").forEach(b => b.onclick = () => {st.pts[b.dataset.k] += 1; revelar(b.dataset.k)});
 }
 function revelar(casa){
   const c = CASAS[casa];
-  render(`<h2 id="q" tabindex="-1" style="text-align:center">O esmalte está assentando…</h2>`, "qin");
+  render(`<h2 id="q" tabindex="-1" style="text-align:center">O metal está tomando forma…</h2>`, "qin");
+  emit("revela", casa);
+  const gl3d = $("#kc").classList.contains("gl-on");
   emb.flood.setAttribute("fill", c.cor);
   requestAnimationFrame(()=>requestAnimationFrame(()=>emb.flood.classList.add("go")));
   setTimeout(()=>{
@@ -601,7 +667,7 @@ function revelar(casa){
     emb.crest.classList.add("on"); emb.body.classList.add("off");
     gravar(st.nome || c.nome);
   }, reduz ? 0 : 1250);
-  setTimeout(()=>resultado(casa), reduz ? 200 : 1900);
+  setTimeout(()=>resultado(casa), reduz ? 200 : gl3d ? 2900 : 1900);
 }
 function resultado(casa){
   const c = CASAS[casa];
@@ -610,11 +676,12 @@ function resultado(casa){
   st.casa = casa; st.pct = pct;
   store.set("bd_ultimo",{nome:st.nome, casa, quando:Date.now()});
   document.body.classList.add("done");
-  const zap = LOJA.whatsapp ? `https://wa.me/${LOJA.whatsapp.replace(/\D/g,"")}?text=${encodeURIComponent(`Oi! Fiz o quiz das casas e caí em ${c.nome}. Quero o meu chaveiro de metal da ${c.nome}!`)}` : "";
+  document.body.style.setProperty("--casa", c.cor);
+  const zap = LOJA.whatsapp ? `https://wa.me/${LOJA.whatsapp.replace(/\D/g,"")}?text=${encodeURIComponent(`Oi! Fiz o quiz das casas e caí em ${c.nome}. Quero o meu chaveiro de Zamak da ${c.nome}!`)}` : "";
   render(`
     <div class="result" style="--hc:${c.fundo};--hon:${c.texto}">
       <p class="who">${st.nome ? esc(st.nome.split(" ")[0])+", a sua casa é" : "A sua casa é"}</p>
-      <h1 id="q" tabindex="-1">${c.nome}</h1>
+      <h1 id="q" tabindex="-1" class="letras" aria-label="${c.nome}"><span class="w" aria-hidden="true">${[...c.nome].map((ch,i)=>`<span style="--i:${i}">${ch}</span>`).join("")}</span></h1>
       <p class="motto">${c.lema}</p>
       <div class="band">
         <p>${c.sobre}</p>
@@ -626,7 +693,7 @@ function resultado(casa){
       </div>
       <div class="racts">
         <button class="btn" type="button" id="save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Salvar imagem</button>
-        ${zap ? `<a class="btn line" href="${zap}" target="_blank" rel="noopener">Pedir meu chaveiro no WhatsApp</a>` : `<p class="note">Mostre esta tela na loja pra garantir o chaveiro de metal da ${c.nome}.</p>`}
+        ${zap ? `<a class="btn line" href="${zap}" target="_blank" rel="noopener">Pedir meu chaveiro no WhatsApp</a>` : `<p class="note">Mostre esta tela na loja pra garantir o chaveiro de Zamak da ${c.nome}.</p>`}
         <button class="btn line" type="button" id="again">Fazer de novo</button>
       </div>
     </div>
@@ -654,24 +721,25 @@ async function salvarImagem(){
     g.fillStyle="#F0AD33"; g.fillRect(0,0,W,8);
     const logo = await carregaImg($(".top img").src);
     g.drawImage(logo, W/2-150, 110, 300, 120);
-    // emblema sem o texto da plaqueta
-    const svg = $("#emblemSvg").cloneNode(true);
-    svg.querySelectorAll("text,#crestImg,#shieldBody").forEach(t=>t.remove());
-    svg.setAttribute("width","480"); svg.setAttribute("height","620");
-    const raw = new XMLSerializer().serializeToString(svg);
-    const em = await carregaImg("data:image/svg+xml;charset=utf-8,"+encodeURIComponent(raw));
-    const ex = W/2-240, ey = 236;
-    g.save(); g.shadowColor="rgba(0,0,0,.7)"; g.shadowBlur=40; g.shadowOffsetY=24;
-    g.drawImage(em, ex, ey, 480, 620); g.restore();
-    const cr = await carregaImg(ESCUDO[st.casa]);
-    const s = Math.min(400/cr.width, 444/cr.height), cw = cr.width*s, ch = cr.height*s;
-    g.drawImage(cr, W/2-cw/2, ey+36*2+(447-ch)/2, cw, ch);
-    // nome gravado na plaqueta (plaqueta em 58..182 x 206..236 no viewBox 240x300 -> escala 2)
-    let nome = st.nome || c.nome; if(nome.length > 14) nome = nome.split(" ")[0].slice(0,14); nome = nome.toUpperCase();
-    g.textAlign="center"; g.textBaseline="middle";
-    g.font = `800 ${nome.length>11?24:30}px "Manrope"`;
-    g.fillStyle="rgba(230,228,227,.75)"; g.fillText(nome, W/2, ey+285*2+2, 260);
-    g.fillStyle="#2E2D2D"; g.fillText(nome, W/2, ey+285*2, 260);
+    const foto = window.quiz3d && window.quiz3d.foto ? window.quiz3d.foto() : null;
+    if(foto){
+      const im = await carregaImg(foto), fw = 760, fh = fw*im.height/im.width;
+      g.drawImage(im, W/2-fw/2, 200, fw, Math.min(fh, 680));
+    } else {
+      const svg = $("#emblemSvg").cloneNode(true);
+      svg.querySelectorAll("text,#crestImg,#shieldBody").forEach(t=>t.remove());
+      const ks = svg.querySelectorAll(".keep"); if(ks.length > 1) ks[ks.length-1].remove();
+      svg.setAttribute("width","480"); svg.setAttribute("height","620");
+      const raw = new XMLSerializer().serializeToString(svg);
+      const em = await carregaImg("data:image/svg+xml;charset=utf-8,"+encodeURIComponent(raw));
+      const ex = W/2-240, ey = 236;
+      g.save(); g.shadowColor="rgba(0,0,0,.7)"; g.shadowBlur=40; g.shadowOffsetY=24;
+      g.drawImage(em, ex, ey, 480, 620); g.restore();
+      const cr = await carregaImg(ESCUDO[st.casa]);
+      const s = Math.min(400/cr.width, 444/cr.height), cw = cr.width*s, ch = cr.height*s;
+      g.drawImage(cr, W/2-cw/2, ey+36*2+(447-ch)/2, cw, ch);
+    }
+    g.textAlign = "center"; g.textBaseline = "middle";
     // textos
     g.fillStyle="#B8B2A7"; g.font = `300 36px "Manrope"`;
     g.fillText(st.nome ? `${st.nome.split(" ")[0]}, a sua casa é` : "A sua casa é", W/2, 900);
@@ -745,6 +813,8 @@ document.addEventListener("keydown", e=>{
 inicio();
 </script>
 <script>/*THREE*/</script>
+<script>/*ZAMAK*/</script>
 <script>/*ABERTURA*/</script>
+<script>/*QUIZ3D*/</script>
 </body>
 </html>

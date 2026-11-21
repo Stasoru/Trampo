@@ -14,7 +14,8 @@ crests = ",".join('%s:"data:image/webp;base64,%s"' % (k, b64(old/("img%d.webp" %
 t = t.replace("/*ESCUDOS*/", crests)
 three = (old/"three-0.160.0.min.js").read_text().replace("</script","<\\/script")
 t = t.replace("<script>/*THREE*/</script>", "<script>"+three+"</script>")
-t = t.replace("<script>/*ABERTURA*/</script>", "<script>"+(src/"abertura.js").read_text()+"</script>")
+for tag, f in [("ZAMAK","zamak.js"),("ABERTURA","abertura.js"),("QUIZ3D","quiz3d.js")]:
+    t = t.replace("<script>/*%s*/</script>" % tag, "<script>"+(src/f).read_text()+"</script>")
 out.write_text(t); print(out, len(t))
 # versão para Artifact: sem doctype/html/head/body (o publicador embrulha a página)
 import re

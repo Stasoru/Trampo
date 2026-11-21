@@ -1,6 +1,10 @@
-GATE: OPEN 19 (taste-skill, 3 rodadas usadas)
+GATE: OPEN 18 (taste-skill, 3 rodadas usadas)
 
-# Revisão do quiz das casas, versão Beco preto e dourado (2026-11-21)
+# Revisão do quiz das casas, versão 3D completa (2026-11-21)
+
+Mudança revisada nesta rodada: o quiz inteiro ficou em 3D. O emblema virou um chaveiro 3D de Zamak em ouro velho, só com o símbolo da casa (especificação do Lopez). Cada resposta vira uma gota de metal na cor da casa, que voa até o molde e derrama uma camada. A pergunta sai inclinando para trás e as opções da próxima entram viradas como cartas. Na revelação, o molde enche de metal derretido, o chaveiro gira, solta faíscas e esfria mostrando o símbolo em relevo. O fundo do resultado ganha a cor da casa, e a imagem de compartilhar usa uma foto do chaveiro 3D. Se o shader falhar, volta o emblema em SVG.
+
+## Rodada anterior: identidade preta e dourada (2026-11-21)
 
 Mudança revisada: o fundo e a identidade passaram a seguir o site becodiagonal.net (preto, dourado, Manrope, botões retos), e a primeira tela ganhou uma abertura 3D (three.js 0.160, embutido): a caixa preta do Beco treme, a tampa sobe e encosta atrás, e os quatro chaveiros com os brasões originais sobem girando com pó dourado. O ponteiro inclina a câmera e um clique gira o chaveiro.
 
@@ -8,7 +12,7 @@ Mudança revisada: o fundo e a identidade passaram a seguir o site becodiagonal.
 
 Regras de layout do kit da taste-skill que não batem com a página escolhida:
 
-- container-edges (8): a página não usa `.wrap`, `header.nav` e `footer.closing` do kit. A abertura ocupa a tela inteira e o quiz fica centrado.
+- container-edges (7): a página não usa `.wrap`, `header.nav` e `footer.closing` do kit. A abertura ocupa a tela inteira e o quiz fica centrado.
 - one-heading (3), one-section (2), section-height (1): as seções da landing seguem o conteúdo, não a grade de uma seção por tela.
 - no-visual (2): "Como funciona" tem ícones próprios e "As quatro casas" tem os brasões. O checador não os reconhece.
 - copy-headings (1): os h3 são os nomes das casas.
@@ -19,7 +23,7 @@ Regras de layout do kit da taste-skill que não batem com a página escolhida:
 - nav: página única. O topo repete o site, só com o logo.
 - container: mesmo motivo dos container-edges.
 - hero-screen: o checador mede o palco do quiz como herói. O herói de verdade é a abertura, que tem exatamente 100svh.
-- effect-kind: o cliente pediu a abertura 3D e escolheu a caixa num cartão de decisão.
+- effect-kind: o cliente pediu a abertura 3D (escolheu a caixa num cartão de decisão) e depois o quiz inteiro em 3D.
 - moment-none: o momento da página é a abertura 3D.
 
 ## Corrigido nesta revisão

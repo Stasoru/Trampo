@@ -23,6 +23,7 @@
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.setClearColor(0x000000, 0);
+  renderer.debug.onShaderError = () => { semGL(); cv.style.display = "none"; };
 
   const scene = new THREE.Scene();
   const cam = new THREE.PerspectiveCamera(30, 1, .1, 60);
@@ -126,30 +127,21 @@
   const dust = new THREE.Points(pg, pm); scene.add(dust);
 
   /* --- os quatro chaveiros, com os brasões originais --- */
-  const prata = new THREE.MeshStandardMaterial({color:0xb9b9bd, metalness:1, roughness:.28});
   const ALVO = [[-1.62,2.2,.32,.3],[-.54,2.72,.1,.1],[.54,2.72,.1,-.1],[1.62,2.2,.32,-.3]];
   const chav = [];
-  function alphaDe(img){
-    const c = document.createElement("canvas"); c.width = img.naturalWidth; c.height = img.naturalHeight;
-    const g = c.getContext("2d"); g.drawImage(img,0,0);
-    const d = g.getImageData(0,0,c.width,c.height), p = d.data;
-    for(let i=0;i<p.length;i+=4){ const a = p[i+3]; p[i]=p[i+1]=p[i+2]=a; p[i+3]=255; }
-    g.putImageData(d,0,0); return new THREE.CanvasTexture(c);
-  }
   function chaveiro(img, i){
     const ar = img.naturalWidth/img.naturalHeight, h = 1.18, w = h*ar;
     const g = new THREE.Group();
-    const tex = new THREE.Texture(img); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4; tex.needsUpdate = true;
-    const am = alphaDe(img);
+    const z = ZAMAK.material(img);
     const geo = new THREE.PlaneGeometry(w,h);
-    const frente = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({map:tex, alphaTest:.5, transparent:false, metalness:.3, roughness:.4, clearcoat:.7, clearcoatRoughness:.18}));
-    frente.position.z = .036; g.add(frente);
-    const verso = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({color:0xa9a9ae, metalness:1, roughness:.34, alphaMap:am, alphaTest:.5}));
+    const frente = new THREE.Mesh(geo, z.mat); frente.position.z = .036; g.add(frente);
+    const verso = new THREE.Mesh(geo, ZAMAK.metal({alphaMap:z.alpha, alphaTest:.5, roughness:.32}));
     verso.rotation.y = Math.PI; verso.position.z = -.036; g.add(verso);
-    const borda = new THREE.MeshStandardMaterial({color:0x8d8d92, metalness:1, roughness:.4, alphaMap:am, alphaTest:.5, side:THREE.DoubleSide});
+    const borda = ZAMAK.metal({alphaMap:z.alpha, alphaTest:.5, side:THREE.DoubleSide, roughness:.45});
     for(let k=0;k<9;k++){ const s = new THREE.Mesh(geo, borda); s.position.z = -.032 + k*.008; g.add(s); }
-    const argola = new THREE.Mesh(new THREE.TorusGeometry(.075,.02,12,36), prata); argola.position.y = h/2+.05; g.add(argola);
-    const anel = new THREE.Mesh(new THREE.TorusGeometry(.17,.016,12,48), prata); anel.rotation.y = Math.PI/2; anel.position.y = h/2+.27; g.add(anel);
+    const ouroArg = ZAMAK.argola();
+    const argola = new THREE.Mesh(new THREE.TorusGeometry(.075,.02,12,36), ouroArg); argola.position.y = h/2+.05; g.add(argola);
+    const anel = new THREE.Mesh(new THREE.TorusGeometry(.17,.016,12,48), ouroArg); anel.rotation.y = Math.PI/2; anel.position.y = h/2+.27; g.add(anel);
     g.visible = false; g.userData.i = i; scene.add(g);
     chav[i] = {g, giro:0, giroAlvo:0, hit:frente};
   }

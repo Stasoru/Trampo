@@ -17,7 +17,7 @@
  {
   "check": "effect-kind",
   "target": "(the page)",
-  "reason": "O cliente pediu explicitamente uma abertura em 3D e escolheu a caixa preta que abre num cartão de decisão (2026-11-21). A cena para de desenhar fora da tela e respeita o movimento reduzido."
+  "reason": "O cliente pediu a abertura 3D (caixa que abre) e depois o quiz inteiro em 3D, com o chaveiro de Zamak sendo fundido. As duas cenas param fora da tela e respeitam o movimento reduzido."
  },
  {
   "check": "moment-none",
