@@ -1,0 +1,717 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-21T09:04:57+00:00",
+  "title": "Design System: Quiz das Casas",
+  "extensions": {
+    "colorMeta": {
+      "peg-board": {
+        "role": "neutral",
+        "displayName": "Pegboard Azul-Noite",
+        "canonical": "#141C5E",
+        "oklch": "oklch(27.0% 0.116 270.8)",
+        "tonalRamp": [
+          "#040626",
+          "#17204B",
+          "#303D74",
+          "#4A5C9F",
+          "#6A7EC4",
+          "#8FA2E1",
+          "#B5C7FE",
+          "#DEEDFF"
+        ]
+      },
+      "peg-hole": {
+        "role": "neutral",
+        "displayName": "Furo",
+        "canonical": "#0B1142",
+        "oklch": "oklch(21.2% 0.092 270.7)",
+        "tonalRamp": [
+          "#050821",
+          "#1A2244",
+          "#333F6A",
+          "#4F5E92",
+          "#6F80B6",
+          "#93A3D5",
+          "#B9C8F3",
+          "#E1EEFF"
+        ]
+      },
+      "ultramarine-card": {
+        "role": "neutral",
+        "displayName": "Ultramar da Cartela",
+        "canonical": "#22309A",
+        "oklch": "oklch(37.7% 0.171 269.7)",
+        "tonalRamp": [
+          "#030133",
+          "#111A5D",
+          "#27388A",
+          "#3F56BB",
+          "#5D79E1",
+          "#839FFC",
+          "#ABC6FF",
+          "#D5ECFF"
+        ]
+      },
+      "ultramarine-well": {
+        "role": "neutral",
+        "displayName": "Poço Ultramar",
+        "canonical": "#1B277F",
+        "oklch": "oklch(32.9% 0.147 269.8)",
+        "tonalRamp": [
+          "#03032D",
+          "#131E55",
+          "#2A3B81",
+          "#4359AF",
+          "#627CD5",
+          "#88A1F0",
+          "#AFC6FF",
+          "#D8EDFF"
+        ]
+      },
+      "card-line": {
+        "role": "neutral",
+        "displayName": "Fio da Cartela",
+        "canonical": "rgba(243,238,226,.22)"
+      },
+      "print-cream": {
+        "role": "neutral",
+        "displayName": "Creme de Impressão",
+        "canonical": "#F3EEE2",
+        "oklch": "oklch(95.0% 0.017 88.0)",
+        "tonalRamp": [
+          "#0D0B07",
+          "#27251F",
+          "#45423A",
+          "#656157",
+          "#868278",
+          "#A8A59C",
+          "#CCC9C1",
+          "#F1EEE7"
+        ]
+      },
+      "print-lilac": {
+        "role": "neutral",
+        "displayName": "Lilás de Impressão",
+        "canonical": "#C9CBEA",
+        "oklch": "oklch(85.0% 0.043 282.5)",
+        "tonalRamp": [
+          "#0A0A15",
+          "#232333",
+          "#3F4054",
+          "#5D5F78",
+          "#7E809A",
+          "#A1A3BB",
+          "#C6C7DC",
+          "#ECEDFF"
+        ]
+      },
+      "fine-print": {
+        "role": "neutral",
+        "displayName": "Letra Miúda",
+        "canonical": "#B4B8E4",
+        "oklch": "oklch(79.4% 0.062 280.8)",
+        "tonalRamp": [
+          "#090919",
+          "#212239",
+          "#3D3F5D",
+          "#5B5E82",
+          "#7B7FA5",
+          "#9FA2C5",
+          "#C3C7E5",
+          "#EAECFF"
+        ]
+      },
+      "ink-navy": {
+        "role": "neutral",
+        "displayName": "Tinta Marinho",
+        "canonical": "#14193F",
+        "oklch": "oklch(23.4% 0.072 273.8)",
+        "tonalRamp": [
+          "#07091C",
+          "#1E233D",
+          "#384061",
+          "#555E88",
+          "#7580AB",
+          "#99A3CA",
+          "#BFC8EA",
+          "#E5EDFF"
+        ]
+      },
+      "stamp-gold": {
+        "role": "primary",
+        "displayName": "Dourado de Estampa",
+        "canonical": "#EEA534",
+        "oklch": "oklch(77.5% 0.148 73.2)",
+        "tonalRamp": [
+          "#1E0200",
+          "#411800",
+          "#673300",
+          "#8F5000",
+          "#B37200",
+          "#D29846",
+          "#F2BF7D",
+          "#FFE7B0"
+        ]
+      },
+      "stamp-gold-light": {
+        "role": "primary",
+        "displayName": "Dourado de Estampa Claro",
+        "canonical": "#F7C46C",
+        "oklch": "oklch(84.8% 0.121 79.6)",
+        "tonalRamp": [
+          "#190500",
+          "#3A1E00",
+          "#5D3A00",
+          "#835800",
+          "#A67922",
+          "#C69E5A",
+          "#E6C48B",
+          "#FFEABB"
+        ]
+      },
+      "gold-ink": {
+        "role": "primary",
+        "displayName": "Tinta sobre Dourado",
+        "canonical": "#2A1A02",
+        "oklch": "oklch(23.3% 0.046 75.1)",
+        "tonalRamp": [
+          "#110902",
+          "#2E2313",
+          "#4E3F2B",
+          "#705E46",
+          "#927F66",
+          "#B3A28C",
+          "#D6C7B3",
+          "#F9ECDC"
+        ]
+      },
+      "pewter-light": {
+        "role": "tertiary",
+        "displayName": "Estanho Claro",
+        "canonical": "#D2D0CF",
+        "oklch": "oklch(85.9% 0.003 48.7)",
+        "tonalRamp": [
+          "#0C0B0B",
+          "#262524",
+          "#434241",
+          "#626160",
+          "#848281",
+          "#A6A5A4",
+          "#CAC9C8",
+          "#EFEEED"
+        ]
+      },
+      "pewter-mid": {
+        "role": "tertiary",
+        "displayName": "Estanho Médio",
+        "canonical": "#8A8989",
+        "oklch": "oklch(63.1% 0.001 17.2)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#626161",
+          "#838282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EFEEEE"
+        ]
+      },
+      "pewter-dark": {
+        "role": "tertiary",
+        "displayName": "Estanho Escuro",
+        "canonical": "#5F5E5E",
+        "oklch": "oklch(48.3% 0.001 17.2)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#626161",
+          "#838282",
+          "#A6A5A5",
+          "#CAC9C9",
+          "#EFEEEE"
+        ]
+      },
+      "engrave": {
+        "role": "tertiary",
+        "displayName": "Gravação",
+        "canonical": "#2E2D2D",
+        "oklch": "oklch(29.8% 0.001 17.2)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#434242",
+          "#626161",
+          "#838282",
+          "#A6A5A5",
+          "#CAC9C9",
+          "#EFEEEE"
+        ]
+      },
+      "enamel-gri": {
+        "role": "secondary",
+        "displayName": "Vermelho-Tijolo (Grifinória)",
+        "canonical": "#C2362B",
+        "oklch": "oklch(54.4% 0.179 28.9)",
+        "tonalRamp": [
+          "#290000",
+          "#520000",
+          "#7D0D09",
+          "#AC2B21",
+          "#D45144",
+          "#F27E6F",
+          "#FFAA9B",
+          "#FFD5C8"
+        ]
+      },
+      "enamel-gri-deep": {
+        "role": "secondary",
+        "displayName": "Vermelho-Tijolo Fundo",
+        "canonical": "#8E2219",
+        "oklch": "oklch(42.9% 0.145 29.3)",
+        "tonalRamp": [
+          "#240000",
+          "#4B0603",
+          "#742119",
+          "#A03B30",
+          "#C75E51",
+          "#E58779",
+          "#FFB1A3",
+          "#FFDBCF"
+        ]
+      },
+      "on-gri": {
+        "role": "secondary",
+        "displayName": "Texto sobre Grifinória",
+        "canonical": "#FFF5EE",
+        "oklch": "oklch(97.6% 0.014 57.6)",
+        "tonalRamp": [
+          "#0E0A08",
+          "#292420",
+          "#47413C",
+          "#675F5A",
+          "#89817B",
+          "#ABA39E",
+          "#CEC8C3",
+          "#F3EDE9"
+        ]
+      },
+      "enamel-cor": {
+        "role": "secondary",
+        "displayName": "Azul-Cobalto (Corvinal)",
+        "canonical": "#3C8BE6",
+        "oklch": "oklch(63.2% 0.157 254.1)",
+        "tonalRamp": [
+          "#00062F",
+          "#002257",
+          "#004083",
+          "#1261B2",
+          "#3B84D8",
+          "#6AA8F3",
+          "#98CDFF",
+          "#C6F2FF"
+        ]
+      },
+      "enamel-cor-deep": {
+        "role": "secondary",
+        "displayName": "Azul-Cobalto Fundo",
+        "canonical": "#1D4E9E",
+        "oklch": "oklch(43.9% 0.141 259.9)",
+        "tonalRamp": [
+          "#00062B",
+          "#042253",
+          "#193F7E",
+          "#315FAB",
+          "#5181D0",
+          "#7AA6ED",
+          "#A4CBFF",
+          "#D0F0FF"
+        ]
+      },
+      "on-cor": {
+        "role": "secondary",
+        "displayName": "Texto sobre Corvinal",
+        "canonical": "#F2F7FF",
+        "oklch": "oklch(97.5% 0.012 259.8)",
+        "tonalRamp": [
+          "#090B0E",
+          "#232529",
+          "#3F4247",
+          "#5D6168",
+          "#7E8389",
+          "#A1A5AB",
+          "#C6C9CF",
+          "#ECEFF3"
+        ]
+      },
+      "enamel-luf": {
+        "role": "secondary",
+        "displayName": "Amarelo-Mostarda (Lufa-Lufa)",
+        "canonical": "#E9B730",
+        "oklch": "oklch(80.3% 0.151 86.7)",
+        "tonalRamp": [
+          "#1A0500",
+          "#3A1E00",
+          "#5E3A00",
+          "#845800",
+          "#A77A00",
+          "#C79F3D",
+          "#E7C577",
+          "#FFECAC"
+        ]
+      },
+      "on-luf": {
+        "role": "secondary",
+        "displayName": "Texto sobre Lufa-Lufa",
+        "canonical": "#2A1E05",
+        "oklch": "oklch(24.4% 0.043 83.1)",
+        "tonalRamp": [
+          "#100A02",
+          "#2C2414",
+          "#4B402C",
+          "#6C5F47",
+          "#8E8167",
+          "#B0A48D",
+          "#D3C8B4",
+          "#F6EDDD"
+        ]
+      },
+      "enamel-son": {
+        "role": "secondary",
+        "displayName": "Verde-Garrafa (Sonserina)",
+        "canonical": "#1E8A55",
+        "oklch": "oklch(56.1% 0.125 156.2)",
+        "tonalRamp": [
+          "#001301",
+          "#003012",
+          "#00512A",
+          "#057444",
+          "#3A9764",
+          "#6CB88A",
+          "#9BDAB2",
+          "#C9FDDB"
+        ]
+      },
+      "enamel-son-deep": {
+        "role": "secondary",
+        "displayName": "Verde-Garrafa Fundo",
+        "canonical": "#145C39",
+        "oklch": "oklch(42.2% 0.091 157.0)",
+        "tonalRamp": [
+          "#001103",
+          "#002E18",
+          "#194D32",
+          "#32704D",
+          "#54926E",
+          "#7EB393",
+          "#A8D6B9",
+          "#D4F9E1"
+        ]
+      },
+      "on-son": {
+        "role": "secondary",
+        "displayName": "Texto sobre Sonserina",
+        "canonical": "#EEFBF3",
+        "oklch": "oklch(97.6% 0.017 159.1)",
+        "tonalRamp": [
+          "#080C0A",
+          "#202723",
+          "#3C443F",
+          "#5A645E",
+          "#7B857F",
+          "#9EA8A2",
+          "#C3CCC6",
+          "#E9F1EC"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título do primeiro viewport, caixa-alta, palavra final em dourado."
+      },
+      "display-result": {
+        "displayName": "Display Result",
+        "purpose": "Nome da casa no resultado."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos das seções da landing."
+      },
+      "question": {
+        "displayName": "Question",
+        "purpose": "Texto da pergunta, em caixa normal."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nomes de casa, passos, lema e subtítulos."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Todos os botões, caixa-alta."
+      },
+      "stamp-label": {
+        "displayName": "Stamp Label",
+        "purpose": "Etiquetas de traço e contador."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Opções, faixa de resultado e texto de seção."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Frase de abertura e texto do campo."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Rótulo do campo, links e memória da última rodada."
+      },
+      "fine": {
+        "displayName": "Fine",
+        "purpose": "Rodapé de lote e aviso de página de fã."
+      }
+    },
+    "shadows": [
+      {
+        "name": "objeto-pendurado",
+        "value": "0 30px 60px -20px rgba(3,6,30,.7), 0 6px 14px rgba(3,6,30,.35)",
+        "purpose": "A cartela no desktop (>=800px)."
+      },
+      {
+        "name": "metal-em-relevo",
+        "value": "drop-shadow(0 14px 18px rgba(5,8,40,.55)) drop-shadow(0 2px 3px rgba(5,8,40,.5))",
+        "purpose": "filter do emblema de estanho."
+      },
+      {
+        "name": "brasao-miniatura",
+        "value": "drop-shadow(0 4px 6px rgba(5,8,40,.45))",
+        "purpose": "filter dos brasões na lista e no desempate."
+      },
+      {
+        "name": "labio-do-botao",
+        "value": "inset 0 -3px 0 rgba(120,70,0,.28), 0 8px 18px -6px rgba(5,8,40,.6)",
+        "purpose": "Botão primário em repouso."
+      },
+      {
+        "name": "labio-do-botao-active",
+        "value": "inset 0 2px 0 rgba(120,70,0,.28), 0 3px 8px -4px rgba(5,8,40,.6)",
+        "purpose": "Botão primário pressionado."
+      },
+      {
+        "name": "furo",
+        "value": "inset 0 2px 3px rgba(0,0,0,.5)",
+        "purpose": "Euro slot, rebites apagados (1px/2px) e trilhos das barras."
+      },
+      {
+        "name": "halo-de-foco-do-campo",
+        "value": "0 0 0 3px rgba(238,165,52,.28)",
+        "purpose": "Campo de nome em foco."
+      },
+      {
+        "name": "toast",
+        "value": "0 10px 24px -8px rgba(0,0,0,.55)",
+        "purpose": "Aviso flutuante."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Easing padrão: entradas, emblema, barras, botões."
+      },
+      {
+        "name": "pergunta-entra",
+        "value": "0.24s ease-out; translateY(6px) e opacity 0 -> none",
+        "purpose": "Cada tela do quiz."
+      },
+      {
+        "name": "faixa-de-esmalte",
+        "value": "0.5s ease-out; scaleY(0) -> 1, origem embaixo",
+        "purpose": "Cada resposta pinga uma faixa no emblema; também a faixa de resultado."
+      },
+      {
+        "name": "inundacao",
+        "value": "1.3s cubic-bezier(.45,0,.2,1); scaleY(0) -> 1",
+        "purpose": "O esmalte da casa fecha o emblema no resultado."
+      },
+      {
+        "name": "brasao-assenta",
+        "value": "opacity .5s; transform .6s ease-out; scale(1.04) -> 1",
+        "purpose": "Brasão aparece dentro da moldura."
+      },
+      {
+        "name": "barras",
+        "value": "transform 1s ease-out; scaleX(0) -> valor",
+        "purpose": "Barras de mistura."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce -> sem transições nem animações",
+        "purpose": "Obrigatório."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "cartela-pendurada",
+        "value": "800px"
+      },
+      {
+        "name": "duas-colunas",
+        "value": "900px"
+      }
+    ],
+    "binding_assets": [
+      {
+        "path": "quiz-casas/assets/img1.webp",
+        "what": "Brasão da Grifinória (do usuário, intocável)"
+      },
+      {
+        "path": "quiz-casas/assets/img2.webp",
+        "what": "Brasão da Corvinal (do usuário, intocável)"
+      },
+      {
+        "path": "quiz-casas/assets/img3.webp",
+        "what": "Brasão da Lufa-Lufa (do usuário, intocável)"
+      },
+      {
+        "path": "quiz-casas/assets/img4.webp",
+        "what": "Brasão da Sonserina (do usuário, intocável)"
+      },
+      {
+        "path": "quiz-casas/assets/frame.webp",
+        "what": "Moldura de estanho vazia, derivada de img1.webp"
+      },
+      {
+        "path": "quiz-casas/assets/field-mask.png",
+        "what": "Máscara do campo do emblema, derivada de img1.webp"
+      },
+      {
+        "path": "quiz-casas/assets/img0.svg",
+        "what": "Logo Beco Diagonal Personalizados (dourado), do usuário"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão primário",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal: começar, salvar imagem, fazer o quiz.",
+      "html": "<button class=\"ds-btn\">Começar o quiz</button>",
+      "css": ".ds-btn{appearance:none;display:flex;align-items:center;justify-content:center;width:100%;max-width:420px;min-height:56px;border:0;border-radius:999px;padding:14px 22px;background:#EEA534;color:#2A1A02;font-family:\"Big Shoulders Display\",\"Arial Narrow\",sans-serif;font-weight:900;text-transform:uppercase;font-size:22px;line-height:1;letter-spacing:.04em;cursor:pointer;box-shadow:inset 0 -3px 0 rgba(120,70,0,.28),0 8px 18px -6px rgba(5,8,40,.6);transition:transform .15s cubic-bezier(.16,1,.3,1),background-color .2s,box-shadow .2s}.ds-btn:hover{background:#F7C46C}.ds-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 0 rgba(120,70,0,.28),0 3px 8px -4px rgba(5,8,40,.6)}.ds-btn:focus-visible{outline:3px solid #F3EEE2;outline-offset:3px}"
+    },
+    {
+      "name": "Botão de contorno",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Ação secundária: fazer de novo, pedir no WhatsApp, ver produtos.",
+      "html": "<div class=\"ds-wrap\"><button class=\"ds-btn-line\">Fazer de novo</button></div>",
+      "css": ".ds-wrap{background:#22309A;padding:20px}.ds-btn-line{appearance:none;display:flex;align-items:center;justify-content:center;width:100%;max-width:420px;min-height:56px;border:0;border-radius:999px;padding:14px 22px;background:transparent;color:#F3EEE2;font-family:\"Big Shoulders Display\",\"Arial Narrow\",sans-serif;font-weight:900;text-transform:uppercase;font-size:22px;line-height:1;letter-spacing:.04em;cursor:pointer;box-shadow:inset 0 0 0 1.5px rgba(243,238,226,.22);transition:box-shadow .2s,background-color .2s}.ds-btn-line:hover{box-shadow:inset 0 0 0 1.5px #F3EEE2;background:rgba(255,255,255,.04)}.ds-btn-line:focus-visible{outline:3px solid #F3EEE2;outline-offset:3px}"
+    },
+    {
+      "name": "Campo de nome",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Nome opcional que vai gravado na plaqueta do emblema.",
+      "html": "<div class=\"ds-wrap\"><label class=\"ds-label\" for=\"ds-n\">Seu nome no emblema (opcional)</label><input class=\"ds-input\" id=\"ds-n\" placeholder=\"Como você se chama?\"></div>",
+      "css": ".ds-wrap{background:#22309A;padding:20px;display:grid;gap:6px;max-width:420px}.ds-label{font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-size:14px;font-weight:600;color:#C9CBEA}.ds-input{width:100%;box-sizing:border-box;background:#1B277F;border:1.5px solid rgba(243,238,226,.22);border-radius:12px;padding:14px 16px;font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-size:18px;color:#F3EEE2;caret-color:#EEA534;transition:border-color .2s}.ds-input::placeholder{color:#8F96CF}.ds-input:hover{border-color:rgba(243,238,226,.4)}.ds-input:focus{border-color:#EEA534;outline:none;box-shadow:0 0 0 3px rgba(238,165,52,.28)}"
+    },
+    {
+      "name": "Opção de resposta",
+      "kind": "button",
+      "refersTo": "answer-option",
+      "description": "Uma das quatro respostas, com número de atalho; fica dourada quando escolhida.",
+      "html": "<div class=\"ds-wrap\"><button class=\"ds-opt\"><kbd>1</kbd><span>Uma coruja branca</span></button><button class=\"ds-opt ds-picked\"><kbd>2</kbd><span>Um cão vira-lata</span></button></div>",
+      "css": ".ds-wrap{background:#22309A;padding:20px;display:grid;gap:10px;max-width:560px}.ds-opt{appearance:none;display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;text-align:left;width:100%;min-height:58px;background:#1B277F;border:1.5px solid rgba(243,238,226,.22);border-radius:14px;padding:12px 16px;cursor:pointer;font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-size:17px;line-height:1.35;color:#F3EEE2;transition:border-color .18s,background-color .18s,transform .15s cubic-bezier(.16,1,.3,1)}.ds-opt kbd{font-family:\"Big Shoulders Display\",\"Arial Narrow\",sans-serif;font-weight:900;text-transform:uppercase;font-size:17px;line-height:1;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;border:1.5px solid rgba(243,238,226,.22);color:#C9CBEA}.ds-opt:hover{border-color:#EEA534}.ds-opt:hover kbd{border-color:#EEA534;color:#EEA534}.ds-opt:active{transform:scale(.985)}.ds-opt:focus-visible{outline:3px solid #F7C46C;outline-offset:3px}.ds-opt.ds-picked{background:#EEA534;border-color:#EEA534;color:#2A1A02}.ds-opt.ds-picked kbd{border-color:#2A1A02;color:#2A1A02}"
+    },
+    {
+      "name": "Rebites de progresso",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Um rebite por pergunta; aceso é metal dourado, apagado é furo.",
+      "html": "<div class=\"ds-wrap\"><div class=\"ds-rivets\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class=\"ds-count\">4 / 10</span></div>",
+      "css": ".ds-wrap{background:#22309A;padding:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:560px}.ds-rivets{display:flex;gap:6px}.ds-rivets i{width:12px;height:12px;border-radius:50%;background:#1B277F;box-shadow:inset 0 1px 2px rgba(0,0,0,.5)}.ds-rivets i.on{background:radial-gradient(circle at 35% 30%,#F7C46C,#EEA534 60%,#B97614);box-shadow:0 1px 1px rgba(0,0,0,.4)}.ds-count{font-family:\"Big Shoulders Display\",\"Arial Narrow\",sans-serif;font-weight:900;text-transform:uppercase;font-size:20px;line-height:1;letter-spacing:.06em;color:#C9CBEA;font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Faixa de resultado",
+      "kind": "card",
+      "refersTo": "result-band-cor",
+      "description": "Esmalte da casa vencedora com o texto e os traços; cada casa usa sua cor funda.",
+      "html": "<div class=\"ds-band\"><p>Sua cabeça não para. Você coleciona ideias e prefere entender antes de opinar.</p><ul><li>Curiosidade</li><li>Criatividade</li></ul></div>",
+      "css": ".ds-band{border-radius:16px;padding:22px 20px;background:#1D4E9E;color:#F2F7FF;display:grid;gap:16px;max-width:520px;font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-size:17px;line-height:1.55}.ds-band p{margin:0}.ds-band ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}.ds-band li{font-family:\"Big Shoulders Display\",\"Arial Narrow\",sans-serif;font-weight:900;text-transform:uppercase;font-size:18px;line-height:1;letter-spacing:.04em;padding:8px 12px;border-radius:8px;border:1.5px solid currentColor}"
+    },
+    {
+      "name": "Barra de mistura",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Percentual de cada casa, com esmalte no trilho rebaixado.",
+      "html": "<div class=\"ds-wrap\"><div class=\"ds-bar\"><span>Corvinal</span><span class=\"t\"><b style=\"width:37%;background-color:#3C8BE6\"></b></span><span class=\"n\">37%</span></div><div class=\"ds-bar\"><span>Sonserina</span><span class=\"t\"><b style=\"width:20%;background-color:#1E8A55\"></b></span><span class=\"n\">20%</span></div></div>",
+      "css": ".ds-wrap{background:#22309A;padding:20px;display:grid;gap:10px;max-width:520px;color:#F3EEE2;font-family:\"Hanken Grotesk\",system-ui,sans-serif;}.ds-bar{display:grid;grid-template-columns:104px 1fr 44px;gap:12px;align-items:center;font-size:15px}.ds-bar .t{height:14px;border-radius:7px;background:#1B277F;box-shadow:inset 0 1px 2px rgba(0,0,0,.45);overflow:hidden}.ds-bar .t b{display:block;height:100%;border-radius:7px;background-image:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 60%)}.ds-bar .n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}"
+    },
+    {
+      "name": "Furo de pendurar e picote",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Euro slot no topo da cartela e linha de picote entre seções.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-slot\"><i></i></div><div class=\"ds-perf\"></div></div>",
+      "css": ".ds-card{background:#22309A;padding:18px 0 24px;display:grid;gap:24px}.ds-slot{display:flex;justify-content:center}.ds-slot i{display:block;width:76px;height:18px;border-radius:9px;background:#0B1142;box-shadow:inset 0 2px 3px rgba(0,0,0,.5);position:relative}.ds-slot i::before{content:\"\";position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-17px 0 0 -13px;border-radius:50%;background:#0B1142;box-shadow:inset 0 2px 3px rgba(0,0,0,.5)}.ds-perf{height:14px;background:radial-gradient(circle,#0B1142 0 2.4px,transparent 2.8px) 0 50%/14px 14px repeat-x}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Cartela do Chaveiro",
+    "overview": "A página inteira é a cartela de papelão de uma embalagem de chaveiro: um retângulo azul ultramar chapado, com o furo de pendurar (euro slot) no topo, impressão em dourado e creme, picote entre as seções e letras miúdas de lote no rodapé. No celular a cartela ocupa a tela de ponta a ponta; a partir de 800px ela vira um objeto pendurado num painel perfurado (pegboard) azul-noite, com cantos arredondados e sombra de objeto. Tudo o que é interface está impresso nessa cartela; o único objeto em relevo é o emblema de estanho.\n\nO emblema é o herói e o indicador de progresso ao mesmo tempo. Começa vazio, em metal fosco, com a plaqueta \"SEU NOME\"; cada resposta despeja uma faixa de esmalte duro na cor da casa favorecida; no resultado o esmalte fecha, o brasão da casa aparece dentro da moldura e o nome sai gravado na plaqueta. Os quatro brasões são arte do usuário, em raster, e são intocáveis. A moldura de estanho vazia e a máscara do campo foram derivadas do brasão da Grifinória, não desenhadas.\n\nA densidade é de embalagem: poucos blocos, texto curto, tipografia condensada estampada em caixa-alta para títulos e botões, grotesca legível para tudo que se lê. O movimento é só o do esmalte (encher, assentar) e a entrada de cada pergunta; o resto fica quieto. A recusa confirmada na direção: nada de salão escuro com velas e brasões, nada de tela de quiz genérica de pergunta e botões.",
+    "keyCharacteristics": [
+      "Uma superfície só: a cartela ultramar sobre o pegboard azul-noite.",
+      "Impressão em duas tintas: creme para texto, dourado para ação e ênfase.",
+      "Esmalte nas quatro cores das casas, usado só onde há \"metal\" ou resultado.",
+      "Display condensado 900 em caixa-alta, corpo Hanken Grotesk 17px.",
+      "Detalhes de embalagem: furo de pendurar, picote, número de cartela e lote.",
+      "Brasões raster do usuário, nunca redesenhados."
+    ],
+    "rules": [
+      {
+        "name": "The Esmalte Só no Metal Rule",
+        "body": "As cores das casas aparecem apenas como esmalte: no emblema, nas barras de mistura e na faixa de resultado. Nunca em bordas, botões, títulos ou fundo de seção.",
+        "section": "colors"
+      },
+      {
+        "name": "The Duas Tintas Rule",
+        "body": "A cartela é impressa em duas tintas, creme e dourado. O dourado marca ação ou ênfase; se não é clicável nem a palavra-chave, é creme ou lilás.",
+        "section": "colors"
+      },
+      {
+        "name": "The Carimbo Rule",
+        "body": "Display é sempre peso 900 em caixa-alta, com `text-wrap: balance`. A única exceção é a pergunta do quiz, que fica em caixa normal porque é frase pra ler, não etiqueta.",
+        "section": "typography"
+      },
+      {
+        "name": "The Grotesca Pra Ler Rule",
+        "body": "Todo texto com mais de uma linha é Hanken Grotesk. Display nunca carrega parágrafo.",
+        "section": "typography"
+      },
+      {
+        "name": "The Furo Afunda, Metal Sobe Rule",
+        "body": "Sombra externa só em objeto físico (cartela, emblema, brasão, botão). Furo, poço e trilho levam sombra interna. Cartões de texto e opções ficam chapados.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar os quatro brasões raster do usuário (`img1`–`img4.webp`) exatamente como estão, em qualquer tamanho, e derivar molduras ou máscaras só a partir deles.",
+      "Do manter a cartela `ultramarine-card` como a única superfície, com `ultramarine-well` para o que é rebaixado.",
+      "Do reservar o dourado para ação, ênfase e estado escolhido, sempre com `gold-ink` por cima.",
+      "Do escrever títulos, botões e etiquetas em Big Shoulders Display 900 caixa-alta, e todo texto corrido em Hanken Grotesk 17px/1.55.",
+      "Do separar seções com o picote e manter os detalhes de embalagem (furo, lote, número de cartela).",
+      "Do manter alvos de toque com 44px ou mais (botões 56px, opções 58px) e o primeiro viewport completo em 390x844.",
+      "Do desligar todo movimento com `prefers-reduced-motion: reduce`."
+    ],
+    "donts": [
+      "Don't redesenhar, vetorizar, recolorir, recortar ou trocar os brasões das casas, nem gerar brasões novos.",
+      "Don't usar as cores das casas fora do esmalte (emblema, barras, faixa de resultado).",
+      "Don't usar o salão escuro de velas e brasões nem o layout genérico de quiz com pergunta e botões soltos.",
+      "Don't usar logotipos, fontes ou música oficiais dos filmes; o único logo é o da Beco Diagonal Personalizados, em dourado.",
+      "Don't pôr sombra externa em cartões de texto ou opções; sombra externa é de objeto físico.",
+      "Don't usar o display em parágrafo nem em peso menor que 900."
+    ]
+  }
+}

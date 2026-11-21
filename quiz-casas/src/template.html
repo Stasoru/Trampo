@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Quiz das Casas</title>
+<meta name="description" content="Responda dez perguntas e descubra a sua casa. Um quiz de fã da Beco Diagonal Personalizados.">
+<meta name="theme-color" content="#141C5E">
+<meta property="og:title" content="Quiz das Casas · Beco Diagonal Personalizados">
+<meta property="og:description" content="10 perguntas pra descobrir a sua casa. No fim, o emblema sai com o seu nome.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2322309A'/%3E%3Cpath d='M32 10c8 0 16 2 22 5 0 18-6 30-22 40C16 45 10 33 10 15c6-3 14-5 22-5z' fill='%23EEA534'/%3E%3C/svg%3E">
+<style>
+/*FONTS*/
+:root{
+  --peg:#141C5E; --peg-hole:#0B1142;
+  --card:#22309A; --card-2:#1B277F; --card-line:rgba(243,238,226,.22);
+  --print:#F3EEE2; --print-2:#C9CBEA;
+  --gold:#EEA534; --gold-2:#F7C46C; --gold-ink:#2A1A02;
+  --gri:#C2362B; --cor:#3C8BE6; --luf:#E9B730; --son:#1E8A55;
+  --gri-deep:#8E2219; --cor-deep:#1D4E9E; --luf-deep:#E9B730; --son-deep:#145C39;
+  --display:"Big Shoulders Display","Arial Narrow",sans-serif;
+  --body:"Hanken Grotesk",system-ui,sans-serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;min-height:100dvh;background-color:var(--peg);
+  background-image:radial-gradient(circle at 50% 50%, var(--peg-hole) 0 3px, transparent 3.5px);
+  background-size:28px 28px;color:var(--print);font:400 17px/1.55 var(--body);
+  -webkit-tap-highlight-color:transparent;padding:0 0 env(safe-area-inset-bottom,0)}
+::selection{background:var(--gold);color:var(--gold-ink)}
+:focus-visible{outline:3px solid var(--gold-2);outline-offset:3px}
+.btn:focus-visible{outline-color:var(--print)}
+.skip{position:absolute;left:16px;top:-80px;z-index:10;background:var(--print);color:#14193F;padding:12px 16px;border-radius:10px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+img,svg{display:block;max-width:100%}
+button,input{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.95;margin:0;text-wrap:balance;letter-spacing:-.01em;text-transform:uppercase}
+p{margin:0;text-wrap:pretty}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ===== A cartela ===== */
+.card{position:relative;width:100%;max-width:760px;margin:0 auto;background:var(--card);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0) 240px);
+  padding:0 20px 28px}
+.slot{display:flex;justify-content:center;padding-top:max(18px,env(safe-area-inset-top,0px))}
+.slot i{display:block;width:76px;height:18px;border-radius:9px;background:var(--peg-hole);
+  box-shadow:inset 0 2px 3px rgba(0,0,0,.5);position:relative}
+.slot i::before{content:"";position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-17px 0 0 -13px;border-radius:50%;background:var(--peg-hole);box-shadow:inset 0 2px 3px rgba(0,0,0,.5)}
+.brand{display:flex;justify-content:center;padding:12px 0 2px}
+.brand img{width:128px;height:auto}
+@media (min-width:800px){.brand img{width:178px}}
+@media (min-width:800px){
+  body{padding:40px 0 64px}
+  .card{border-radius:22px;padding:0 56px 40px;box-shadow:0 30px 60px -20px rgba(3,6,30,.7),0 6px 14px rgba(3,6,30,.35)}
+  .slot{padding-top:22px}
+}
+
+/* ===== Hero / palco ===== */
+.stage{display:grid;gap:10px;justify-items:center;text-align:center;padding:6px 0 30px}
+.emblem{width:min(70vw,300px);aspect-ratio:240/310;filter:drop-shadow(0 14px 18px rgba(5,8,40,.55)) drop-shadow(0 2px 3px rgba(5,8,40,.5))}
+.hero-title{font-size:clamp(42px,11.5vw,84px);max-width:11ch;color:var(--print)}
+.hero-title em{font-style:normal;color:var(--gold)}
+.lead{color:var(--print-2);max-width:36ch;font-size:18px}
+.start{width:100%;max-width:420px;display:grid;gap:12px;margin-top:4px}
+.field{display:grid;gap:6px;text-align:left}
+.field label{font-size:14px;font-weight:600;color:var(--print-2)}
+.field input{width:100%;background:var(--card-2);border:1.5px solid var(--card-line);border-radius:12px;
+  padding:14px 16px;font-size:18px;color:var(--print);caret-color:var(--gold);transition:border-color .2s}
+.field input::placeholder{color:#8F96CF}
+.field input:hover{border-color:rgba(243,238,226,.4)}
+.field input:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(238,165,52,.28)}
+.btn{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;
+  border:0;border-radius:999px;padding:14px 22px;background:var(--gold);color:var(--gold-ink);
+  font:900 22px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-decoration:none;
+  box-shadow:inset 0 -3px 0 rgba(120,70,0,.28),0 8px 18px -6px rgba(5,8,40,.6);transition:transform .15s var(--ease-out),background-color .2s,box-shadow .2s}
+.btn:hover{background:var(--gold-2)}
+.btn:active{transform:translateY(1px);box-shadow:inset 0 2px 0 rgba(120,70,0,.28),0 3px 8px -4px rgba(5,8,40,.6)}
+.btn.line{background:transparent;color:var(--print);box-shadow:inset 0 0 0 1.5px var(--card-line)}
+.btn.line:hover{box-shadow:inset 0 0 0 1.5px var(--print);background:rgba(255,255,255,.04)}
+.btn svg{width:22px;height:22px;flex:none}
+.memo{font-size:14px;color:var(--print-2)}
+.memo b{color:var(--print)}
+
+/* ===== Palco em duas colunas no desktop ===== */
+.qbox.intro{text-align:center;justify-items:center}
+.shieldBody{transition:opacity .5s}
+.shieldBody.off{opacity:0}
+@media (min-width:900px){
+  .card{max-width:1080px}
+  body:not(.quizzing) .stage{min-height:calc(100svh - 170px)}
+  .stage{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:64px;align-items:center;text-align:left;justify-items:start;padding:24px 0 56px}
+  .stage>.emblem{grid-column:1;grid-row:1 / span 2;width:100%;max-width:380px;justify-self:center}
+  .hero-copy,#screen{grid-column:2}
+  .hero-title{font-size:96px}
+  .qbox.intro{text-align:left;justify-items:start}
+  body.quizzing .stage>.emblem{width:100%;max-width:320px;align-self:start;position:sticky;top:32px}
+  body.quizzing .stage{align-items:start}
+  .stage .result{justify-items:start;text-align:left}
+}
+
+/* ===== Picote ===== */
+.perf{height:14px;margin:6px -20px;position:relative;
+  background:radial-gradient(circle,var(--peg-hole) 0 2.4px,transparent 2.8px) 0 50%/14px 14px repeat-x}
+@media (min-width:800px){.perf{margin:10px -56px}}
+
+/* ===== Seções da cartela ===== */
+.sec{padding:34px 0 30px}
+.sec h2{font-size:clamp(42px,10vw,60px);margin-bottom:12px}
+.sec>p{color:var(--print-2);max-width:52ch}
+.steps{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:18px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.steps svg{width:44px;height:44px;color:var(--gold)}
+.steps b{display:block;font:900 24px/1.05 var(--display);text-transform:uppercase;letter-spacing:.01em;margin-bottom:3px}
+.steps span{color:var(--print-2)}
+@media (min-width:800px){.steps{grid-template-columns:repeat(3,1fr);gap:26px}.steps li{grid-template-columns:1fr}}
+
+.chart{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:0;border-top:1.5px solid var(--card-line)}
+.chart li{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;padding:16px 0;border-bottom:1.5px solid var(--card-line)}
+.chip{width:64px;height:auto;filter:drop-shadow(0 4px 6px rgba(5,8,40,.45))}
+.chart h3{font-size:28px;letter-spacing:.01em}
+.chart p{color:var(--print-2);font-size:16px;margin-top:2px}
+.chart .tr{color:var(--print);font-size:14px;font-weight:600;margin-top:6px;letter-spacing:.02em}
+@media (min-width:900px){.chart{grid-template-columns:1fr 1fr;column-gap:32px}}
+
+.gift{display:grid;gap:22px}
+.gift .tag{width:100%;max-width:400px}
+@media (min-width:900px){.gift{grid-template-columns:1fr 1fr;gap:24px;align-items:start}.gift .tag{grid-column:2;grid-row:1}.gift>div{grid-column:1;grid-row:1}}
+.gift .acts{display:grid;gap:10px;margin-top:18px;max-width:420px}
+
+.fine{font-size:12.5px;line-height:1.5;color:#B4B8E4;padding:18px 0 0;display:grid;gap:6px;max-width:68ch;letter-spacing:.01em}
+.fine b{font-weight:600;color:var(--print)}
+
+/* ===== Modo quiz ===== */
+body.quizzing .land{display:none}
+body.quizzing .stage{padding-bottom:24px}
+body.quizzing .emblem{width:min(36vw,168px)}
+body.done .emblem{width:min(58vw,260px)}
+body.quizzing .hero-copy{display:none}
+.qbox{width:100%;max-width:560px;display:grid;gap:18px;text-align:left}
+.qtop{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rivets{display:flex;gap:6px;flex-wrap:wrap}
+.rivets i{width:12px;height:12px;border-radius:50%;background:var(--card-2);box-shadow:inset 0 1px 2px rgba(0,0,0,.5)}
+.rivets i.on{background:radial-gradient(circle at 35% 30%,var(--gold-2),var(--gold) 60%,#B97614);box-shadow:0 1px 1px rgba(0,0,0,.4)}
+.count{font:900 20px/1 var(--display);letter-spacing:.06em;color:var(--print-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.qbox h2{font-size:clamp(32px,8vw,48px);line-height:1;text-transform:none;letter-spacing:0}
+.opts{display:grid;gap:10px}
+.opt{appearance:none;display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;text-align:left;width:100%;min-height:58px;
+  background:var(--card-2);border:1.5px solid var(--card-line);border-radius:14px;padding:12px 16px;cursor:pointer;
+  font-size:17px;line-height:1.35;color:var(--print);transition:border-color .18s,background-color .18s,transform .15s var(--ease-out)}
+.opt kbd{font:900 17px/1 var(--display);width:30px;height:30px;display:grid;place-items:center;border-radius:50%;
+  border:1.5px solid var(--card-line);color:var(--print-2)}
+@media (hover:hover){.opt:hover{border-color:var(--gold)}.opt:hover kbd{border-color:var(--gold);color:var(--gold)}}
+.opt:active{transform:scale(.985)}
+.opt.picked{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.opt.picked kbd{border-color:var(--gold-ink);color:var(--gold-ink)}
+.opt:disabled{cursor:default}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px}
+.link{appearance:none;background:none;border:0;padding:10px 4px;color:var(--print-2);font-size:15px;font-weight:600;cursor:pointer;
+  text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;min-height:44px}
+.link:hover{color:var(--print)}
+.link:disabled{visibility:hidden}
+.qin{animation:qin .24s var(--ease-out) both}
+@keyframes qin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.tie{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.tie button{appearance:none;display:grid;justify-items:center;gap:10px;padding:18px 10px;background:var(--card-2);
+  border:1.5px solid var(--card-line);border-radius:14px;cursor:pointer;transition:border-color .18s}
+.tie button:hover{border-color:var(--gold)}
+.tie .chip{width:84px}
+.tie b{font:900 24px/1 var(--display);text-transform:uppercase}
+.tie span{font-size:14px;color:var(--print-2)}
+
+/* ===== Resultado ===== */
+.result{width:100%;display:grid;gap:22px;justify-items:center;text-align:center}
+.result .who{font-size:17px;color:var(--print-2)}
+.result h1{font-size:clamp(60px,17vw,112px);color:var(--print)}
+.motto{font:900 26px/1.05 var(--display);text-transform:uppercase;color:var(--gold);max-width:22ch}
+.band{width:100%;border-radius:16px;padding:22px 20px;background:var(--hc);color:var(--hon);text-align:left;display:grid;gap:16px}
+@media (min-width:800px){.band{padding:28px 32px}}
+.band p{max-width:56ch}
+.traits{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.traits li{font:900 18px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:8px;border:1.5px solid currentColor}
+.mix{width:100%;max-width:520px;display:grid;gap:10px;text-align:left}
+.mix h3{font-size:26px}
+.bar{display:grid;grid-template-columns:104px 1fr 44px;gap:12px;align-items:center;font-size:15px}
+.bar .t{height:14px;border-radius:7px;background:var(--card-2);box-shadow:inset 0 1px 2px rgba(0,0,0,.45);overflow:hidden}
+.bar .t b{display:block;height:100%;border-radius:7px;transform-origin:left;transform:scaleX(var(--v));transition:transform .8s var(--ease-out);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 60%)}
+.bar .n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.racts{width:100%;max-width:420px;display:grid;gap:10px}
+.note{font-size:14px;color:var(--print-2)}
+.shot{margin:4px 0 6px;display:grid;gap:8px;justify-items:center}
+.shot img{width:100%;max-width:300px;border-radius:12px;box-shadow:0 12px 24px -10px rgba(3,6,30,.7)}
+.shot figcaption{font-size:14px;color:var(--print-2);text-align:center}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+  background:var(--print);color:#14193F;padding:12px 18px;border-radius:999px;font-weight:600;font-size:15px;
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.55);z-index:9;max-width:calc(100% - 32px)}
+
+/* esmalte */
+.stratum{transform-box:fill-box;transform-origin:50% 100%;animation:pour .5s var(--ease-out) both}
+@keyframes pour{from{transform:scaleY(0)}to{transform:none}}
+.flood{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);visibility:hidden}
+.flood.go{visibility:visible;transform:scaleY(1);transition:transform 1.3s cubic-bezier(.45,0,.2,1)}
+.crest{opacity:0;transform-box:fill-box;transform-origin:50% 50%;transform:scale(1.04)}
+.crest.on{opacity:1;transform:none;transition:opacity .5s,transform .6s var(--ease-out)}
+@media (prefers-reduced-motion:reduce){
+  .flood.go,.crest.on,.bar .t b,.emblem,.shieldBody{transition:none}
+  .stratum{animation:none}
+  .qin{animation:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#stage">Pular para o quiz</a>
+<div class="card" id="card">
+  <div class="slot" aria-hidden="true"><i></i></div>
+  <header class="brand"><img src="/*LOGO*/" alt="Beco Diagonal Personalizados" width="178" height="71"></header>
+
+  <main>
+    <section class="stage" id="stage" aria-label="Quiz">
+      <!--EMBLEM-->
+      <div class="hero-copy" id="hero">
+        <h1 class="hero-title">Qual casa vai no seu <em>chaveiro?</em></h1>
+      </div>
+      <div id="screen" class="qbox intro"></div>
+    </section>
+
+    <div class="land">
+      <div class="perf" aria-hidden="true"></div>
+      <section class="sec" aria-labelledby="como">
+        <h2 id="como">Como funciona</h2>
+        <p>O quiz leva uns 3 minutos. Não tem resposta certa, só a que é mais você.</p>
+        <ol class="steps">
+          <li><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="5" width="28" height="34" rx="4"/><path d="M15 15h14M15 22h14M15 29h8"/></svg>
+            <div><b>Responda dez perguntas</b><span>Escolhas simbólicas e alguns dilemas. As perguntas mudam a cada rodada.</span></div></li>
+          <li><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4c6 9 12 15 12 23a12 12 0 0 1-24 0c0-8 6-14 12-23z"/><path d="M16 28a6 6 0 0 0 6 6"/></svg>
+            <div><b>Veja o esmalte encher</b><span>Cada resposta pinga a cor de uma casa no emblema. A que encher mais é a sua.</span></div></li>
+          <li><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="22" cy="9" r="5"/><path d="M22 14v4M11 18h22l-2 20H13z"/><path d="M18 26h8"/></svg>
+            <div><b>Ganhe o chaveiro</b><span>O chaveiro de metal da sua casa é o brinde da loja. Mostre o resultado e garanta o seu.</span></div></li>
+        </ol>
+      </section>
+
+      <div class="perf" aria-hidden="true"></div>
+      <section class="sec" aria-labelledby="casas">
+        <h2 id="casas">As quatro casas</h2>
+        <p>Cada casa tem a sua cor de esmalte. Qual delas vai ficar no seu?</p>
+        <ul class="chart" id="chart"></ul>
+      </section>
+
+      <div class="perf" aria-hidden="true"></div>
+      <section class="sec gift" aria-labelledby="brinde">
+        <svg class="tag" viewBox="0 0 300 116" aria-hidden="true" id="giftTag"></svg>
+        <div>
+          <h2 id="brinde">O chaveiro existe de verdade</h2>
+          <p>É de metal, com o emblema da sua casa, e sai de brinde pra quem faz o quiz. Termine, mostre o resultado pra loja e a gente separa o seu.</p>
+          <div class="acts">
+            <button class="btn" type="button" data-go>Fazer o quiz</button>
+            <a class="btn line" id="shopLink" hidden target="_blank" rel="noopener">Ver os produtos da loja</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="perf" aria-hidden="true"></div>
+    <footer class="fine">
+      <p><b>Beco Diagonal Personalizados</b> · Quiz das casas, cartela nº 01 · Lote 2026/11</p>
+      <p>Quiz de fã, sem vínculo com a Warner Bros. ou com o Wizarding World.</p>
+    </footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* ====== CONFIGURAÇÃO DA LOJA (preencha) ====== */
+const LOJA = {
+  whatsapp: "",       // só números com DDI, ex.: "5562999999999"
+  linkProdutos: ""    // ex.: "https://www.instagram.com/becodiagonal"
+};
+const PERGUNTAS_POR_RODADA = 10;
+
+/* ====== CASAS ====== */
+const CASAS = {
+  gri:{nome:"Grifinória", cor:"#C2362B", fundo:"#8E2219", texto:"#FFF5EE", lema:"Quem hesita, perde a aventura.",
+    sobre:"Você age quando os outros ainda estão pensando. Gosta de desafio, defende quem precisa e não foge de uma briga justa. Às vezes pula etapas, mas é exatamente por isso que as coisas acontecem perto de você.",
+    tracos:["Coragem","Ousadia","Senso de justiça"]},
+  cor:{nome:"Corvinal", cor:"#3C8BE6", fundo:"#1D4E9E", texto:"#F2F7FF", lema:"Toda pergunta é uma porta.",
+    sobre:"Sua cabeça não para. Você coleciona ideias, repara em detalhes que ninguém vê e prefere entender antes de opinar. Criatividade e curiosidade são o seu combustível.",
+    tracos:["Curiosidade","Criatividade","Inteligência"]},
+  luf:{nome:"Lufa-Lufa", cor:"#E9B730", fundo:"#E9B730", texto:"#2A1E05", lema:"Ninguém fica pra trás.",
+    sobre:"Você é o porto seguro do grupo. Trabalha duro sem precisar de aplauso, é leal até o fim e transforma qualquer lugar em casa. As pessoas confiam em você, e com razão.",
+    tracos:["Lealdade","Paciência","Generosidade"]},
+  son:{nome:"Sonserina", cor:"#1E8A55", fundo:"#145C39", texto:"#EEFBF3", lema:"Grandes planos pedem cabeça fria.",
+    sobre:"Você sabe o que quer e traça o caminho até lá. Estratégia, ambição e um charme que convence: você joga no longo prazo. Quem está do seu lado tem um aliado poderoso.",
+    tracos:["Ambição","Estratégia","Determinação"]}
+};
+const ORDEM = ["gri","cor","luf","son"];
+/* Brasões das casas (arte da loja) */
+const ESCUDO = {/*ESCUDOS*/};
+
+/* ====== PERGUNTAS (texto original da Beco Diagonal) ====== */
+const PERGUNTAS = [
+  {t:"s", q:"Escolha uma estação.", a:[
+    ["Verão de tempestade",{gri:3}],
+    ["Outono de vento e folhas soltas",{cor:3}],
+    ["Primavera no quintal",{luf:3}],
+    ["Inverno silencioso",{son:3}]]},
+  {t:"s", q:"Um mapa antigo mostra quatro trilhas. Qual você segue?", a:[
+    ["A do penhasco, onde o vento quase te derruba",{gri:3}],
+    ["A que passa por ruínas cobertas de inscrições",{cor:3}],
+    ["A que desce pro vale, até uma vila com fumaça nas chaminés",{luf:3}],
+    ["O túnel escuro que corta caminho pela montanha",{son:3}]]},
+  {t:"s", q:"Um animal sai da floresta e começa a te seguir. Qual?", a:[
+    ["Um cavalo selvagem",{gri:3}],
+    ["Uma coruja branca",{cor:3}],
+    ["Um cão vira-lata",{luf:3}],
+    ["Uma raposa de olhos claros",{son:3}]]},
+  {t:"s", q:"Em cima de uma mesa vazia há quatro chaves. Qual você pega?", a:[
+    ["A de ferro, pesada e enferrujada",{gri:3}],
+    ["A de cristal, que muda de cor na luz",{cor:3}],
+    ["A de madeira, entalhada à mão",{luf:3}],
+    ["A de prata, que parece não abrir nada",{son:3}]]},
+  {t:"s", q:"Qual destes sons te acalma?", a:[
+    ["Trovão ao longe",{gri:3}],
+    ["Chuva no vidro enquanto você lê",{cor:3}],
+    ["Risadas vindo da cozinha",{luf:3}],
+    ["Silêncio total, de madrugada",{son:3}]]},
+  {t:"s", q:"Onde fica o seu esconderijo?", a:[
+    ["No alto de uma torre, aberta ao vento",{gri:3}],
+    ["Numa biblioteca escondida atrás de uma estante",{cor:3}],
+    ["Numa estufa cheia de plantas e cheiro de terra",{luf:3}],
+    ["Numa sala secreta que só você sabe abrir",{son:3}]]},
+  {t:"s", q:"Você passa por uma porta e quer deixar uma marca. Qual deixa?", a:[
+    ["Um risco de espada na madeira",{gri:3}],
+    ["Um enigma, pra quem conseguir decifrar",{cor:3}],
+    ["Um bilhete: “volto já, deixei bolo pra vocês”",{luf:3}],
+    ["Nada. Ninguém precisa saber que eu passei",{son:3}]]},
+  {t:"s", q:"Que magia você gostaria de dominar?", a:[
+    ["Acender fogo com as mãos",{gri:3}],
+    ["Entender qualquer língua, viva ou morta",{cor:3}],
+    ["Fazer qualquer planta crescer na hora",{luf:3}],
+    ["Ficar invisível quando quiser",{son:3}]]},
+  {t:"s", q:"No sótão, um baú tem um bilhete colado: “Não abra.” Você…", a:[
+    ["Abre agora",{gri:3}],
+    ["Examina a fechadura, a madeira e a letra do bilhete",{cor:3}],
+    ["Respeita. Alguém teve um motivo",{luf:3}],
+    ["Descobre quem escreveu e por quê antes de decidir",{son:3}]]},
+  {t:"s", q:"O que você levaria pendurado no pescoço?", a:[
+    ["Um dente de dragão",{gri:3}],
+    ["Uma lente de cristal que mostra o que está escondido",{cor:3}],
+    ["Uma semente que nunca murcha",{luf:3}],
+    ["Um medalhão com um segredo dentro",{son:3}]]},
+  {t:"s", q:"Um navio enfrenta uma tempestade. Onde você está?", a:[
+    ["No mastro, segurando a vela",{gri:3}],
+    ["Na cabine, calculando a rota pelo mapa",{cor:3}],
+    ["No porão, cuidando de quem se machucou",{luf:3}],
+    ["Ao lado do capitão, pronto pra assumir se ele cair",{son:3}]]},
+  {t:"s", q:"Qual dessas portas você abriria?", a:[
+    ["De ferro, quente ao toque",{gri:3}],
+    ["De vidro, coberta de símbolos",{cor:3}],
+    ["De madeira simples, com cheiro de casa",{luf:3}],
+    ["De pedra negra, sem maçaneta",{son:3}]]},
+  {t:"d", q:"Você acha uma carteira com R$ 2.000 e um documento. Ninguém viu. Você…", a:[
+    ["Devolve na hora, mesmo que isso tome a sua tarde inteira",{luf:3}],
+    ["Vai pessoalmente entregar. Quer ver a cara do dono",{gri:2,luf:1}],
+    ["Descobre quem é o dono antes. A história te deixou curioso",{cor:2,luf:1}],
+    ["Devolve e aproveita pra ganhar um contato que pode ser útil um dia",{son:3}]]},
+  {t:"d", q:"Seu melhor amigo te pede pra mentir por ele numa situação séria. Você…", a:[
+    ["Mente. Amigo é amigo",{luf:2,son:1}],
+    ["Recusa e fala na cara dele que ele está errado",{gri:3}],
+    ["Ajuda a achar uma saída em que ninguém precise mentir",{cor:3}],
+    ["Primeiro calcula quanto isso pode respingar em você",{son:3}]]},
+  {t:"d", q:"Qual elogio te deixaria mais orgulhoso?", a:[
+    ["“Você foi o único que teve coragem.”",{gri:3}],
+    ["“Nunca vi ninguém pensar desse jeito.”",{cor:3}],
+    ["“Eu sei que sempre posso contar com você.”",{luf:3}],
+    ["“Você ainda vai muito longe.”",{son:3}]]},
+  {t:"d", q:"Você descobre um segredo que pode prejudicar alguém que te tratou mal. Você…", a:[
+    ["Guarda. Não é assim que eu resolvo as coisas",{luf:2,gri:1}],
+    ["Confronta a pessoa direto, sem usar o segredo",{gri:3}],
+    ["Guarda, mas nunca esquece que sabe",{son:3}],
+    ["Tenta entender por que a pessoa é daquele jeito",{cor:2,luf:1}]]},
+  {t:"d", q:"Seu grupo se perde numa floresta e a comida dura dois dias. Você…", a:[
+    ["Vai na frente achar o caminho, mesmo que seja perigoso",{gri:3}],
+    ["Usa o sol, o rio e o musgo pra calcular a saída",{cor:3}],
+    ["Divide a comida igual e mantém todo mundo unido",{luf:3}],
+    ["Decide quem vai buscar ajuda e organiza o resto",{son:2,gri:1}]]},
+  {t:"d", q:"Alguém critica um trabalho seu na frente de todo mundo. Você…", a:[
+    ["Responde na hora, sem medo",{gri:3}],
+    ["Pensa se a crítica faz sentido. Se fizer, melhora",{cor:3}],
+    ["Fica chateado, mas não quer criar clima",{luf:3}],
+    ["Sorri, agradece e guarda isso pra depois",{son:3}]]},
+  {t:"d", q:"Dois amigos seus brigaram feio e cada um quer que você escolha um lado. Você…", a:[
+    ["Fica com quem está certo e fala isso pros dois",{gri:3}],
+    ["Escuta os dois lados antes de achar qualquer coisa",{cor:2,luf:1}],
+    ["Não escolhe ninguém. Tenta juntar os dois de novo",{luf:3}],
+    ["Fica perto de quem vai ser mais importante lá na frente",{son:3}]]},
+  {t:"d", q:"Como você toma uma decisão difícil?", a:[
+    ["Pelo coração, na hora",{gri:3}],
+    ["Pesquisa, compara e faz lista de prós e contras",{cor:3}],
+    ["Pensa em como ela vai afetar quem está ao seu redor",{luf:3}],
+    ["Pensa onde ela te deixa daqui a cinco anos",{son:3}]]}
+];
+
+/* ====== MOTOR ====== */
+const $ = s => document.querySelector(s);
+const screen = $("#screen"), stage = $("#stage");
+const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const store = {
+  get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+let st = {nome:"", perguntas:[], i:0, hist:[], pts:zero()};
+function zero(){return {gri:0,cor:0,luf:0,son:0}}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function limpaNome(s){return s.replace(/\s+/g," ").trim().slice(0,24)}
+
+/* --- emblema --- */
+const emb = {
+  bands:document.getElementById("bands"),
+  flood:document.getElementById("flood"),
+  crest:document.getElementById("crestImg"),
+  body:document.getElementById("shieldBody"),
+  plate:document.getElementById("plateText"),
+  plateShade:document.getElementById("plateShade")
+};
+function gravar(nome){
+  nome = nome || "";
+  if(nome.length > 14) nome = nome.split(" ")[0].slice(0,14);
+  const t = nome.toUpperCase();
+  [emb.plate,emb.plateShade].forEach(el=>{
+    el.textContent = t;
+    el.removeAttribute("textLength"); el.removeAttribute("lengthAdjust");
+    if(t.length>11){el.setAttribute("textLength","124");el.setAttribute("lengthAdjust","spacingAndGlyphs")}
+  });
+}
+/* cada resposta despeja uma camada de esmalte da casa que ela favorece */
+const NS="http://www.w3.org/2000/svg", FUNDO=245, TOPO=54;
+function enche(){
+  const n = st.perguntas.length || PERGUNTAS_POR_RODADA, h = (FUNDO-TOPO)/n;
+  while(emb.bands.children.length > st.hist.length) emb.bands.lastChild.remove();
+  st.hist.forEach((w,i)=>{
+    if(emb.bands.children[i]) return;
+    const k = Object.keys(w).sort((a,b)=>w[b]-w[a])[0];
+    const r = document.createElementNS(NS,"rect");
+    r.setAttribute("x","20"); r.setAttribute("width","200");
+    r.setAttribute("y",(FUNDO-(i+1)*h).toFixed(2)); r.setAttribute("height",(h+0.8).toFixed(2));
+    r.setAttribute("fill",CASAS[k].cor); r.setAttribute("class","stratum");
+    emb.bands.appendChild(r);
+  });
+}
+function zeraEmblema(){
+  emb.flood.classList.remove("go"); emb.flood.style.transform="";
+  emb.crest.classList.remove("on"); emb.crest.setAttribute("href",""); emb.body.classList.remove("off");
+  emb.bands.replaceChildren();
+}
+
+/* --- telas --- */
+function render(html, cls=""){
+  screen.removeAttribute("style");
+  screen.className = "qbox " + cls;
+  screen.innerHTML = html;
+}
+function inicio(){
+  document.body.classList.remove("quizzing","done");
+  $("#hero").hidden = false;
+  zeraEmblema(); gravar(st.nome || "SEU NOME");
+  const ultimo = store.get("bd_ultimo");
+  
+  render(`
+    <p class="lead">10 perguntas, uns 3 minutos. No fim, a sua casa sai com o seu nome gravado.</p>
+    <form class="start" id="f" novalidate>
+      <div class="field"><label for="nome">Seu nome no emblema (opcional)</label>
+        <input id="nome" name="nome" autocomplete="given-name" maxlength="24" placeholder="Como você se chama?" value="${esc(st.nome)}" enterkeyhint="go"></div>
+      <button class="btn" type="submit">Começar o quiz</button>
+    </form>
+    ${ultimo && CASAS[ultimo.casa] ? `<p class="memo">Da última vez, ${esc(ultimo.nome||"você")} caiu em <b>${CASAS[ultimo.casa].nome}</b>.</p>` : ""}
+  `, "intro");
+  const inp = $("#nome");
+  inp.addEventListener("input",()=>gravar(limpaNome(inp.value)||"SEU NOME"));
+  $("#f").onsubmit = e => {e.preventDefault(); st.nome = limpaNome(inp.value); comecar()};
+}
+function comecar(){
+  const sim = shuffle(PERGUNTAS.filter(p=>p.t==="s")).slice(0,6);
+  const dil = shuffle(PERGUNTAS.filter(p=>p.t==="d")).slice(0,PERGUNTAS_POR_RODADA-6);
+  st.perguntas = shuffle(sim.concat(dil)).map(p=>({q:p.q,a:shuffle(p.a)}));
+  st.i = 0; st.hist = []; st.pts = zero();
+  zeraEmblema(); gravar(st.nome || "");
+  document.body.classList.add("quizzing");
+  $("#hero").hidden = true;
+  stage.scrollIntoView({behavior: reduz ? "auto" : "smooth", block:"start"});
+  window.scrollTo({top:0, behavior: reduz ? "auto" : "smooth"});
+  pergunta();
+}
+function pergunta(){
+  const p = st.perguntas[st.i], n = st.perguntas.length;
+  render(`
+    <div class="qtop">
+      <div class="rivets" aria-hidden="true">${st.perguntas.map((_,k)=>`<i class="${k<st.i?"on":""}"></i>`).join("")}</div>
+      <span class="count">${st.i+1} / ${n}</span>
+    </div>
+    <h2 id="q" tabindex="-1">${esc(p.q)}</h2>
+    <div class="opts" role="group" aria-labelledby="q">${p.a.map((o,k)=>`<button class="opt" type="button" data-k="${k}"><kbd aria-hidden="true">${k+1}</kbd><span>${esc(o[0])}</span></button>`).join("")}</div>
+    <div class="qnav">
+      <button class="link" type="button" id="back" ${st.i===0?"disabled":""}>Voltar uma pergunta</button>
+      <button class="link" type="button" id="quit">Recomeçar</button>
+    </div>
+  `, "qin");
+  $("#q").focus({preventScroll:true});
+  screen.querySelectorAll(".opt").forEach(b => b.onclick = () => escolhe(b));
+  $("#back").onclick = volta;
+  $("#quit").onclick = () => {st.nome = st.nome; inicio(); window.scrollTo({top:0})};
+}
+function escolhe(b){
+  if(screen.dataset.busy) return;
+  screen.dataset.busy = "1";
+  const p = st.perguntas[st.i], w = p.a[+b.dataset.k][1];
+  screen.querySelectorAll(".opt").forEach(x => x.disabled = true);
+  b.classList.add("picked");
+  st.hist.push(w);
+  for(const k in w) st.pts[k] += w[k];
+  enche();
+  setTimeout(()=>{
+    delete screen.dataset.busy;
+    st.i++;
+    st.i < st.perguntas.length ? pergunta() : decidir();
+  }, reduz ? 120 : 420);
+}
+function volta(){
+  if(!st.i) return;
+  const w = st.hist.pop();
+  for(const k in w) st.pts[k] -= w[k];
+  st.i--; enche(); pergunta();
+}
+function decidir(){
+  const max = Math.max(...ORDEM.map(k=>st.pts[k]));
+  const emp = ORDEM.filter(k=>st.pts[k]===max);
+  emp.length > 1 ? desempate(emp) : revelar(emp[0]);
+}
+function chipSVG(k){
+  return `<img class="chip" loading="lazy" decoding="async" src="${ESCUDO[k]}" alt="Brasão da ${CASAS[k].nome}" width="64" height="72">`;
+}
+function desempate(casas){
+  render(`
+    <h2 id="q" tabindex="-1">Ficou dividido. Qual destas é mais você?</h2>
+    <p class="note">Suas respostas empataram entre ${casas.map(k=>CASAS[k].nome).join(" e ").replace(/ e (?=.* e )/g,", ")}. A última palavra é sua.</p>
+    <div class="tie">${shuffle(casas).map(k=>`<button type="button" data-k="${k}">${chipSVG(k)}<b>${CASAS[k].nome}</b><span>${CASAS[k].tracos[0]}</span></button>`).join("")}</div>
+  `, "qin");
+  $("#q").focus({preventScroll:true});
+  screen.querySelectorAll(".tie button").forEach(b => b.onclick = () => {st.pts[b.dataset.k] += 1; revelar(b.dataset.k)});
+}
+function revelar(casa){
+  const c = CASAS[casa];
+  render(`<h2 id="q" tabindex="-1" style="text-align:center">O esmalte está assentando…</h2>`, "qin");
+  emb.flood.setAttribute("fill", c.cor);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>emb.flood.classList.add("go")));
+  setTimeout(()=>{
+    emb.crest.setAttribute("href", ESCUDO[casa]);
+    emb.crest.classList.add("on"); emb.body.classList.add("off");
+    gravar(st.nome || c.nome);
+  }, reduz ? 0 : 1250);
+  setTimeout(()=>resultado(casa), reduz ? 200 : 1900);
+}
+function resultado(casa){
+  const c = CASAS[casa];
+  const total = ORDEM.reduce((s,k)=>s+st.pts[k],0) || 1;
+  const pct = ORDEM.map(k=>[k, Math.round(st.pts[k]/total*100)]).sort((a,b)=>b[1]-a[1]);
+  st.casa = casa; st.pct = pct;
+  store.set("bd_ultimo",{nome:st.nome, casa, quando:Date.now()});
+  document.body.classList.add("done");
+  const zap = LOJA.whatsapp ? `https://wa.me/${LOJA.whatsapp.replace(/\D/g,"")}?text=${encodeURIComponent(`Oi! Fiz o quiz das casas e caí em ${c.nome}. Quero o meu chaveiro de metal da ${c.nome}!`)}` : "";
+  render(`
+    <div class="result" style="--hc:${c.fundo};--hon:${c.texto}">
+      <p class="who">${st.nome ? esc(st.nome.split(" ")[0])+", a sua casa é" : "A sua casa é"}</p>
+      <h1 id="q" tabindex="-1">${c.nome}</h1>
+      <p class="motto">${c.lema}</p>
+      <div class="band">
+        <p>${c.sobre}</p>
+        <ul class="traits">${c.tracos.map(t=>`<li>${t}</li>`).join("")}</ul>
+      </div>
+      <div class="mix">
+        <h3>A sua mistura</h3>
+        ${pct.map(([k,v])=>`<div class="bar"><span>${CASAS[k].nome}</span><span class="t" role="img" aria-label="${CASAS[k].nome}: ${v}%"><b style="--v:0;background-color:${CASAS[k].cor}"></b></span><span class="n">${v}%</span></div>`).join("")}
+      </div>
+      <div class="racts">
+        <button class="btn" type="button" id="save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Salvar imagem</button>
+        ${zap ? `<a class="btn line" href="${zap}" target="_blank" rel="noopener">Pedir meu chaveiro no WhatsApp</a>` : `<p class="note">Mostre esta tela na loja pra garantir o chaveiro de metal da ${c.nome}.</p>`}
+        <button class="btn line" type="button" id="again">Fazer de novo</button>
+      </div>
+    </div>
+  `);
+  $("#q").focus({preventScroll:true});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    screen.querySelectorAll(".bar .t b").forEach((b,n)=>b.style.setProperty("--v", pct[n][1]/100));
+  }));
+  $("#again").onclick = () => {inicio(); window.scrollTo({top:0, behavior: reduz?"auto":"smooth"})};
+  $("#save").onclick = salvarImagem;
+}
+
+/* --- imagem pra compartilhar --- */
+function carregaImg(src){return new Promise((ok,erro)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=erro;i.src=src})}
+async function salvarImagem(){
+  const btn = $("#save"); btn.disabled = true;
+  try{
+    const c = CASAS[st.casa], W=1080, H=1350;
+    const cv = document.createElement("canvas"); cv.width=W; cv.height=H;
+    const g = cv.getContext("2d");
+    await document.fonts.ready;
+    g.fillStyle="#22309A"; g.fillRect(0,0,W,H);
+    // furo da cartela
+    g.fillStyle="#0B1142"; roundRect(g,W/2-70,46,140,32,16); g.fill();
+    g.beginPath(); g.arc(W/2,62,24,0,Math.PI*2); g.fill();
+    const logo = await carregaImg($(".brand img").src);
+    g.drawImage(logo, W/2-150, 110, 300, 120);
+    // emblema sem o texto da plaqueta
+    const svg = $("#emblemSvg").cloneNode(true);
+    svg.querySelectorAll("text,#crestImg,#shieldBody").forEach(t=>t.remove());
+    svg.setAttribute("width","480"); svg.setAttribute("height","620");
+    const raw = new XMLSerializer().serializeToString(svg);
+    const em = await carregaImg("data:image/svg+xml;charset=utf-8,"+encodeURIComponent(raw));
+    const ex = W/2-240, ey = 236;
+    g.save(); g.shadowColor="rgba(5,8,40,.55)"; g.shadowBlur=40; g.shadowOffsetY=24;
+    g.drawImage(em, ex, ey, 480, 620); g.restore();
+    const cr = await carregaImg(ESCUDO[st.casa]);
+    const s = Math.min(400/cr.width, 444/cr.height), cw = cr.width*s, ch = cr.height*s;
+    g.drawImage(cr, W/2-cw/2, ey+36*2+(447-ch)/2, cw, ch);
+    // nome gravado na plaqueta (plaqueta em 58..182 x 206..236 no viewBox 240x300 -> escala 2)
+    let nome = st.nome || c.nome; if(nome.length > 14) nome = nome.split(" ")[0].slice(0,14); nome = nome.toUpperCase();
+    g.textAlign="center"; g.textBaseline="middle";
+    g.font = `900 ${nome.length>11?28:34}px "Big Shoulders Display"`;
+    g.fillStyle="rgba(230,228,227,.75)"; g.fillText(nome, W/2, ey+285*2+2, 260);
+    g.fillStyle="#2E2D2D"; g.fillText(nome, W/2, ey+285*2, 260);
+    // textos
+    g.fillStyle="#C9CBEA"; g.font = `400 36px "Hanken Grotesk"`;
+    g.fillText(st.nome ? `${st.nome.split(" ")[0]}, a sua casa é` : "A sua casa é", W/2, 900);
+    g.fillStyle="#F3EEE2"; g.font = `900 150px "Big Shoulders Display"`;
+    g.fillText(c.nome.toUpperCase(), W/2, 1030, 980);
+    g.fillStyle="#EEA534"; g.font = `900 42px "Big Shoulders Display"`;
+    g.fillText(c.lema.toUpperCase(), W/2, 1124, 980);
+    // mistura
+    const bx=170, bw=740; let by=1182;
+    g.font = `600 28px "Hanken Grotesk"`;
+    const linha = st.pct.map(([k,v])=>`${CASAS[k].nome} ${v}%`).join("   ·   ");
+    g.fillStyle="#C9CBEA"; g.fillText(linha, W/2, by, 980);
+    let x=bx; st.pct.forEach(([k,v])=>{const w=bw*v/100; if(w>0){g.fillStyle=CASAS[k].cor; g.fillRect(x,by+34,w,18); x+=w}});
+    g.fillStyle="#A9AEDC"; g.font = `400 26px "Hanken Grotesk"`;
+    g.fillText("Quiz das casas · Beco Diagonal Personalizados", W/2, 1290);
+    const blob = await new Promise(r=>cv.toBlob(r,"image/png"));
+    const arq = new File([blob], `minha-casa-${st.casa}.png`, {type:"image/png"});
+    mostrarImagem(cv.toDataURL("image/png"));
+    /* dentro do claude.ai o download passa pela confirmação do próprio visualizador */
+    const dl = window.claude && window.claude.use ? await window.claude.use("downloads").catch(()=>null) : null;
+    if(dl){
+      try{ await dl.save({filename: arq.name, data: blob}); toast("Imagem salva. É só postar."); }
+      catch(e){ if(e && e.code==="rate_limited") toast("Espere um instante e tente de novo."); }
+      return;
+    }
+    if(navigator.canShare && navigator.canShare({files:[arq]})){
+      try{ await navigator.share({files:[arq], title:"Minha casa", text:`Caí em ${c.nome} no quiz da Beco Diagonal!`}); }
+      catch(e){ if(e && e.name!=="AbortError") baixar(blob, arq.name); }
+    } else baixar(blob, arq.name);
+  }catch(e){
+    toast("Não deu pra gerar a imagem. Tire um print desta tela.");
+  }finally{ btn.disabled = false; }
+}
+function roundRect(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
+function baixar(blob,nome){
+  try{
+    const u = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href=u; a.download=nome; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(u), 4000);
+  }catch(e){}
+}
+/* a imagem também aparece na tela: onde o download é bloqueado, dá pra tocar e segurar pra salvar */
+function mostrarImagem(src){
+  let box = $("#shotBox");
+  if(!box){
+    box = document.createElement("figure"); box.id = "shotBox"; box.className = "shot";
+    box.innerHTML = `<img id="shot" alt="Imagem do seu resultado"><figcaption>Toque e segure na imagem (ou clique com o botão direito) pra salvar.</figcaption>`;
+    $("#save").after(box);
+  }
+  $("#shot").src = src;
+  toast("Imagem pronta. É só postar.");
+  box.scrollIntoView({behavior: reduz ? "auto" : "smooth", block:"nearest"});
+}
+let tt; function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,3200)}
+
+/* --- seções da landing --- */
+$("#chart").innerHTML = ORDEM.map(k=>`<li>${chipSVG(k)}<div><h3>${CASAS[k].nome}</h3><p>${CASAS[k].lema}</p><p class="tr">${CASAS[k].tracos.join(" · ")}</p></div></li>`).join("");
+$("#giftTag").innerHTML = `<defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F4F7"/><stop offset=".5" stop-color="#9AA1AF"/><stop offset="1" stop-color="#E4E7EC"/></linearGradient></defs><rect x="4" y="2" width="292" height="7" rx="3.5" fill="#0B1142"/>` +
+  ORDEM.map((k,n)=>{const x=38+n*75, y=n%2?10:4; return `<circle cx="${x}" cy="${12+y}" r="8" fill="none" stroke="url(#gm)" stroke-width="3.5"/><image href="${ESCUDO[k]}" x="${x-31}" y="${22+y}" width="62" height="70"/>`}).join("");
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{window.scrollTo({top:0,behavior:reduz?"auto":"smooth"}); setTimeout(()=>$("#nome") && $("#nome").focus({preventScroll:true}), reduz?0:350)});
+if(LOJA.linkProdutos){const a=$("#shopLink");a.href=LOJA.linkProdutos;a.hidden=false}
+
+document.addEventListener("keydown", e=>{
+  if(!document.body.classList.contains("quizzing") || e.metaKey || e.ctrlKey || e.altKey) return;
+  if(document.activeElement && document.activeElement.tagName==="INPUT") return;
+  const n = parseInt(e.key,10);
+  if(n>=1 && n<=4){const b = screen.querySelector(`.opt[data-k="${n-1}"]`); if(b && !b.disabled){e.preventDefault(); b.click()}}
+});
+
+inicio();
+</script>
+</body>
+</html>

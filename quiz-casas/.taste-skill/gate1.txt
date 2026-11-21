@@ -1,0 +1,74 @@
+gate: checking index.html (product); this takes a few minutes on a CPU Chrome
+gate: 23 FAIL open
+  FAIL nav              (the first screen)  [1440, 390]
+       no nav bar across the top of the first screen (a header with the brand, the section links and the main action)
+       fix: make the nav one bar from the content's left edge to its right edge, with every link and action inside it
+  FAIL no-visual        div#card > main > div.land > section.sec:nth-of-type(1) "COMO FUNCIONA"  [1440, 390]
+       no picture, effect or mock in this section; a feature section needs a visual
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual        div#card > main > div.land > section.sec:nth-of-type(2) "AS QUATRO CASAS"  [1440, 390]
+       no picture, effect or mock in this section; a feature section needs a visual
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL copy-headings    ul#chart > li:nth-of-type(1) > div > h3 "GRIFINÓRIA"  [1440]
+       "GRIFINÓRIA" names no product, part, place or section (4 headings like it; at most one brand line per page) (and 3 more like it: "CORVINAL", "LUFA-LUFA", "SONSERINA")
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  FAIL product-shown    section#stage "QUAL CASA VAI NO SEU CHAVEIRO?"  [1440]
+       the hero of this product page shows no photograph and no render of the product: the page's pictures ("Emblema do chaveiro", "Brasão da Grifinória", "Brasão da Corvinal") sit below it
+       fix: lead with the product itself: the client's photograph of it, else stand-in photographs of its kind (photos.mjs search), a render (assets/objects/product-render, [data-product], data-product-place=hero) only when the brie
+  FAIL focus-visible    section.sec.gift:nth-of-type(3) > div > div.acts > button.btn "Fazer o quiz"  [1440]
+       Tab stop 4, button "Fazer o quiz": the focus lands on something you cannot see
+       fix: keep the kit's ring (system.css :focus-visible, 2px in --action, there at once); a control that hides itself shows on focus
+  FAIL moment-none      (the page)  [1440]
+       a product page (--type) deals no moment: every kind carries one, two on a long page (moments.md)
+       fix: deal one (moments.mjs pick --page product --photo) and mount it in its own section
+  FAIL hero-screen      section#stage "SEU NOME SEU NOME Qual casa vai no seu c"  [1440]
+       the hero ends at 877px on a 900px screen, 23px above the fold: it ends at the fold, 1px either way (SR-1)
+       fix: make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter
+  FAIL hero-screen      div#card > main > div.land "Como funciona O quiz leva uns 3 minutos."  [1440]
+       13px of the next section shows on the first screen (from 887px on a 900px screen): nothing below the hero shows at load (SR-1)
+       fix: end the hero at the fold so nothing of the next section shows at load (hero height: 100svh)
+  FAIL section-height   div#card > main > footer.small "Beco Diagonal Personalizados Quiz de fã,"  [1440]
+       the section is 65px tall (0.1 screens), 835px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)
+       fix: set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit
+  FAIL section-height   section#stage "SEU NOME SEU NOME Qual casa vai no seu c"  [1440]
+       the section starts at 173px, 173px below the screen grid (0 x 900px): sections start on whole screens (SR-2)
+       fix: make every section above it exactly one or two screens tall, so this one starts on a whole screen
+  FAIL one-section      h2#como "Como funciona"  [1440]
+       the screen at scroll 173px (the top of section 1) shows 186px of section 2 and the heading of section 2 whole and the content of 2 sections, over 24px each beside section 1: a screen shows one section (another may peek 8
+       fix: make each section exactly one screen or two, so a screen shows one section and no neighbour peeks
+  FAIL one-section      div#card > main > footer.small "Beco Diagonal Personalizados Quiz de fã,"  [1440]
+       the screen at scroll 1376px (the top of section 3) shows 65px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)
+       fix: make each section exactly one screen or two, so a screen shows one section and no neighbour peeks
+  FAIL one-heading      h2#casas "As quatro casas"  [1440]
+       the section holds 3 h2 headings: one per section, first in its .wrap (SR-5)
+       fix: give each section one h2, first in its .wrap, and the hero only its h1
+  FAIL container-edges  div#card > header.brand  [1440]
+       the nav's content runs 631px from the left and 631px from the right (read from its outermost blocks: no .wrap): the page's container starts at 236px; the margin is 64-120px at 1440px (one container, equal margins, 2px ei
+       fix: use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone
+  FAIL container-edges  section#stage "SEU NOME SEU NOME Qual casa vai no seu c"  [1440]
+       the content of section 1 runs 236px from the left and 236px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 2 more like it: 
+       fix: use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone
+  FAIL container-edges  a.skip "Pular para o quiz"  [1440]
+       a <a> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges  div#card "SEU NOME SEU NOME Qual casa vai no seu c"  [1440]
+       a <div> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 3 more like it: "SEU NOME SEU NOME Qual c", "Como funciona O quiz lev", "Beco Diagonal Personaliz") (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges  div#card > main > div.land > div.perf:nth-of-type(1)  [1440]
+       a box runs 180-1260px, outside the container lines of section 2 at 236-1204px: full width is for background layers and grounds only (and 2 more like it: div#card > main > div.land > div.perf:nth-of-type(2), div#card > ma
+       fix: keep it inside the container lines (.wrap): full width is for background layers and grounds only
+  FAIL container-edges  div#hero > h1.hero-title "Qual casa vai no seu chaveiro?"  [1440]
+       the h1 starts 475px right of the container's left: every h1 and h2 starts on it, 2px either way (and 2 more like it: x 633, x 513) (SR-6)
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges  div#card > main > footer.small > span:nth-of-type(1) "Beco Diagonal Personalizados"  [1440]
+       "Beco Diagonal Personalizados" is set centred across 968px, over half the 968px container: text that wide is set left (and 1 more like it: "Quiz de fã, sem vínculo ") (SR-6)
+       fix: set the text left (text-align: start)
+  FAIL split-pair       div#card > main > div.land > section.sec.gift "O chaveiro existe de verdade É de metal,"  [1440]
+       the two columns of the split start 12px apart at the top: a split's columns are top-aligned, 8px either way (SR-8)
+       fix: top-align both columns of the split (align-items: start)
+  FAIL container        page  [1440, 390]
+       no .wrap
+       fix: put the content in one .wrap
+  11 WARN (not blocking), first: copy-actions (the page); section-gaps section#stage / div#card > main > div.la; section-gaps div#card > main > div.land > section.sec; one-screen div#card > main > div.land > section.sec; skip-link a.skip "Pular para o quiz"
+A FAIL you judge false: add {"check": "<id>", "target": "<its where, enough to name that one finding>", "reason": "<why, 12+ characters>"} to .taste-skill/waivers.json (one finding each, 5 at most, never for kit-edited or checker-gaming); it goes in your report. Never edit the kit's files or hide the page from the checker.
+GATE: FAIL 23 (round 1 of 3)

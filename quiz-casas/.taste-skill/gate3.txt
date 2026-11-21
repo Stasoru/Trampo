@@ -1,0 +1,58 @@
+gate: checking index.html (product); this takes a few minutes on a CPU Chrome
+gate: rounds used up; 16 FAIL open
+  FAIL no-visual        div#card > main > div.land > section.sec:nth-of-type(1) "COMO FUNCIONA"  [1440, 390]
+       no picture, effect or mock in this section; a feature section needs a visual
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual        div#card > main > div.land > section.sec:nth-of-type(2) "AS QUATRO CASAS"  [1440, 390]
+       no picture, effect or mock in this section; a feature section needs a visual
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL copy-headings    ul#chart > li:nth-of-type(1) > div > h3 "GRIFINÓRIA"  [1440]
+       "GRIFINÓRIA" names no product, part, place or section (4 headings like it; at most one brand line per page) (and 3 more like it: "CORVINAL", "LUFA-LUFA", "SONSERINA")
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  FAIL section-height   div#card > main > footer.small "Beco Diagonal Personalizados Quiz de fã,"  [1440]
+       the section is 65px tall (0.1 screens), 835px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)
+       fix: set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit
+  FAIL section-height   section#stage "SEU NOME SEU NOME Qual casa vai no seu c"  [1440]
+       the section starts at 173px, 173px below the screen grid (0 x 900px): sections start on whole screens (SR-2)
+       fix: make every section above it exactly one or two screens tall, so this one starts on a whole screen
+  FAIL one-section      h2#como "Como funciona"  [1440]
+       the screen at scroll 173px (the top of section 1) shows 160px of section 2 and the heading of section 2 whole and the content of 2 sections, over 24px each beside section 1: a screen shows one section (another may peek 8
+       fix: make each section exactly one screen or two, so a screen shows one section and no neighbour peeks
+  FAIL one-section      div#card > main > footer.small "Beco Diagonal Personalizados Quiz de fã,"  [1440]
+       the screen at scroll 1402px (the top of section 3) shows 65px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)
+       fix: make each section exactly one screen or two, so a screen shows one section and no neighbour peeks
+  FAIL one-heading      h2#casas "As quatro casas"  [1440]
+       the section holds 3 h2 headings: one per section, first in its .wrap (SR-5)
+       fix: give each section one h2, first in its .wrap, and the hero only its h1
+  FAIL container-edges  div#card > header.brand  [1440]
+       the nav's content runs 631px from the left and 631px from the right (read from its outermost blocks: no .wrap): the page's container starts at 236px; the margin is 64-120px at 1440px (one container, equal margins, 2px ei
+       fix: use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone
+  FAIL container-edges  section#stage "SEU NOME SEU NOME Qual casa vai no seu c"  [1440]
+       the content of section 1 runs 236px from the left and 236px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 2 more like it: 
+       fix: use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone
+  FAIL container-edges  a.skip "Pular para o quiz"  [1440]
+       a <a> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges  div#card "SEU NOME SEU NOME Qual casa vai no seu c"  [1440]
+       a <div> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 3 more like it: "SEU NOME SEU NOME Qual c", "Como funciona O quiz lev", "Beco Diagonal Personaliz") (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges  div#card > main > div.land > div.perf:nth-of-type(1)  [1440]
+       a box runs 180-1260px, outside the container lines of section 2 at 236-1204px: full width is for background layers and grounds only (and 2 more like it: div#card > main > div.land > div.perf:nth-of-type(2), div#card > ma
+       fix: keep it inside the container lines (.wrap): full width is for background layers and grounds only
+  FAIL container-edges  div#hero > h1.hero-title "Qual casa vai no seu chaveiro?"  [1440]
+       the h1 starts 475px right of the container's left: every h1 and h2 starts on it, 2px either way (and 2 more like it: x 633, x 513) (SR-6)
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges  div#card > main > footer.small > span:nth-of-type(1) "Beco Diagonal Personalizados"  [1440]
+       "Beco Diagonal Personalizados" is set centred across 968px, over half the 968px container: text that wide is set left (and 1 more like it: "Quiz de fã, sem vínculo ") (SR-6)
+       fix: set the text left (text-align: start)
+  FAIL split-pair       div#card > main > div.land > section.sec.gift "O chaveiro existe de verdade É de metal,"  [1440]
+       the split does not run edge to edge on the container: its right column ends at 1132px, the container's right at 1204px (SR-8)
+       fix: run the split from the container's left line to its right line
+  WAIVED nav (the first screen): A página é a cartela de um chaveiro (contrato de direção da impeccable): o topo é o furo de pendurar e o logo da loja, sem barra de navegação; é uma página única de quiz, sem outras seções a linkar.
+  WAIVED product-shown section#stage "QUAL CASA VAI NO SEU CHAVEIRO?": O produto do primeiro viewport é o próprio emblema do chaveiro desenhado em SVG, que vira o brasão da casa no resultado; a loja não forneceu foto do chaveiro de metal.
+  WAIVED moment-none (the page): O momento da página é o esmalte enchendo o emblema a cada resposta e o brasão estampado na revelação; não cabe um momento extra do kit numa página de quiz.
+  WAIVED hero-screen section#stage "SEU NOME SEU NOME Qual casa vai no seu c": O hero é a frente da cartela; a altura segue o conteúdo e o picote marca o fim, por escolha do contrato de direção, sem esticar para 100svh.
+  WAIVED container page: A estrutura segue a cartela centrada do DESIGN da impeccable (card com padding próprio, sem .wrap do kit); as bordas esquerda e direita são iguais dentro da cartela.
+  11 WARN (not blocking), first: copy-actions (the page); section-gaps section#stage / div#card > main > div.la; section-gaps div#card > main > div.land > section.sec; one-screen div#card > main > div.land > section.sec; skip-link a.skip "Pular para o quiz"
+Stop fixing: put these open FAILs and the waivers in your report, then finish.
+GATE: OPEN 16 (rounds used up)
