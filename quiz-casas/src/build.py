@@ -3,8 +3,8 @@ src = pathlib.Path(__file__).parent
 fonts = pathlib.Path(sys.argv[1]); old = pathlib.Path(sys.argv[2]); out = pathlib.Path(sys.argv[3])
 b64 = lambda p: base64.b64encode(p.read_bytes()).decode()
 ff = ""
-for fam, f in [("Big Shoulders Display","big-shoulders-display-latin.woff2"),("Hanken Grotesk","hanken-grotesk-latin.woff2")]:
-    ff += '@font-face{font-family:"%s";font-style:normal;font-weight:100 900;font-display:swap;src:url(data:font/woff2;base64,%s) format("woff2")}\n' % (fam, b64(fonts/f))
+for fam, f in [("Manrope","manrope-latin.woff2")]:
+    ff += '@font-face{font-family:"%s";font-style:normal;font-weight:200 800;font-display:swap;src:url(data:font/woff2;base64,%s) format("woff2")}\n' % (fam, b64(fonts/f))
 t = (src/"template.html").read_text()
 t = t.replace("/*FONTS*/", ff)
 t = t.replace("/*LOGO*/", "data:image/svg+xml;base64," + b64(old/"img0.svg"))
@@ -12,6 +12,9 @@ em = (src/"emblem.svg").read_text().replace("/*FRAME*/","data:image/webp;base64,
 t = t.replace("<!--EMBLEM-->", em)
 crests = ",".join('%s:"data:image/webp;base64,%s"' % (k, b64(old/("img%d.webp" % i))) for i,k in enumerate(["gri","cor","luf","son"],1))
 t = t.replace("/*ESCUDOS*/", crests)
+three = (old/"three-0.160.0.min.js").read_text().replace("</script","<\\/script")
+t = t.replace("<script>/*THREE*/</script>", "<script>"+three+"</script>")
+t = t.replace("<script>/*ABERTURA*/</script>", "<script>"+(src/"abertura.js").read_text()+"</script>")
 out.write_text(t); print(out, len(t))
 # versão para Artifact: sem doctype/html/head/body (o publicador embrulha a página)
 import re

@@ -5,202 +5,229 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Quiz das Casas</title>
 <meta name="description" content="Responda dez perguntas e descubra a sua casa. Um quiz de fã da Beco Diagonal Personalizados.">
-<meta name="theme-color" content="#141C5E">
+<meta name="theme-color" content="#0D0D0D">
 <meta property="og:title" content="Quiz das Casas · Beco Diagonal Personalizados">
 <meta property="og:description" content="10 perguntas pra descobrir a sua casa. No fim, o emblema sai com o seu nome.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2322309A'/%3E%3Cpath d='M32 10c8 0 16 2 22 5 0 18-6 30-22 40C16 45 10 33 10 15c6-3 14-5 22-5z' fill='%23EEA534'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D0D0D'/%3E%3Cpath d='M32 10c8 0 16 2 22 5 0 18-6 30-22 40C16 45 10 33 10 15c6-3 14-5 22-5z' fill='%23F0AD33'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add("js")</script>
 <style>
 /*FONTS*/
 :root{
-  --peg:#141C5E; --peg-hole:#0B1142;
-  --card:#22309A; --card-2:#1B277F; --card-line:rgba(243,238,226,.22);
-  --print:#F3EEE2; --print-2:#C9CBEA;
-  --gold:#EEA534; --gold-2:#F7C46C; --gold-ink:#2A1A02;
+  --bg:#0D0D0D; --bg-2:#141414; --panel:#171717; --panel-2:#1E1E1E;
+  --line:rgba(245,242,234,.13); --line-2:rgba(245,242,234,.26);
+  --print:#F5F2EA; --print-2:#B8B2A7; --print-3:#8C877E;
+  --gold:#F0AD33; --gold-2:#F7C25C; --gold-deep:#B97A12; --gold-ink:#141005;
+  --gold-wash:rgba(240,173,51,.08); --gold-ring:rgba(240,173,51,.42);
   --gri:#C2362B; --cor:#3C8BE6; --luf:#E9B730; --son:#1E8A55;
-  --gri-deep:#8E2219; --cor-deep:#1D4E9E; --luf-deep:#E9B730; --son-deep:#145C39;
-  --display:"Big Shoulders Display","Arial Narrow",sans-serif;
-  --body:"Hanken Grotesk",system-ui,sans-serif;
+  --font:"Manrope",system-ui,sans-serif;
   --ease-out:cubic-bezier(.16,1,.3,1);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;min-height:100vh;min-height:100dvh;background-color:var(--peg);
-  background-image:radial-gradient(circle at 50% 50%, var(--peg-hole) 0 3px, transparent 3.5px);
-  background-size:28px 28px;color:var(--print);font:400 17px/1.55 var(--body);
-  -webkit-tap-highlight-color:transparent;padding:0 0 env(safe-area-inset-bottom,0)}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;min-height:100vh;min-height:100dvh;background:var(--bg);color:var(--print);
+  font:400 17px/1.6 var(--font);-webkit-tap-highlight-color:transparent;padding:0 0 env(safe-area-inset-bottom,0)}
 ::selection{background:var(--gold);color:var(--gold-ink)}
-:focus-visible{outline:3px solid var(--gold-2);outline-offset:3px}
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
 .btn:focus-visible{outline-color:var(--print)}
-.skip{position:absolute;left:16px;top:-80px;z-index:10;background:var(--print);color:#14193F;padding:12px 16px;border-radius:10px;font-weight:600;text-decoration:none}
+html{scrollbar-color:#3A3631 var(--bg)}
+.skip{position:absolute;left:16px;top:-80px;z-index:20;background:var(--print);color:var(--gold-ink);padding:12px 16px;font-weight:700;text-decoration:none}
 .skip:focus{top:12px}
 img,svg{display:block;max-width:100%}
 button,input{font:inherit;color:inherit}
-h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.95;margin:0;text-wrap:balance;letter-spacing:-.01em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--font);font-weight:800;line-height:.98;margin:0;text-wrap:balance;letter-spacing:-.035em}
 p{margin:0;text-wrap:pretty}
 [hidden]{display:none!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* ===== A cartela ===== */
-.card{position:relative;width:100%;max-width:760px;margin:0 auto;background:var(--card);
-  background-image:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0) 240px);
-  padding:0 20px 28px}
-.slot{display:flex;justify-content:center;padding-top:max(18px,env(safe-area-inset-top,0px))}
-.slot i{display:block;width:76px;height:18px;border-radius:9px;background:var(--peg-hole);
-  box-shadow:inset 0 2px 3px rgba(0,0,0,.5);position:relative}
-.slot i::before{content:"";position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-17px 0 0 -13px;border-radius:50%;background:var(--peg-hole);box-shadow:inset 0 2px 3px rgba(0,0,0,.5)}
-.brand{display:flex;justify-content:center;padding:12px 0 2px}
-.brand img{width:128px;height:auto}
-@media (min-width:800px){.brand img{width:178px}}
-@media (min-width:800px){
-  body{padding:40px 0 64px}
-  .card{border-radius:22px;padding:0 56px 40px;box-shadow:0 30px 60px -20px rgba(3,6,30,.7),0 6px 14px rgba(3,6,30,.35)}
-  .slot{padding-top:22px}
-}
+/* ===== Botões, no corte reto do site ===== */
+.btn{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;
+  border:1px solid var(--gold);border-radius:2px;padding:16px 28px;background:var(--gold);color:var(--gold-ink);
+  font:700 15px/1.1 var(--font);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;
+  transition:background-color .2s,border-color .2s,color .2s,transform .15s var(--ease-out)}
+.btn:hover{background:var(--gold-2);border-color:var(--gold-2)}
+.btn:active{transform:translateY(1px)}
+.btn.line{background:rgba(13,13,13,.6);color:var(--print);border-color:var(--line-2)}
+.btn.line:hover{border-color:var(--print);background:rgba(255,255,255,.04)}
+.btn svg{width:20px;height:20px;flex:none}
 
-/* ===== Hero / palco ===== */
-.stage{display:grid;gap:10px;justify-items:center;text-align:center;padding:6px 0 30px}
-.emblem{width:min(70vw,300px);aspect-ratio:240/310;filter:drop-shadow(0 14px 18px rgba(5,8,40,.55)) drop-shadow(0 2px 3px rgba(5,8,40,.5))}
-.hero-title{font-size:clamp(42px,11.5vw,84px);max-width:11ch;color:var(--print)}
+/* ===== Abertura 3D ===== */
+.open{position:relative;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;isolation:isolate;
+  background:
+    radial-gradient(60% 46% at 50% 34%, rgba(240,173,51,.13), rgba(240,173,51,0) 70%),
+    radial-gradient(90% 60% at 50% 100%, #000 0, rgba(0,0,0,0) 70%),
+    var(--bg)}
+.open::after{content:"";position:absolute;inset:auto 0 0;height:1px;background:var(--line)}
+#gl{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block;touch-action:pan-y}
+.top{display:flex;align-items:center;justify-content:space-between;padding:max(18px,env(safe-area-inset-top,0px)) 20px 0}
+.top img{width:132px;height:auto}
+.open-copy{align-self:end;display:grid;gap:18px;padding:0 20px 34px;text-align:center;justify-items:center;
+  background:linear-gradient(180deg,rgba(13,13,13,0),rgba(13,13,13,.82) 34%,var(--bg))}
+.mega{font-size:clamp(40px,11vw,108px);text-transform:uppercase;line-height:.92;max-width:11ch;letter-spacing:-.04em}
+.mega em{font-style:normal;color:var(--gold)}
+.open-lead{font-weight:300;font-size:clamp(17px,4.4vw,22px);line-height:1.5;color:var(--print-2);max-width:34ch}
+.cta{display:grid;gap:10px;width:100%;max-width:440px}
+.open-fallback{display:none}
+.no-gl .open-fallback{display:flex;justify-content:center;align-items:center;gap:0;padding:24px 20px 0}
+.no-gl .open-fallback img{width:min(22vw,120px);margin:0 -6px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.6))}
+.no-gl .open-fallback img:nth-child(odd){transform:translateY(14px) rotate(-6deg)}
+.no-gl .open-fallback img:nth-child(even){transform:rotate(5deg)}
+@media (min-width:900px){
+  .open{background:
+    radial-gradient(42% 56% at 68% 46%, rgba(240,173,51,.14), rgba(240,173,51,0) 70%),
+    var(--bg)}
+  .top{padding:28px 48px 0}
+  .top img{width:170px}
+  .open-copy{align-self:center;justify-items:start;text-align:left;padding:0 48px 56px;max-width:min(52vw,720px);background:none}
+  .mega{font-size:clamp(64px,6.6vw,108px)}
+  .cta{grid-template-columns:auto auto;justify-content:start;max-width:none}
+  .cta .btn{width:auto;padding:18px 34px}
+}
+/* entrada do texto, sincronizada com a tampa */
+.js .open-copy>*{animation:rise .9s var(--ease-out) both}
+.js .open-copy>.mega{animation-delay:.9s}
+.js .open-copy>.open-lead{animation-delay:1.05s}
+.js .open-copy>.cta{animation-delay:1.2s}
+@keyframes rise{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.cue{position:absolute;left:50%;bottom:10px;width:1px;height:28px;background:linear-gradient(var(--gold),transparent);transform:translateX(-50%);opacity:.7}
+@media (max-width:899px){.cue{display:none}}
+
+/* ===== Conteúdo ===== */
+.card{position:relative;width:100%;max-width:1120px;margin:0 auto;padding:0 20px 28px}
+@media (min-width:800px){.card{padding:0 48px 48px}}
+
+/* ===== Palco do quiz ===== */
+.stage{display:grid;gap:14px;justify-items:center;text-align:center;padding:44px 0 36px;scroll-margin-top:0}
+.emblem{width:min(62vw,280px);aspect-ratio:240/310;filter:drop-shadow(0 18px 22px rgba(0,0,0,.7)) drop-shadow(0 2px 3px rgba(0,0,0,.6))}
+.hero-title{font-size:clamp(34px,8.6vw,64px);max-width:14ch;text-transform:uppercase}
 .hero-title em{font-style:normal;color:var(--gold)}
-.lead{color:var(--print-2);max-width:36ch;font-size:18px}
-.start{width:100%;max-width:420px;display:grid;gap:12px;margin-top:4px}
-.field{display:grid;gap:6px;text-align:left}
-.field label{font-size:14px;font-weight:600;color:var(--print-2)}
-.field input{width:100%;background:var(--card-2);border:1.5px solid var(--card-line);border-radius:12px;
-  padding:14px 16px;font-size:18px;color:var(--print);caret-color:var(--gold);transition:border-color .2s}
-.field input::placeholder{color:#8F96CF}
-.field input:hover{border-color:rgba(243,238,226,.4)}
-.field input:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(238,165,52,.28)}
-.btn{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;
-  border:0;border-radius:999px;padding:14px 22px;background:var(--gold);color:var(--gold-ink);
-  font:900 22px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-decoration:none;
-  box-shadow:inset 0 -3px 0 rgba(120,70,0,.28),0 8px 18px -6px rgba(5,8,40,.6);transition:transform .15s var(--ease-out),background-color .2s,box-shadow .2s}
-.btn:hover{background:var(--gold-2)}
-.btn:active{transform:translateY(1px);box-shadow:inset 0 2px 0 rgba(120,70,0,.28),0 3px 8px -4px rgba(5,8,40,.6)}
-.btn.line{background:transparent;color:var(--print);box-shadow:inset 0 0 0 1.5px var(--card-line)}
-.btn.line:hover{box-shadow:inset 0 0 0 1.5px var(--print);background:rgba(255,255,255,.04)}
-.btn svg{width:22px;height:22px;flex:none}
+.lead{color:var(--print-2);max-width:38ch;font-size:18px;font-weight:300}
+.start{width:100%;max-width:440px;display:grid;gap:12px;margin-top:4px}
+.field{display:grid;gap:8px;text-align:left}
+.field label{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--print-2)}
+.field input{width:100%;background:var(--bg-2);border:1px solid var(--line-2);border-radius:8px;
+  padding:16px 18px;font-size:18px;color:var(--print);caret-color:var(--gold);transition:border-color .2s,box-shadow .2s}
+.field input::placeholder{color:var(--print-3)}
+.field input:hover{border-color:rgba(245,242,234,.4)}
+.field input:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(240,173,51,.22)}
 .memo{font-size:14px;color:var(--print-2)}
 .memo b{color:var(--print)}
 
-/* ===== Palco em duas colunas no desktop ===== */
 .qbox.intro{text-align:center;justify-items:center}
 .shieldBody{transition:opacity .5s}
 .shieldBody.off{opacity:0}
 @media (min-width:900px){
-  .card{max-width:1080px}
-  body:not(.quizzing) .stage{min-height:calc(100svh - 170px)}
-  .stage{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:64px;align-items:center;text-align:left;justify-items:start;padding:24px 0 56px}
-  .stage>.emblem{grid-column:1;grid-row:1 / span 2;width:100%;max-width:380px;justify-self:center}
+  body:not(.quizzing) .stage{min-height:min(760px,100svh)}
+  .stage{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:72px;align-items:center;text-align:left;justify-items:start;padding:72px 0}
+  .stage>.emblem{grid-column:1;grid-row:1 / span 2;width:100%;max-width:360px;justify-self:center}
   .hero-copy,#screen{grid-column:2}
-  .hero-title{font-size:96px}
+  body:not(.quizzing) .stage{align-content:center;row-gap:28px}
+  .hero-copy{align-self:end}
+  #screen{align-self:start}
   .qbox.intro{text-align:left;justify-items:start}
   body.quizzing .stage>.emblem{width:100%;max-width:320px;align-self:start;position:sticky;top:32px}
-  body.quizzing .stage{align-items:start}
+  body.quizzing .stage{align-items:start;padding-top:56px}
   .stage .result{justify-items:start;text-align:left}
 }
 
-/* ===== Picote ===== */
-.perf{height:14px;margin:6px -20px;position:relative;
-  background:radial-gradient(circle,var(--peg-hole) 0 2.4px,transparent 2.8px) 0 50%/14px 14px repeat-x}
-@media (min-width:800px){.perf{margin:10px -56px}}
+.land>.sec,.fine{border-top:1px solid var(--line)}
 
-/* ===== Seções da cartela ===== */
-.sec{padding:34px 0 30px}
-.sec h2{font-size:clamp(42px,10vw,60px);margin-bottom:12px}
-.sec>p{color:var(--print-2);max-width:52ch}
-.steps{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:18px;counter-reset:s}
-.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
-.steps svg{width:44px;height:44px;color:var(--gold)}
-.steps b{display:block;font:900 24px/1.05 var(--display);text-transform:uppercase;letter-spacing:.01em;margin-bottom:3px}
-.steps span{color:var(--print-2)}
-@media (min-width:800px){.steps{grid-template-columns:repeat(3,1fr);gap:26px}.steps li{grid-template-columns:1fr}}
+/* ===== Seções ===== */
+.sec{padding:64px 0 56px}
+.sec h2{font-size:clamp(36px,8vw,60px);margin-bottom:14px;text-transform:uppercase}
+.sec h2 em{font-style:normal;color:var(--gold)}
+.sec>p{color:var(--print-2);max-width:52ch;font-weight:300;font-size:18px}
+.steps{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:26px}
+.steps li{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start}
+.ic{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--gold-ring);background:var(--gold-wash);color:var(--gold)}
+.ic svg{width:28px;height:28px}
+.steps b{display:block;font-weight:700;font-size:21px;line-height:1.2;letter-spacing:-.01em;margin:6px 0 4px}
+.steps span{color:var(--print-2);font-weight:300}
+@media (min-width:800px){.steps{grid-template-columns:repeat(3,1fr);gap:36px}.steps li{grid-template-columns:1fr}}
 
-.chart{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:0;border-top:1.5px solid var(--card-line)}
-.chart li{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;padding:16px 0;border-bottom:1.5px solid var(--card-line)}
-.chip{width:64px;height:auto;filter:drop-shadow(0 4px 6px rgba(5,8,40,.45))}
-.chart h3{font-size:28px;letter-spacing:.01em}
-.chart p{color:var(--print-2);font-size:16px;margin-top:2px}
-.chart .tr{color:var(--print);font-size:14px;font-weight:600;margin-top:6px;letter-spacing:.02em}
-@media (min-width:900px){.chart{grid-template-columns:1fr 1fr;column-gap:32px}}
+.chart{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.chart li{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.chip{width:64px;height:auto;filter:drop-shadow(0 6px 8px rgba(0,0,0,.6))}
+.chart h3{font-size:26px;letter-spacing:-.02em;text-transform:uppercase}
+.chart p{color:var(--print-2);font-size:16px;margin-top:4px;font-weight:300}
+.chart .tr{color:var(--gold);font-size:13px;font-weight:600;margin-top:8px;letter-spacing:.12em;text-transform:uppercase}
+@media (min-width:900px){.chart{grid-template-columns:1fr 1fr;column-gap:48px}}
 
-.gift{display:grid;gap:22px}
-.gift .tag{width:100%;max-width:400px}
-@media (min-width:900px){.gift{grid-template-columns:1fr 1fr;gap:24px;align-items:start}.gift .tag{grid-column:2;grid-row:1}.gift>div{grid-column:1;grid-row:1}}
-.gift .acts{display:grid;gap:10px;margin-top:18px;max-width:420px}
+.gift{display:grid;gap:28px}
+.gift .tag{width:100%;max-width:420px}
+@media (min-width:900px){.gift{grid-template-columns:1fr 1fr;gap:48px;align-items:start}.gift .tag{grid-column:2;grid-row:1;justify-self:center;margin-top:8px}.gift>div{grid-column:1;grid-row:1}}
+.gift .acts{display:grid;gap:10px;margin-top:26px;max-width:440px}
 
-.fine{font-size:12.5px;line-height:1.5;color:#B4B8E4;padding:18px 0 0;display:grid;gap:6px;max-width:68ch;letter-spacing:.01em}
-.fine b{font-weight:600;color:var(--print)}
+.fine{font-size:13px;line-height:1.55;color:var(--print-3);padding:28px 0 0;display:grid;gap:6px;max-width:68ch}
+.fine b{font-weight:600;color:var(--print-2)}
 
 /* ===== Modo quiz ===== */
-body.quizzing .land{display:none}
-body.quizzing .stage{padding-bottom:24px}
+body.quizzing .land, body.quizzing .open{display:none}
+body.quizzing .stage{padding-bottom:28px}
 body.quizzing .emblem{width:min(36vw,168px)}
 body.done .emblem{width:min(58vw,260px)}
 body.quizzing .hero-copy{display:none}
-.qbox{width:100%;max-width:560px;display:grid;gap:18px;text-align:left}
+.qbox{width:100%;max-width:580px;display:grid;gap:20px;text-align:left}
 .qtop{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .rivets{display:flex;gap:6px;flex-wrap:wrap}
-.rivets i{width:12px;height:12px;border-radius:50%;background:var(--card-2);box-shadow:inset 0 1px 2px rgba(0,0,0,.5)}
-.rivets i.on{background:radial-gradient(circle at 35% 30%,var(--gold-2),var(--gold) 60%,#B97614);box-shadow:0 1px 1px rgba(0,0,0,.4)}
-.count{font:900 20px/1 var(--display);letter-spacing:.06em;color:var(--print-2);font-variant-numeric:tabular-nums;white-space:nowrap}
-.qbox h2{font-size:clamp(32px,8vw,48px);line-height:1;text-transform:none;letter-spacing:0}
+.rivets i{width:22px;height:3px;background:var(--panel-2)}
+.rivets i.on{background:var(--gold)}
+.count{font-weight:700;font-size:15px;letter-spacing:.14em;color:var(--print-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.qbox h2{font-size:clamp(28px,7vw,44px);line-height:1.05;letter-spacing:-.03em}
 .opts{display:grid;gap:10px}
-.opt{appearance:none;display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;text-align:left;width:100%;min-height:58px;
-  background:var(--card-2);border:1.5px solid var(--card-line);border-radius:14px;padding:12px 16px;cursor:pointer;
-  font-size:17px;line-height:1.35;color:var(--print);transition:border-color .18s,background-color .18s,transform .15s var(--ease-out)}
-.opt kbd{font:900 17px/1 var(--display);width:30px;height:30px;display:grid;place-items:center;border-radius:50%;
-  border:1.5px solid var(--card-line);color:var(--print-2)}
-@media (hover:hover){.opt:hover{border-color:var(--gold)}.opt:hover kbd{border-color:var(--gold);color:var(--gold)}}
-.opt:active{transform:scale(.985)}
+.opt{appearance:none;display:grid;grid-template-columns:32px 1fr;gap:14px;align-items:center;text-align:left;width:100%;min-height:60px;
+  background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 16px;cursor:pointer;
+  font-size:17px;line-height:1.4;color:var(--print);transition:border-color .18s,background-color .18s,transform .15s var(--ease-out)}
+.opt kbd{font:700 14px/1 var(--font);width:32px;height:32px;display:grid;place-items:center;border-radius:50%;
+  border:1px solid var(--line-2);color:var(--print-2)}
+@media (hover:hover){.opt:hover{border-color:var(--gold);background:var(--panel-2)}.opt:hover kbd{border-color:var(--gold);color:var(--gold)}}
+.opt:active{transform:scale(.988)}
 .opt.picked{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
 .opt.picked kbd{border-color:var(--gold-ink);color:var(--gold-ink)}
 .opt:disabled{cursor:default}
 .qnav{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px}
 .link{appearance:none;background:none;border:0;padding:10px 4px;color:var(--print-2);font-size:15px;font-weight:600;cursor:pointer;
-  text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;min-height:44px}
-.link:hover{color:var(--print)}
+  text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:var(--gold-ring);min-height:44px}
+.link:hover{color:var(--print);text-decoration-color:var(--gold)}
 .link:disabled{visibility:hidden}
 .qin{animation:qin .24s var(--ease-out) both}
 @keyframes qin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
 .tie{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
-.tie button{appearance:none;display:grid;justify-items:center;gap:10px;padding:18px 10px;background:var(--card-2);
-  border:1.5px solid var(--card-line);border-radius:14px;cursor:pointer;transition:border-color .18s}
+.tie button{appearance:none;display:grid;justify-items:center;gap:10px;padding:20px 10px;background:var(--panel);
+  border:1px solid var(--line);border-radius:4px;cursor:pointer;transition:border-color .18s}
 .tie button:hover{border-color:var(--gold)}
 .tie .chip{width:84px}
-.tie b{font:900 24px/1 var(--display);text-transform:uppercase}
+.tie b{font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-.01em}
 .tie span{font-size:14px;color:var(--print-2)}
 
 /* ===== Resultado ===== */
 .result{width:100%;display:grid;gap:22px;justify-items:center;text-align:center}
-.result .who{font-size:17px;color:var(--print-2)}
-.result h1{font-size:clamp(60px,17vw,112px);color:var(--print)}
-.motto{font:900 26px/1.05 var(--display);text-transform:uppercase;color:var(--gold);max-width:22ch}
-.band{width:100%;border-radius:16px;padding:22px 20px;background:var(--hc);color:var(--hon);text-align:left;display:grid;gap:16px}
-@media (min-width:800px){.band{padding:28px 32px}}
+.result .who{font-size:17px;color:var(--print-2);font-weight:300}
+.result h1{font-size:clamp(52px,14vw,104px);color:var(--print);text-transform:uppercase;letter-spacing:-.045em}
+.motto{font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);max-width:32ch;line-height:1.5}
+.band{width:100%;border-radius:4px;padding:24px 22px;background:var(--hc);color:var(--hon);text-align:left;display:grid;gap:16px}
+@media (min-width:800px){.band{padding:30px 34px}}
 .band p{max-width:56ch}
 .traits{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
-.traits li{font:900 18px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:8px;border:1.5px solid currentColor}
-.mix{width:100%;max-width:520px;display:grid;gap:10px;text-align:left}
-.mix h3{font-size:26px}
+.traits li{font-weight:700;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:.12em;padding:10px 12px;border-radius:2px;border:1px solid currentColor}
+.mix{width:100%;max-width:520px;display:grid;gap:12px;text-align:left}
+.mix h3{font-size:20px;text-transform:uppercase;letter-spacing:.02em}
 .bar{display:grid;grid-template-columns:104px 1fr 44px;gap:12px;align-items:center;font-size:15px}
-.bar .t{height:14px;border-radius:7px;background:var(--card-2);box-shadow:inset 0 1px 2px rgba(0,0,0,.45);overflow:hidden}
-.bar .t b{display:block;height:100%;border-radius:7px;transform-origin:left;transform:scaleX(var(--v));transition:transform .8s var(--ease-out);
-  background-image:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 60%)}
+.bar .t{height:8px;background:var(--panel-2);overflow:hidden}
+.bar .t b{display:block;height:100%;transform-origin:left;transform:scaleX(var(--v));transition:transform .8s var(--ease-out)}
 .bar .n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
-.racts{width:100%;max-width:420px;display:grid;gap:10px}
+.racts{width:100%;max-width:440px;display:grid;gap:10px}
 .note{font-size:14px;color:var(--print-2)}
 .shot{margin:4px 0 6px;display:grid;gap:8px;justify-items:center}
-.shot img{width:100%;max-width:300px;border-radius:12px;box-shadow:0 12px 24px -10px rgba(3,6,30,.7)}
+.shot img{width:100%;max-width:300px;border-radius:4px;box-shadow:0 16px 30px -10px rgba(0,0,0,.8)}
 .shot figcaption{font-size:14px;color:var(--print-2);text-align:center}
 
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
-  background:var(--print);color:#14193F;padding:12px 18px;border-radius:999px;font-weight:600;font-size:15px;
-  box-shadow:0 10px 24px -8px rgba(0,0,0,.55);z-index:9;max-width:calc(100% - 32px)}
+  background:var(--print);color:var(--gold-ink);padding:12px 18px;border-radius:2px;font-weight:600;font-size:15px;
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.7);z-index:9;max-width:calc(100% - 32px)}
 
 /* esmalte */
 .stratum{transform-box:fill-box;transform-origin:50% 100%;animation:pour .5s var(--ease-out) both}
@@ -213,63 +240,72 @@ body.quizzing .hero-copy{display:none}
   .flood.go,.crest.on,.bar .t b,.emblem,.shieldBody{transition:none}
   .stratum{animation:none}
   .qin{animation:none}
+  .js .open-copy>*{animation:none}
 }
 </style>
 </head>
 <body>
 <a class="skip" href="#stage">Pular para o quiz</a>
-<div class="card" id="card">
-  <div class="slot" aria-hidden="true"><i></i></div>
-  <header class="brand"><img src="/*LOGO*/" alt="Beco Diagonal Personalizados" width="178" height="71"></header>
+<section class="open" id="abertura" aria-labelledby="titulo">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <header class="top"><img src="/*LOGO*/" alt="Beco Diagonal Personalizados" width="170" height="68"></header>
+  <div class="open-fallback" aria-hidden="true" id="fallback"></div>
+  <div class="open-copy">
+    <h1 class="mega" id="titulo">Qual casa vai no seu <em>chaveiro?</em></h1>
+    <p class="open-lead">10 perguntas, uns 3 minutos, e você descobre a sua casa. O chaveiro de metal com o brasão dela é o seu brinde.</p>
+    <div class="cta">
+      <a class="btn" href="#stage" data-go>Fazer o quiz</a>
+      <a class="btn line" href="#como">Como funciona</a>
+    </div>
+  </div>
+  <span class="cue" aria-hidden="true"></span>
+</section>
 
+<div class="card" id="card">
   <main>
     <section class="stage" id="stage" aria-label="Quiz">
       <!--EMBLEM-->
       <div class="hero-copy" id="hero">
-        <h1 class="hero-title">Qual casa vai no seu <em>chaveiro?</em></h1>
+        <h2 class="hero-title">Grave o seu nome no <em>chaveiro</em></h2>
       </div>
       <div id="screen" class="qbox intro"></div>
     </section>
 
     <div class="land">
-      <div class="perf" aria-hidden="true"></div>
       <section class="sec" aria-labelledby="como">
         <h2 id="como">Como funciona</h2>
         <p>O quiz leva uns 3 minutos. Não tem resposta certa, só a que é mais você.</p>
         <ol class="steps">
-          <li><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="5" width="28" height="34" rx="4"/><path d="M15 15h14M15 22h14M15 29h8"/></svg>
+          <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="5" width="28" height="34" rx="4"/><path d="M15 15h14M15 22h14M15 29h8"/></svg></span>
             <div><b>Responda dez perguntas</b><span>Escolhas simbólicas e alguns dilemas. As perguntas mudam a cada rodada.</span></div></li>
-          <li><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4c6 9 12 15 12 23a12 12 0 0 1-24 0c0-8 6-14 12-23z"/><path d="M16 28a6 6 0 0 0 6 6"/></svg>
+          <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4c6 9 12 15 12 23a12 12 0 0 1-24 0c0-8 6-14 12-23z"/><path d="M16 28a6 6 0 0 0 6 6"/></svg></span>
             <div><b>Veja o esmalte encher</b><span>Cada resposta pinga a cor de uma casa no emblema. A que encher mais é a sua.</span></div></li>
-          <li><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="22" cy="9" r="5"/><path d="M22 14v4M11 18h22l-2 20H13z"/><path d="M18 26h8"/></svg>
+          <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="18" width="32" height="20" rx="1"/><path d="M4 12h36v6H4zM22 12v26"/><path d="M22 12c-3-6-10-7-10-3s6 3 10 3c4 0 10 1 10-3s-7-3-10 3"/></svg></span>
             <div><b>Ganhe o chaveiro</b><span>O chaveiro de metal da sua casa é o brinde da loja. Mostre o resultado e garanta o seu.</span></div></li>
         </ol>
       </section>
 
-      <div class="perf" aria-hidden="true"></div>
       <section class="sec" aria-labelledby="casas">
-        <h2 id="casas">As quatro casas</h2>
+        <h2 id="casas">As quatro <em>casas</em></h2>
         <p>Cada casa tem a sua cor de esmalte. Qual delas vai ficar no seu?</p>
         <ul class="chart" id="chart"></ul>
       </section>
 
-      <div class="perf" aria-hidden="true"></div>
       <section class="sec gift" aria-labelledby="brinde">
         <svg class="tag" viewBox="0 0 300 116" aria-hidden="true" id="giftTag"></svg>
         <div>
-          <h2 id="brinde">O chaveiro existe de verdade</h2>
+          <h2 id="brinde">O chaveiro existe <em>de verdade</em></h2>
           <p>É de metal, com o emblema da sua casa, e sai de brinde pra quem faz o quiz. Termine, mostre o resultado pra loja e a gente separa o seu.</p>
           <div class="acts">
-            <button class="btn" type="button" data-go>Fazer o quiz</button>
+            <a class="btn" href="#stage" data-go>Fazer o quiz</a>
             <a class="btn line" id="shopLink" hidden target="_blank" rel="noopener">Ver os produtos da loja</a>
           </div>
         </div>
       </section>
     </div>
 
-    <div class="perf" aria-hidden="true"></div>
     <footer class="fine">
-      <p><b>Beco Diagonal Personalizados</b> · Quiz das casas, cartela nº 01 · Lote 2026/11</p>
+      <p><b>Beco Diagonal Personalizados</b> · Brindes personalizados · Quiz das casas</p>
       <p>Quiz de fã, sem vínculo com a Warner Bros. ou com o Wizarding World.</p>
     </footer>
   </main>
@@ -469,6 +505,7 @@ function render(html, cls=""){
 }
 function inicio(){
   document.body.classList.remove("quizzing","done");
+  if(window.cena3d) window.cena3d.acorda();
   $("#hero").hidden = false;
   zeraEmblema(); gravar(st.nome || "SEU NOME");
   const ultimo = store.get("bd_ultimo");
@@ -494,8 +531,7 @@ function comecar(){
   zeraEmblema(); gravar(st.nome || "");
   document.body.classList.add("quizzing");
   $("#hero").hidden = true;
-  stage.scrollIntoView({behavior: reduz ? "auto" : "smooth", block:"start"});
-  window.scrollTo({top:0, behavior: reduz ? "auto" : "smooth"});
+  window.scrollTo({top:0});
   pergunta();
 }
 function pergunta(){
@@ -515,7 +551,7 @@ function pergunta(){
   $("#q").focus({preventScroll:true});
   screen.querySelectorAll(".opt").forEach(b => b.onclick = () => escolhe(b));
   $("#back").onclick = volta;
-  $("#quit").onclick = () => {st.nome = st.nome; inicio(); window.scrollTo({top:0})};
+  $("#quit").onclick = () => {inicio(); stage.scrollIntoView({block:"start"})};
 }
 function escolhe(b){
   if(screen.dataset.busy) return;
@@ -599,7 +635,7 @@ function resultado(casa){
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     screen.querySelectorAll(".bar .t b").forEach((b,n)=>b.style.setProperty("--v", pct[n][1]/100));
   }));
-  $("#again").onclick = () => {inicio(); window.scrollTo({top:0, behavior: reduz?"auto":"smooth"})};
+  $("#again").onclick = () => {inicio(); stage.scrollIntoView({block:"start"})};
   $("#save").onclick = salvarImagem;
 }
 
@@ -612,11 +648,11 @@ async function salvarImagem(){
     const cv = document.createElement("canvas"); cv.width=W; cv.height=H;
     const g = cv.getContext("2d");
     await document.fonts.ready;
-    g.fillStyle="#22309A"; g.fillRect(0,0,W,H);
-    // furo da cartela
-    g.fillStyle="#0B1142"; roundRect(g,W/2-70,46,140,32,16); g.fill();
-    g.beginPath(); g.arc(W/2,62,24,0,Math.PI*2); g.fill();
-    const logo = await carregaImg($(".brand img").src);
+    g.fillStyle="#0D0D0D"; g.fillRect(0,0,W,H);
+    const luz = g.createRadialGradient(W/2,540,0,W/2,540,620); luz.addColorStop(0,"rgba(240,173,51,.16)"); luz.addColorStop(1,"rgba(240,173,51,0)");
+    g.fillStyle = luz; g.fillRect(0,0,W,H);
+    g.fillStyle="#F0AD33"; g.fillRect(0,0,W,8);
+    const logo = await carregaImg($(".top img").src);
     g.drawImage(logo, W/2-150, 110, 300, 120);
     // emblema sem o texto da plaqueta
     const svg = $("#emblemSvg").cloneNode(true);
@@ -625,7 +661,7 @@ async function salvarImagem(){
     const raw = new XMLSerializer().serializeToString(svg);
     const em = await carregaImg("data:image/svg+xml;charset=utf-8,"+encodeURIComponent(raw));
     const ex = W/2-240, ey = 236;
-    g.save(); g.shadowColor="rgba(5,8,40,.55)"; g.shadowBlur=40; g.shadowOffsetY=24;
+    g.save(); g.shadowColor="rgba(0,0,0,.7)"; g.shadowBlur=40; g.shadowOffsetY=24;
     g.drawImage(em, ex, ey, 480, 620); g.restore();
     const cr = await carregaImg(ESCUDO[st.casa]);
     const s = Math.min(400/cr.width, 444/cr.height), cw = cr.width*s, ch = cr.height*s;
@@ -633,23 +669,23 @@ async function salvarImagem(){
     // nome gravado na plaqueta (plaqueta em 58..182 x 206..236 no viewBox 240x300 -> escala 2)
     let nome = st.nome || c.nome; if(nome.length > 14) nome = nome.split(" ")[0].slice(0,14); nome = nome.toUpperCase();
     g.textAlign="center"; g.textBaseline="middle";
-    g.font = `900 ${nome.length>11?28:34}px "Big Shoulders Display"`;
+    g.font = `800 ${nome.length>11?24:30}px "Manrope"`;
     g.fillStyle="rgba(230,228,227,.75)"; g.fillText(nome, W/2, ey+285*2+2, 260);
     g.fillStyle="#2E2D2D"; g.fillText(nome, W/2, ey+285*2, 260);
     // textos
-    g.fillStyle="#C9CBEA"; g.font = `400 36px "Hanken Grotesk"`;
+    g.fillStyle="#B8B2A7"; g.font = `300 36px "Manrope"`;
     g.fillText(st.nome ? `${st.nome.split(" ")[0]}, a sua casa é` : "A sua casa é", W/2, 900);
-    g.fillStyle="#F3EEE2"; g.font = `900 150px "Big Shoulders Display"`;
+    g.fillStyle="#F5F2EA"; g.font = `800 128px "Manrope"`;
     g.fillText(c.nome.toUpperCase(), W/2, 1030, 980);
-    g.fillStyle="#EEA534"; g.font = `900 42px "Big Shoulders Display"`;
+    g.fillStyle="#F0AD33"; g.font = `700 30px "Manrope"`; try{g.letterSpacing="4px"}catch(e){}
     g.fillText(c.lema.toUpperCase(), W/2, 1124, 980);
     // mistura
     const bx=170, bw=740; let by=1182;
-    g.font = `600 28px "Hanken Grotesk"`;
+    g.font = `600 26px "Manrope"`;
     const linha = st.pct.map(([k,v])=>`${CASAS[k].nome} ${v}%`).join("   ·   ");
-    g.fillStyle="#C9CBEA"; g.fillText(linha, W/2, by, 980);
+    g.fillStyle="#B8B2A7"; g.fillText(linha, W/2, by, 980);
     let x=bx; st.pct.forEach(([k,v])=>{const w=bw*v/100; if(w>0){g.fillStyle=CASAS[k].cor; g.fillRect(x,by+34,w,18); x+=w}});
-    g.fillStyle="#A9AEDC"; g.font = `400 26px "Hanken Grotesk"`;
+    g.fillStyle="#8C877E"; g.font = `400 24px "Manrope"`;
     g.fillText("Quiz das casas · Beco Diagonal Personalizados", W/2, 1290);
     const blob = await new Promise(r=>cv.toBlob(r,"image/png"));
     const arq = new File([blob], `minha-casa-${st.casa}.png`, {type:"image/png"});
@@ -693,9 +729,10 @@ let tt; function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;cle
 
 /* --- seções da landing --- */
 $("#chart").innerHTML = ORDEM.map(k=>`<li>${chipSVG(k)}<div><h3>${CASAS[k].nome}</h3><p>${CASAS[k].lema}</p><p class="tr">${CASAS[k].tracos.join(" · ")}</p></div></li>`).join("");
-$("#giftTag").innerHTML = `<defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F4F7"/><stop offset=".5" stop-color="#9AA1AF"/><stop offset="1" stop-color="#E4E7EC"/></linearGradient></defs><rect x="4" y="2" width="292" height="7" rx="3.5" fill="#0B1142"/>` +
+$("#giftTag").innerHTML = `<defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F4F7"/><stop offset=".5" stop-color="#9AA1AF"/><stop offset="1" stop-color="#E4E7EC"/></linearGradient></defs><rect x="4" y="2" width="292" height="4" fill="#F0AD33"/>` +
   ORDEM.map((k,n)=>{const x=38+n*75, y=n%2?10:4; return `<circle cx="${x}" cy="${12+y}" r="8" fill="none" stroke="url(#gm)" stroke-width="3.5"/><image href="${ESCUDO[k]}" x="${x-31}" y="${22+y}" width="62" height="70"/>`}).join("");
-document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{window.scrollTo({top:0,behavior:reduz?"auto":"smooth"}); setTimeout(()=>$("#nome") && $("#nome").focus({preventScroll:true}), reduz?0:350)});
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=e=>{e.preventDefault(); irPalco(); setTimeout(()=>$("#nome") && $("#nome").focus({preventScroll:true}), reduz?0:600)});
+function irPalco(){stage.scrollIntoView({behavior: reduz ? "auto" : "smooth", block:"start"})}
 if(LOJA.linkProdutos){const a=$("#shopLink");a.href=LOJA.linkProdutos;a.hidden=false}
 
 document.addEventListener("keydown", e=>{
@@ -707,5 +744,7 @@ document.addEventListener("keydown", e=>{
 
 inicio();
 </script>
+<script>/*THREE*/</script>
+<script>/*ABERTURA*/</script>
 </body>
 </html>

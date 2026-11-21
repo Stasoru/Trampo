@@ -1,0 +1,66 @@
+<a class="skip" href="#stage">Pular para o quiz</a>
+<section class="open" id="abertura" aria-labelledby="titulo">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <header class="top"><img src="/*LOGO*/" alt="Beco Diagonal Personalizados" width="170" height="68"></header>
+  <div class="open-fallback" aria-hidden="true" id="fallback"></div>
+  <div class="open-copy">
+    <h1 class="mega" id="titulo">Qual casa vai no seu <em>chaveiro?</em></h1>
+    <p class="open-lead">10 perguntas, uns 3 minutos, e você descobre a sua casa. O chaveiro de metal com o brasão dela é o seu brinde.</p>
+    <div class="cta">
+      <a class="btn" href="#stage" data-go>Fazer o quiz</a>
+      <a class="btn line" href="#como">Como funciona</a>
+    </div>
+  </div>
+  <span class="cue" aria-hidden="true"></span>
+</section>
+
+<div class="card" id="card">
+  <main>
+    <section class="stage" id="stage" aria-label="Quiz">
+      <!--EMBLEM-->
+      <div class="hero-copy" id="hero">
+        <h2 class="hero-title">Grave o seu nome no <em>chaveiro</em></h2>
+      </div>
+      <div id="screen" class="qbox intro"></div>
+    </section>
+
+    <div class="land">
+      <section class="sec" aria-labelledby="como">
+        <h2 id="como">Como funciona</h2>
+        <p>O quiz leva uns 3 minutos. Não tem resposta certa, só a que é mais você.</p>
+        <ol class="steps">
+          <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="5" width="28" height="34" rx="4"/><path d="M15 15h14M15 22h14M15 29h8"/></svg></span>
+            <div><b>Responda dez perguntas</b><span>Escolhas simbólicas e alguns dilemas. As perguntas mudam a cada rodada.</span></div></li>
+          <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4c6 9 12 15 12 23a12 12 0 0 1-24 0c0-8 6-14 12-23z"/><path d="M16 28a6 6 0 0 0 6 6"/></svg></span>
+            <div><b>Veja o esmalte encher</b><span>Cada resposta pinga a cor de uma casa no emblema. A que encher mais é a sua.</span></div></li>
+          <li><span class="ic"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="18" width="32" height="20" rx="1"/><path d="M4 12h36v6H4zM22 12v26"/><path d="M22 12c-3-6-10-7-10-3s6 3 10 3c4 0 10 1 10-3s-7-3-10 3"/></svg></span>
+            <div><b>Ganhe o chaveiro</b><span>O chaveiro de metal da sua casa é o brinde da loja. Mostre o resultado e garanta o seu.</span></div></li>
+        </ol>
+      </section>
+
+      <section class="sec" aria-labelledby="casas">
+        <h2 id="casas">As quatro <em>casas</em></h2>
+        <p>Cada casa tem a sua cor de esmalte. Qual delas vai ficar no seu?</p>
+        <ul class="chart" id="chart"></ul>
+      </section>
+
+      <section class="sec gift" aria-labelledby="brinde">
+        <svg class="tag" viewBox="0 0 300 116" aria-hidden="true" id="giftTag"></svg>
+        <div>
+          <h2 id="brinde">O chaveiro existe <em>de verdade</em></h2>
+          <p>É de metal, com o emblema da sua casa, e sai de brinde pra quem faz o quiz. Termine, mostre o resultado pra loja e a gente separa o seu.</p>
+          <div class="acts">
+            <a class="btn" href="#stage" data-go>Fazer o quiz</a>
+            <a class="btn line" id="shopLink" hidden target="_blank" rel="noopener">Ver os produtos da loja</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="fine">
+      <p><b>Beco Diagonal Personalizados</b> · Brindes personalizados · Quiz das casas</p>
+      <p>Quiz de fã, sem vínculo com a Warner Bros. ou com o Wizarding World.</p>
+    </footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>

@@ -1,35 +1,44 @@
 {
- "start": "2026-11-21T08:40:22.463Z",
+ "start": "2026-11-21T13:33:49.389Z",
  "round": 3,
  "idle": 0,
  "errors": 0,
  "status": "open",
  "history": [
   {
-   "at": "2026-11-21T08:49:46.397Z",
+   "at": "2026-11-21T13:43:01.905Z",
    "mode": "manual",
    "status": "fail",
-   "fails": 23,
+   "fails": 25,
    "round": 1,
    "reused": false,
    "stopHookActive": false
   },
   {
-   "at": "2026-11-21T08:51:20.900Z",
+   "at": "2026-11-21T13:43:08.104Z",
    "mode": "manual",
    "status": "fail",
-   "fails": 17,
+   "fails": 20,
    "round": 2,
-   "reused": false,
+   "reused": true,
    "stopHookActive": false
   },
   {
-   "at": "2026-11-21T08:52:48.060Z",
+   "at": "2026-11-21T13:43:11.062Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 20,
+   "round": 2,
+   "reused": true,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-21T13:43:15.240Z",
    "mode": "manual",
    "status": "open",
-   "fails": 16,
+   "fails": 19,
    "round": 3,
-   "reused": false,
+   "reused": true,
    "stopHookActive": false
   }
  ],
@@ -40,17 +49,17 @@
   "root": null,
   "kind": "product",
   "category": "quiz de fã das casas, com chaveiro de brinde",
-  "primary": "Começar o quiz",
+  "primary": "Fazer o quiz",
   "rounds": 3,
-  "start": "2026-11-21T08:40:22.463Z",
+  "start": "2026-11-21T13:33:49.389Z",
   "by": "gate.mjs --start"
  },
  "manual": true,
- "roundKey": "60f71edb0934ba22:e8d19918",
+ "roundKey": "73e29b91ce833e80:51297556",
  "roundFree": false,
  "idleFree": false,
  "blockKey": null,
- "fp": "60f71edb0934ba22",
+ "fp": "73e29b91ce833e80",
  "page": "index.html",
  "found": {
   "fails": [
@@ -122,19 +131,35 @@
     ]
    },
    {
-    "check": "product-shown",
-    "where": "section#stage \"QUAL CASA VAI NO SEU CHAVEIRO?\"",
-    "msg": "the hero of this product page shows no photograph and no render of the product: the page's pictures (\"Emblema do chaveiro\", \"Brasão da Grifinória\", \"Brasão da Corvinal\") sit below it",
-    "fix": "lead with the product itself: the client's photograph of it, else stand-in photographs of its kind (photos.mjs search), a render (assets/objects/product-render, [data-product], data-product-place=hero) only when the brief asks for 3D; never a drawing, never mood stock, never another maker's product",
+    "check": "effect-kind",
+    "where": "canvas#gl",
+    "msg": "a product page (--type) asks for 1 WebGL context (section#abertura) and ships 111 shader sources (a product with a technical subject: pass --tech-subject or mark <meta name=\"site-kind\" content=\"tech\">): effects fit tech, gaming and software pages and a product with a technical subject, never a place, shop or service page (house rule)",
+    "fix": "take the effect off: a place, shop or service page leads with its photographs, flat colour and type, no effect and no pattern or glow ground (effects fit tech, gaming and software pages, and a product with a technical subject)",
     "widths": [
      1440
     ],
     "from": "consistency",
     "ids": [
-     "product-shown"
+     "effect-kind"
     ],
     "wheres": [
-     "section#stage \"QUAL CASA VAI NO SEU CHAVEIRO?\""
+     "canvas#gl"
+    ]
+   },
+   {
+    "check": "effect-kind",
+    "where": "(the page)",
+    "msg": "a product page (--type) has effect parts: 1 scene (a product with a technical subject: pass --tech-subject or mark <meta name=\"site-kind\" content=\"tech\">): effects fit tech, gaming and software pages and a product with a technical subject, never a place, shop or service page (house rule)",
+    "fix": "take the effect off: a place, shop or service page leads with its photographs, flat colour and type, no effect and no pattern or glow ground (effects fit tech, gaming and software pages, and a product with a technical subject)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "effect-kind"
+    ],
+    "wheres": [
+     "(the page)"
     ]
    },
    {
@@ -155,8 +180,8 @@
    },
    {
     "check": "hero-screen",
-    "where": "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\"",
-    "msg": "the hero ends at 903px on a 900px screen, 3px below the fold: it ends at the fold, 1px either way (SR-1)",
+    "where": "section#stage \"SEU NOME SEU NOME Grave o seu nome no ch\"",
+    "msg": "the hero ends at 1660px on a 900px screen, 760px below the fold: it ends at the fold, 1px either way (SR-1)",
     "fix": "make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter",
     "widths": [
      1440
@@ -166,13 +191,13 @@
      "hero-screen"
     ],
     "wheres": [
-     "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\""
+     "section#stage \"SEU NOME SEU NOME Grave o seu nome no ch\""
     ]
    },
    {
     "check": "section-height",
-    "where": "div#card > main > footer.small \"Beco Diagonal Personalizados Quiz de fã,\"",
-    "msg": "the section is 65px tall (0.1 screens), 835px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+    "where": "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
+    "msg": "the section is 75px tall (0.1 screens), 825px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
     "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
     "widths": [
      1440
@@ -182,30 +207,14 @@
      "section-height"
     ],
     "wheres": [
-     "div#card > main > footer.small \"Beco Diagonal Personalizados Quiz de fã,\"",
+     "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
      "div#card > main > div.land \"Como funciona O quiz leva uns 3 minutos.\""
-    ]
-   },
-   {
-    "check": "section-height",
-    "where": "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\"",
-    "msg": "the section starts at 173px, 173px below the screen grid (0 x 900px): sections start on whole screens (SR-2)",
-    "fix": "make every section above it exactly one or two screens tall, so this one starts on a whole screen",
-    "widths": [
-     1440
-    ],
-    "from": "consistency",
-    "ids": [
-     "section-height"
-    ],
-    "wheres": [
-     "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\""
     ]
    },
    {
     "check": "one-section",
     "where": "h2#como \"Como funciona\"",
-    "msg": "the screen at scroll 173px (the top of section 1) shows 160px of section 2 and the heading of section 2 whole and the content of 2 sections, over 24px each beside section 1: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+    "msg": "the screen at scroll 900px (stride 1) shows 140px of section 2 and the heading of section 2 whole and the content of 2 sections, over 24px each beside section 1: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
     "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
     "widths": [
      1440
@@ -220,8 +229,8 @@
    },
    {
     "check": "one-section",
-    "where": "div#card > main > footer.small \"Beco Diagonal Personalizados Quiz de fã,\"",
-    "msg": "the screen at scroll 1402px (the top of section 3) shows 65px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+    "where": "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
+    "msg": "the screen at scroll 2356px (the top of section 3) shows 75px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
     "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
     "widths": [
      1440
@@ -231,8 +240,24 @@
      "one-section"
     ],
     "wheres": [
-     "div#card > main > footer.small \"Beco Diagonal Personalizados Quiz de fã,\"",
+     "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
      "div#card > main > div.land \"Como funciona O quiz leva uns 3 minutos.\""
+    ]
+   },
+   {
+    "check": "one-heading",
+    "where": "div#hero > h2.hero-title \"Grave o seu nome no chaveiro\"",
+    "msg": "the hero holds an h2 (1): its heading is the h1, and an h2 opens the next section (SR-5)",
+    "fix": "give each section one h2, first in its .wrap, and the hero only its h1",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "one-heading"
+    ],
+    "wheres": [
+     "div#hero > h2.hero-title \"Grave o seu nome no chaveiro\""
     ]
    },
    {
@@ -252,25 +277,25 @@
     ]
    },
    {
-    "check": "container-edges",
-    "where": "div#card > header.brand",
-    "msg": "the nav's content runs 631px from the left and 631px from the right (read from its outermost blocks: no .wrap): the page's container starts at 236px; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
-    "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+    "check": "one-heading",
+    "where": "h2#como \"Como funciona\"",
+    "msg": "headings of two sections show whole on one screen at 4 of 48 scroll positions (8.3%; at scroll 900, 950, 1000, 1050px), here with \"Grave o seu nome no chaveiro\": at most 3% on a desktop (SR-5)",
+    "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
     "widths": [
      1440
     ],
     "from": "consistency",
     "ids": [
-     "container-edges"
+     "one-heading"
     ],
     "wheres": [
-     "div#card > header.brand"
+     "h2#como \"Como funciona\""
     ]
    },
    {
     "check": "container-edges",
-    "where": "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\"",
-    "msg": "the content of section 1 runs 236px from the left and 236px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 2 more like it: \"Como funciona O quiz lev\", \"Beco Diagonal Personaliz\") (SR-6)",
+    "where": "section#abertura > header.top",
+    "msg": "the nav's content runs 48px from the left and 1222px from the right (read from its outermost blocks: no .wrap): the page's container starts at 208px; 48 and 1222px are not one margin; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
     "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
     "widths": [
      1440
@@ -280,7 +305,39 @@
      "container-edges"
     ],
     "wheres": [
-     "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\""
+     "section#abertura > header.top"
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "section#stage \"SEU NOME SEU NOME Grave o seu nome no ch\"",
+    "msg": "the content of section 1 runs 208px from the left and 208px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
+    "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "section#stage \"SEU NOME SEU NOME Grave o seu nome no ch\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "div#card > main > div.land \"Como funciona O quiz leva uns 3 minutos.\"",
+    "msg": "the content of section 2 runs 208px from the left and 208px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 1 more like it: \"Beco Diagonal Personaliz\") (SR-6)",
+    "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "div#card > main > div.land \"Como funciona O quiz leva uns 3 minutos.\""
     ]
    },
    {
@@ -301,8 +358,8 @@
    },
    {
     "check": "container-edges",
-    "where": "div#card \"SEU NOME SEU NOME Qual casa vai no seu c\"",
-    "msg": "a <div> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 3 more like it: \"SEU NOME SEU NOME Qual c\", \"Como funciona O quiz lev\", \"Beco Diagonal Personaliz\") (SR-6)",
+    "where": "section#abertura \"Qual casa vai no seu chaveiro? 10 pergun\"",
+    "msg": "a <section> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 4 more like it: \"SEU NOME SEU NOME Grave \", \"SEU NOME SEU NOME Grave \", \"Como funciona O quiz lev\") (SR-6)",
     "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
     "widths": [
      1440
@@ -312,13 +369,13 @@
      "container-edges"
     ],
     "wheres": [
-     "div#card \"SEU NOME SEU NOME Qual casa vai no seu c\""
+     "section#abertura \"Qual casa vai no seu chaveiro? 10 pergun\""
     ]
    },
    {
     "check": "container-edges",
-    "where": "div#card > main > div.land > div.perf:nth-of-type(1)",
-    "msg": "a box runs 180-1260px, outside the container lines of section 2 at 236-1204px: full width is for background layers and grounds only (and 2 more like it: div#card > main > div.land > div.perf:nth-of-type(2), div#card > main > div.land > div.perf:nth-of-type(3)) (SR-6)",
+    "where": "section#abertura > header.top > img \"Beco Diagonal Personalizados\"",
+    "msg": "\"Beco Diagonal Personalizados\" runs 48-218px, outside the container lines of the nav at 208-1232px: full width is for background layers and grounds only (SR-6)",
     "fix": "keep it inside the container lines (.wrap): full width is for background layers and grounds only",
     "widths": [
      1440
@@ -328,13 +385,13 @@
      "container-edges"
     ],
     "wheres": [
-     "div#card > main > div.land > div.perf:nth-of-type(1)"
+     "section#abertura > header.top > img \"Beco Diagonal Personalizados\""
     ]
    },
    {
     "check": "container-edges",
-    "where": "div#hero > h1.hero-title \"Qual casa vai no seu chaveiro?\"",
-    "msg": "the h1 starts 475px right of the container's left: every h1 and h2 starts on it, 2px either way (and 2 more like it: x 633, x 513) (SR-6)",
+    "where": "div#hero > h2.hero-title \"Grave o seu nome no chaveiro\"",
+    "msg": "the h2 starts 505px right of the container's left: every h1 and h2 starts on it, 2px either way (SR-6)",
     "fix": "start the text on the container's left, or on the one split line every split shares",
     "widths": [
      1440
@@ -344,14 +401,14 @@
      "container-edges"
     ],
     "wheres": [
-     "div#hero > h1.hero-title \"Qual casa vai no seu chaveiro?\""
+     "div#hero > h2.hero-title \"Grave o seu nome no chaveiro\""
     ]
    },
    {
     "check": "container-edges",
-    "where": "div#card > main > footer.small > span:nth-of-type(1) \"Beco Diagonal Personalizados\"",
-    "msg": "\"Beco Diagonal Personalizados\" is set centred across 968px, over half the 968px container: text that wide is set left (and 1 more like it: \"Quiz de fã, sem vínculo \") (SR-6)",
-    "fix": "set the text left (text-align: start)",
+    "where": "div.land > section.sec:nth-of-type(1) > ol.steps > li:nth-of-type(1) \"Responda dez perguntasEscolhas simbólica\"",
+    "msg": "1 text block starts on a left line at x 226, 18px from the container's left: text starts on the container's left, or on one split line (x 645, 732, 819) (SR-6)",
+    "fix": "start the text on the container's left, or on the one split line every split shares",
     "widths": [
      1440
     ],
@@ -360,14 +417,14 @@
      "container-edges"
     ],
     "wheres": [
-     "div#card > main > footer.small > span:nth-of-type(1) \"Beco Diagonal Personalizados\""
+     "div.land > section.sec:nth-of-type(1) > ol.steps > li:nth-of-type(1) \"Responda dez perguntasEscolhas simbólica\""
     ]
    },
    {
     "check": "split-pair",
     "where": "div#card > main > div.land > section.sec.gift \"O chaveiro existe de verdade É de metal,\"",
-    "msg": "the split does not run edge to edge on the container: its right column ends at 1132px, the container's right at 1204px (SR-8)",
-    "fix": "run the split from the container's left line to its right line",
+    "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 778, on none of the split lines 645 (k=5), 732 (k=6), 819 (k=7) (SR-8)",
+    "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
     "widths": [
      1440
     ],
@@ -399,19 +456,9 @@
   ],
   "warns": [
    {
-    "check": "copy-actions",
-    "where": "(the page)",
-    "msg": "the main action \"Começar o quiz\" does not read word for word the same in the closing section",
-    "fix": "few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
     "check": "section-gaps",
     "where": "section#stage / div#card > main > div.land > section.sec:nth-of-type(1)",
-    "msg": "141px between these sections, +40% against the median 101px",
+    "msg": "201px between these sections, +52% against the median 132px",
     "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
      1440
@@ -420,19 +467,18 @@
    },
    {
     "check": "section-gaps",
-    "where": "div#card > main > div.land > section.sec.gift / div#card > main > footer.small",
-    "msg": "53px between these sections, -48% against the median 101px",
+    "where": "div#card > main > div.land > section.sec.gift / div#card > main > footer.fine",
+    "msg": "86px between these sections, -35% against the median 132px",
     "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
-     1440,
-     390
+     1440
     ],
     "from": "consistency"
    },
    {
     "check": "one-screen",
-    "where": "div#card > main > div.land > section.sec:nth-of-type(2) \"AS QUATRO CASAS\"",
-    "msg": "1 section is shorter than the screen, so the next one's heading or picture shows with it: \"AS QUATRO CASAS\" is 413px of the 900px under the nav, and \"O CHAVEIRO EXISTE DE VERDADE\" shows below it",
+    "where": "section#stage \"GRAVE O SEU NOME NO CHAVEIRO\"",
+    "msg": "3 sections are shorter than the screen, so the next one's heading or picture shows with them: \"GRAVE O SEU NOME NO CHAVEIRO\" is 760px of the 900px under the nav, and \"COMO FUNCIONA\" shows below it (\"COMO FUNCIONA\", \"AS QUATRO CASAS\")",
     "fix": "give each section the screen (min-height: 100svh less the nav, its content centred), or join two short ones into one",
     "widths": [
      1440
@@ -470,19 +516,9 @@
     "from": "consistency"
    },
    {
-    "check": "no-visual",
-    "where": "section#stage \"QUAL CASA VAI NO SEU CHAVEIRO?\"",
-    "msg": "pictures, effects and mocks cover 22% of this section; a feature section needs a visual (about 25% or more)",
-    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
-    "widths": [
-     390
-    ],
-    "from": "consistency"
-   },
-   {
     "check": "button-styles",
     "where": "a.skip \"Pular para o quiz\"",
-    "msg": "on the phone 2 buttons run the full width of their column, but  \"Pular para o quiz\" is 162px of 390px: one action in two sizes",
+    "msg": "on the phone 4 buttons run the full width of their column, but  \"Pular para o quiz\" is 167px of 390px: one action in two sizes",
     "fix": "give every button the same width rule on the phone: all full width, or all at their own width",
     "widths": [
      390
@@ -491,8 +527,8 @@
    },
    {
     "check": "section-gaps",
-    "where": "div#card > main > div.land > section.sec:nth-of-type(2) / div#card > main > div.land > section.sec.gift",
-    "msg": "110px between these sections, +29% against the median 85px",
+    "where": "section#abertura / section#stage",
+    "msg": "44px between these sections, -53% against the median 94px",
     "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
      390
@@ -500,20 +536,30 @@
     "from": "consistency"
    },
    {
-    "check": "fold-cut",
-    "where": "form#f > div.field > label \"Seu nome, pra gravar no emblema (opciona\"",
-    "msg": "a line of the hero text is sliced by the bottom of the first screen",
-    "fix": "size the hero so the heading ends above the fold, or starts below it",
+    "check": "section-gaps",
+    "where": "div#card > main > div.land > section.sec:nth-of-type(2) / div#card > main > div.land > section.sec.gift",
+    "msg": "144px between these sections, +53% against the median 94px",
+    "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
-     320
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "heading-align",
+    "where": "div#hero > h2.hero-title \"GRAVE O SEU NOME NO CHAVEIRO\"",
+    "msg": "3 section headings sit on the left, 1 centred: \"GRAVE O SEU NOME NO CHAV\"",
+    "fix": "set every section heading in one place: all on the left grid, or all centred",
+    "widths": [
+     390
     ],
     "from": "consistency"
    }
   ],
   "crashed": [],
   "seconds": {
-   "consistency": 65,
-   "layout": 12
+   "consistency": 124,
+   "layout": 16
   }
  },
  "open": [
@@ -568,9 +614,25 @@
    ]
   },
   {
+   "check": "effect-kind",
+   "where": "canvas#gl",
+   "msg": "a product page (--type) asks for 1 WebGL context (section#abertura) and ships 111 shader sources (a product with a technical subject: pass --tech-subject or mark <meta name=\"site-kind\" content=\"tech\">): effects fit tech, gaming and software pages and a product with a technical subject, never a place, shop or service page (house rule)",
+   "fix": "take the effect off: a place, shop or service page leads with its photographs, flat colour and type, no effect and no pattern or glow ground (effects fit tech, gaming and software pages, and a product with a technical subject)",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "effect-kind"
+   ],
+   "wheres": [
+    "canvas#gl"
+   ]
+  },
+  {
    "check": "section-height",
-   "where": "div#card > main > footer.small \"Beco Diagonal Personalizados Quiz de fã,\"",
-   "msg": "the section is 65px tall (0.1 screens), 835px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+   "where": "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
+   "msg": "the section is 75px tall (0.1 screens), 825px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
    "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
    "widths": [
     1440
@@ -580,30 +642,14 @@
     "section-height"
    ],
    "wheres": [
-    "div#card > main > footer.small \"Beco Diagonal Personalizados Quiz de fã,\"",
+    "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
     "div#card > main > div.land \"Como funciona O quiz leva uns 3 minutos.\""
-   ]
-  },
-  {
-   "check": "section-height",
-   "where": "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\"",
-   "msg": "the section starts at 173px, 173px below the screen grid (0 x 900px): sections start on whole screens (SR-2)",
-   "fix": "make every section above it exactly one or two screens tall, so this one starts on a whole screen",
-   "widths": [
-    1440
-   ],
-   "from": "consistency",
-   "ids": [
-    "section-height"
-   ],
-   "wheres": [
-    "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\""
    ]
   },
   {
    "check": "one-section",
    "where": "h2#como \"Como funciona\"",
-   "msg": "the screen at scroll 173px (the top of section 1) shows 160px of section 2 and the heading of section 2 whole and the content of 2 sections, over 24px each beside section 1: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+   "msg": "the screen at scroll 900px (stride 1) shows 140px of section 2 and the heading of section 2 whole and the content of 2 sections, over 24px each beside section 1: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
    "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
    "widths": [
     1440
@@ -618,8 +664,8 @@
   },
   {
    "check": "one-section",
-   "where": "div#card > main > footer.small \"Beco Diagonal Personalizados Quiz de fã,\"",
-   "msg": "the screen at scroll 1402px (the top of section 3) shows 65px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+   "where": "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
+   "msg": "the screen at scroll 2356px (the top of section 3) shows 75px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
    "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
    "widths": [
     1440
@@ -629,8 +675,24 @@
     "one-section"
    ],
    "wheres": [
-    "div#card > main > footer.small \"Beco Diagonal Personalizados Quiz de fã,\"",
+    "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
     "div#card > main > div.land \"Como funciona O quiz leva uns 3 minutos.\""
+   ]
+  },
+  {
+   "check": "one-heading",
+   "where": "div#hero > h2.hero-title \"Grave o seu nome no chaveiro\"",
+   "msg": "the hero holds an h2 (1): its heading is the h1, and an h2 opens the next section (SR-5)",
+   "fix": "give each section one h2, first in its .wrap, and the hero only its h1",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "one-heading"
+   ],
+   "wheres": [
+    "div#hero > h2.hero-title \"Grave o seu nome no chaveiro\""
    ]
   },
   {
@@ -650,25 +712,25 @@
    ]
   },
   {
-   "check": "container-edges",
-   "where": "div#card > header.brand",
-   "msg": "the nav's content runs 631px from the left and 631px from the right (read from its outermost blocks: no .wrap): the page's container starts at 236px; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
-   "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+   "check": "one-heading",
+   "where": "h2#como \"Como funciona\"",
+   "msg": "headings of two sections show whole on one screen at 4 of 48 scroll positions (8.3%; at scroll 900, 950, 1000, 1050px), here with \"Grave o seu nome no chaveiro\": at most 3% on a desktop (SR-5)",
+   "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
    "widths": [
     1440
    ],
    "from": "consistency",
    "ids": [
-    "container-edges"
+    "one-heading"
    ],
    "wheres": [
-    "div#card > header.brand"
+    "h2#como \"Como funciona\""
    ]
   },
   {
    "check": "container-edges",
-   "where": "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\"",
-   "msg": "the content of section 1 runs 236px from the left and 236px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 2 more like it: \"Como funciona O quiz lev\", \"Beco Diagonal Personaliz\") (SR-6)",
+   "where": "section#abertura > header.top",
+   "msg": "the nav's content runs 48px from the left and 1222px from the right (read from its outermost blocks: no .wrap): the page's container starts at 208px; 48 and 1222px are not one margin; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
    "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
    "widths": [
     1440
@@ -678,7 +740,39 @@
     "container-edges"
    ],
    "wheres": [
-    "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\""
+    "section#abertura > header.top"
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "section#stage \"SEU NOME SEU NOME Grave o seu nome no ch\"",
+   "msg": "the content of section 1 runs 208px from the left and 208px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
+   "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "section#stage \"SEU NOME SEU NOME Grave o seu nome no ch\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "div#card > main > div.land \"Como funciona O quiz leva uns 3 minutos.\"",
+   "msg": "the content of section 2 runs 208px from the left and 208px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 1 more like it: \"Beco Diagonal Personaliz\") (SR-6)",
+   "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "div#card > main > div.land \"Como funciona O quiz leva uns 3 minutos.\""
    ]
   },
   {
@@ -699,8 +793,8 @@
   },
   {
    "check": "container-edges",
-   "where": "div#card \"SEU NOME SEU NOME Qual casa vai no seu c\"",
-   "msg": "a <div> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 3 more like it: \"SEU NOME SEU NOME Qual c\", \"Como funciona O quiz lev\", \"Beco Diagonal Personaliz\") (SR-6)",
+   "where": "section#abertura \"Qual casa vai no seu chaveiro? 10 pergun\"",
+   "msg": "a <section> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 4 more like it: \"SEU NOME SEU NOME Grave \", \"SEU NOME SEU NOME Grave \", \"Como funciona O quiz lev\") (SR-6)",
    "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
    "widths": [
     1440
@@ -710,13 +804,13 @@
     "container-edges"
    ],
    "wheres": [
-    "div#card \"SEU NOME SEU NOME Qual casa vai no seu c\""
+    "section#abertura \"Qual casa vai no seu chaveiro? 10 pergun\""
    ]
   },
   {
    "check": "container-edges",
-   "where": "div#card > main > div.land > div.perf:nth-of-type(1)",
-   "msg": "a box runs 180-1260px, outside the container lines of section 2 at 236-1204px: full width is for background layers and grounds only (and 2 more like it: div#card > main > div.land > div.perf:nth-of-type(2), div#card > main > div.land > div.perf:nth-of-type(3)) (SR-6)",
+   "where": "section#abertura > header.top > img \"Beco Diagonal Personalizados\"",
+   "msg": "\"Beco Diagonal Personalizados\" runs 48-218px, outside the container lines of the nav at 208-1232px: full width is for background layers and grounds only (SR-6)",
    "fix": "keep it inside the container lines (.wrap): full width is for background layers and grounds only",
    "widths": [
     1440
@@ -726,13 +820,13 @@
     "container-edges"
    ],
    "wheres": [
-    "div#card > main > div.land > div.perf:nth-of-type(1)"
+    "section#abertura > header.top > img \"Beco Diagonal Personalizados\""
    ]
   },
   {
    "check": "container-edges",
-   "where": "div#hero > h1.hero-title \"Qual casa vai no seu chaveiro?\"",
-   "msg": "the h1 starts 475px right of the container's left: every h1 and h2 starts on it, 2px either way (and 2 more like it: x 633, x 513) (SR-6)",
+   "where": "div#hero > h2.hero-title \"Grave o seu nome no chaveiro\"",
+   "msg": "the h2 starts 505px right of the container's left: every h1 and h2 starts on it, 2px either way (SR-6)",
    "fix": "start the text on the container's left, or on the one split line every split shares",
    "widths": [
     1440
@@ -742,14 +836,14 @@
     "container-edges"
    ],
    "wheres": [
-    "div#hero > h1.hero-title \"Qual casa vai no seu chaveiro?\""
+    "div#hero > h2.hero-title \"Grave o seu nome no chaveiro\""
    ]
   },
   {
    "check": "container-edges",
-   "where": "div#card > main > footer.small > span:nth-of-type(1) \"Beco Diagonal Personalizados\"",
-   "msg": "\"Beco Diagonal Personalizados\" is set centred across 968px, over half the 968px container: text that wide is set left (and 1 more like it: \"Quiz de fã, sem vínculo \") (SR-6)",
-   "fix": "set the text left (text-align: start)",
+   "where": "div.land > section.sec:nth-of-type(1) > ol.steps > li:nth-of-type(1) \"Responda dez perguntasEscolhas simbólica\"",
+   "msg": "1 text block starts on a left line at x 226, 18px from the container's left: text starts on the container's left, or on one split line (x 645, 732, 819) (SR-6)",
+   "fix": "start the text on the container's left, or on the one split line every split shares",
    "widths": [
     1440
    ],
@@ -758,14 +852,14 @@
     "container-edges"
    ],
    "wheres": [
-    "div#card > main > footer.small > span:nth-of-type(1) \"Beco Diagonal Personalizados\""
+    "div.land > section.sec:nth-of-type(1) > ol.steps > li:nth-of-type(1) \"Responda dez perguntasEscolhas simbólica\""
    ]
   },
   {
    "check": "split-pair",
    "where": "div#card > main > div.land > section.sec.gift \"O chaveiro existe de verdade É de metal,\"",
-   "msg": "the split does not run edge to edge on the container: its right column ends at 1132px, the container's right at 1204px (SR-8)",
-   "fix": "run the split from the container's left line to its right line",
+   "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 778, on none of the split lines 645 (k=5), 732 (k=6), 819 (k=7) (SR-8)",
+   "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
    "widths": [
     1440
    ],
@@ -795,24 +889,24 @@
    "wheres": [
     "(the first screen)"
    ],
-   "reason": "A página é a cartela de um chaveiro (contrato de direção da impeccable): o topo é o furo de pendurar e o logo da loja, sem barra de navegação; é uma página única de quiz, sem outras seções a linkar."
+   "reason": "Página única de quiz, aberta por link do Instagram ou WhatsApp: o topo segue o site becodiagonal.net (só o logo), e não há outras páginas a linkar."
   },
   {
-   "check": "product-shown",
-   "where": "section#stage \"QUAL CASA VAI NO SEU CHAVEIRO?\"",
-   "msg": "the hero of this product page shows no photograph and no render of the product: the page's pictures (\"Emblema do chaveiro\", \"Brasão da Grifinória\", \"Brasão da Corvinal\") sit below it",
-   "fix": "lead with the product itself: the client's photograph of it, else stand-in photographs of its kind (photos.mjs search), a render (assets/objects/product-render, [data-product], data-product-place=hero) only when the brief asks for 3D; never a drawing, never mood stock, never another maker's product",
+   "check": "effect-kind",
+   "where": "(the page)",
+   "msg": "a product page (--type) has effect parts: 1 scene (a product with a technical subject: pass --tech-subject or mark <meta name=\"site-kind\" content=\"tech\">): effects fit tech, gaming and software pages and a product with a technical subject, never a place, shop or service page (house rule)",
+   "fix": "take the effect off: a place, shop or service page leads with its photographs, flat colour and type, no effect and no pattern or glow ground (effects fit tech, gaming and software pages, and a product with a technical subject)",
    "widths": [
     1440
    ],
    "from": "consistency",
    "ids": [
-    "product-shown"
+    "effect-kind"
    ],
    "wheres": [
-    "section#stage \"QUAL CASA VAI NO SEU CHAVEIRO?\""
+    "(the page)"
    ],
-   "reason": "O produto do primeiro viewport é o próprio emblema do chaveiro desenhado em SVG, que vira o brasão da casa no resultado; a loja não forneceu foto do chaveiro de metal."
+   "reason": "O cliente pediu explicitamente uma abertura em 3D e escolheu a caixa preta que abre num cartão de decisão (2026-11-21). A cena para de desenhar fora da tela e respeita o movimento reduzido."
   },
   {
    "check": "moment-none",
@@ -829,12 +923,12 @@
    "wheres": [
     "(the page)"
    ],
-   "reason": "O momento da página é o esmalte enchendo o emblema a cada resposta e o brasão estampado na revelação; não cabe um momento extra do kit numa página de quiz."
+   "reason": "O momento da página é a abertura 3D da caixa que abre, pedida pelo cliente; o esmalte que enche o emblema durante o quiz é o segundo."
   },
   {
    "check": "hero-screen",
-   "where": "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\"",
-   "msg": "the hero ends at 903px on a 900px screen, 3px below the fold: it ends at the fold, 1px either way (SR-1)",
+   "where": "section#stage \"SEU NOME SEU NOME Grave o seu nome no ch\"",
+   "msg": "the hero ends at 1660px on a 900px screen, 760px below the fold: it ends at the fold, 1px either way (SR-1)",
    "fix": "make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter",
    "widths": [
     1440
@@ -844,7 +938,7 @@
     "hero-screen"
    ],
    "wheres": [
-    "section#stage \"SEU NOME SEU NOME Qual casa vai no seu c\""
+    "section#stage \"SEU NOME SEU NOME Grave o seu nome no ch\""
    ],
    "reason": "O hero é a frente da cartela; a altura segue o conteúdo e o picote marca o fim, por escolha do contrato de direção, sem esticar para 100svh."
   },
@@ -867,7 +961,7 @@
    "reason": "A estrutura segue a cartela centrada do DESIGN da impeccable (card com padding próprio, sem .wrap do kit); as bordas esquerda e direita são iguais dentro da cartela."
   }
  ],
- "warnCount": 11,
- "at": "2026-11-21T08:52:48.061Z",
+ "warnCount": 10,
+ "at": "2026-11-21T13:43:15.241Z",
  "openTold": true
 }

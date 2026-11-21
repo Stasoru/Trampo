@@ -1,7 +1,27 @@
 [
- {"check":"nav","target":"(the first screen)","reason":"A página é a cartela de um chaveiro (contrato de direção da impeccable): o topo é o furo de pendurar e o logo da loja, sem barra de navegação; é uma página única de quiz, sem outras seções a linkar."},
- {"check":"product-shown","target":"section#stage","reason":"O produto do primeiro viewport é o próprio emblema do chaveiro desenhado em SVG, que vira o brasão da casa no resultado; a loja não forneceu foto do chaveiro de metal."},
- {"check":"moment-none","target":"(the page)","reason":"O momento da página é o esmalte enchendo o emblema a cada resposta e o brasão estampado na revelação; não cabe um momento extra do kit numa página de quiz."},
- {"check":"container","target":"page","reason":"A estrutura segue a cartela centrada do DESIGN da impeccable (card com padding próprio, sem .wrap do kit); as bordas esquerda e direita são iguais dentro da cartela."},
- {"check":"hero-screen","target":"section#stage \"SEU NOME","reason":"O hero é a frente da cartela; a altura segue o conteúdo e o picote marca o fim, por escolha do contrato de direção, sem esticar para 100svh."}
+ {
+  "check": "nav",
+  "target": "(the first screen)",
+  "reason": "Página única de quiz, aberta por link do Instagram ou WhatsApp: o topo segue o site becodiagonal.net (só o logo), e não há outras páginas a linkar."
+ },
+ {
+  "check": "container",
+  "target": "page",
+  "reason": "A estrutura segue a cartela centrada do DESIGN da impeccable (card com padding próprio, sem .wrap do kit); as bordas esquerda e direita são iguais dentro da cartela."
+ },
+ {
+  "check": "hero-screen",
+  "target": "section#stage \"SEU NOME",
+  "reason": "O hero é a frente da cartela; a altura segue o conteúdo e o picote marca o fim, por escolha do contrato de direção, sem esticar para 100svh."
+ },
+ {
+  "check": "effect-kind",
+  "target": "(the page)",
+  "reason": "O cliente pediu explicitamente uma abertura em 3D e escolheu a caixa preta que abre num cartão de decisão (2026-11-21). A cena para de desenhar fora da tela e respeita o movimento reduzido."
+ },
+ {
+  "check": "moment-none",
+  "target": "(the page)",
+  "reason": "O momento da página é a abertura 3D da caixa que abre, pedida pelo cliente; o esmalte que enche o emblema durante o quiz é o segundo."
+ }
 ]

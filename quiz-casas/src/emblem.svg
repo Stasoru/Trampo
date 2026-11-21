@@ -33,6 +33,6 @@
     <rect x="50" y="268" width="140" height="34" rx="7" fill="url(#pewter)" stroke="#4A4949" stroke-width="1"/>
     <rect x="55" y="273" width="130" height="24" rx="4" fill="none" stroke="#5F5E5E" stroke-opacity=".6" stroke-width="1"/>
   </g>
-  <text id="plateShade" x="120" y="292" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="900" font-size="19" letter-spacing="1" fill="#E6E4E3" fill-opacity=".75"></text>
-  <text id="plateText" x="120" y="291" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="900" font-size="19" letter-spacing="1" fill="#2E2D2D"></text>
+  <text id="plateShade" x="120" y="292" text-anchor="middle" font-family="Manrope, system-ui, sans-serif" font-weight="800" font-size="17" letter-spacing="1.5" fill="#E6E4E3" fill-opacity=".75"></text>
+  <text id="plateText" x="120" y="291" text-anchor="middle" font-family="Manrope, system-ui, sans-serif" font-weight="800" font-size="17" letter-spacing="1.5" fill="#2E2D2D"></text>
 </svg>

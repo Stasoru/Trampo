@@ -52,3 +52,8 @@ Um quiz curto que diz em qual das quatro casas da escola de magia a pessoa ficar
 2. O resultado precisa ser bonito o bastante pra virar print.
 3. Toda tela leva de volta à loja sem empurrar.
 4. Funciona offline e num link qualquer, sem servidor.
+
+
+## Identidade (atualizado em 2026-11-21)
+
+Lopez pediu para copiar a identidade do site becodiagonal.net: fundo preto, dourado #F0AD33, texto off-white, fonte geométrica pesada (Manrope), botões retos dourados ou com contorno. A direção "cartela de chaveiro esmaltado" em azul foi substituída. A abertura do quiz é uma cena 3D: a caixa preta do Beco abre e solta os quatro chaveiros (escolhida num cartão de decisão). Referência: `quiz-casas/ref-becodiagonal-site.jpg`.
