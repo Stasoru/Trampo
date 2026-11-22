@@ -307,7 +307,7 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
 @media (prefers-reduced-motion:reduce){.portal{transition:none}}
 
 /* ===== Chapéu falante: fala a casa antes do brasão surgir ===== */
-.chapeu{position:absolute;inset:-4% -10% 0;display:grid;align-items:end;z-index:3;pointer-events:none;
+.chapeu{position:absolute;inset:-12% -24% -2%;display:grid;align-items:end;z-index:3;pointer-events:none;
   opacity:0;transform:translateY(-46px) scale(.92);transition:opacity .55s var(--ease-out),transform .7s var(--ease-out)}
 .chapeu svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 24px rgba(0,0,0,.7))}
 .chapeu.on{opacity:1;transform:none}
@@ -329,6 +329,9 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
   .chapeu,.chapeu.sai{transition:none;transform:none}
   .chapeu .cp-tudo,.chapeu.grita .cp-tudo,.fala-casa.on{animation:none}
 }
+.chapeu canvas{display:none;width:100%;aspect-ratio:300/330}
+.chapeu.cp-3d canvas{display:block}
+.chapeu.cp-3d svg{display:none}
 </style>
 </head>
 <body>
@@ -359,6 +362,7 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
     <section class="stage" id="stage" aria-label="Quiz">
       <div class="kc" id="kc"><canvas id="kcgl" aria-hidden="true"></canvas><!--EMBLEM-->
 <div class="chapeu" id="chapeu" aria-hidden="true" hidden>
+  <canvas id="cpgl" aria-hidden="true"></canvas>
   <svg viewBox="0 0 300 330" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="cpCone" x1="0" y1="0" x2="1" y2="0">
@@ -786,6 +790,7 @@ function revelar(casa){
   if(!cp || !F){ fundir(casa); return; }
   render(`<div class="fala"><p class="who">O chapéu está decidindo…</p><p class="fala-txt" id="falaTxt"></p><h2 id="q" class="fala-casa" tabindex="-1" aria-live="polite"></h2></div>`, "qin");
   cp.hidden = false; kc.classList.add("chapeu-on"); emit("chapeu");
+  const c3 = !!(window.chapeu3d && window.chapeu3d.inicia());
   requestAnimationFrame(()=>requestAnimationFrame(()=>cp.classList.add("on")));
   const boca = cp.querySelector("#cpBoca"), corpo = cp.querySelector(".cp-corpo"), sobr = cp.querySelector(".cp-sobr");
   const ENTRA = reduz ? 200 : 700;
@@ -796,6 +801,7 @@ function revelar(casa){
     const t = t0 ? (now - t0)/1000 : -1;
     let v = window.sons ? window.sons.nivel() : -1;
     if(v < 0 || !comVoz){ v = 0; if(t >= 0 && janelas.some(([a,b])=>t>=a && t<=b)) v = .35 + .35*Math.abs(Math.sin(t*15)) * (Math.sin(t*5.3)*.3+.7); }
+    if(c3) window.chapeu3d.boca(v);
     boca.setAttribute("ry", (3 + v*20).toFixed(1));
     boca.setAttribute("rx", (30 - v*5).toFixed(1));
     if(!reduz){
@@ -811,13 +817,13 @@ function revelar(casa){
     setTimeout(()=>{ const ft = $("#falaTxt"); if(ft) ft.textContent = F.f; }, 150);
     setTimeout(()=>{
       const h = $("#q"); if(h){ h.textContent = c.nome + "!"; h.classList.add("on"); }
-      cp.classList.remove("grita"); void cp.offsetWidth; cp.classList.add("grita");
+      cp.classList.remove("grita"); void cp.offsetWidth; cp.classList.add("grita"); if(c3) window.chapeu3d.grita();
       emit("chapeu-diz", {mudo: !!F.mudo});
     }, F.t*1000);
     setTimeout(()=>{
       cp.classList.add("sai"); emit("chapeu-sai");
       setTimeout(()=>{
-        ativo = false; cp.hidden = true; cp.classList.remove("on","sai","grita");
+        ativo = false; if(c3) window.chapeu3d.para(); cp.hidden = true; cp.classList.remove("on","sai","grita");
         kc.classList.remove("chapeu-on"); fundir(casa);
       }, reduz ? 50 : 600);
     }, (F.d + .5)*1000);
@@ -983,6 +989,7 @@ inicio();
 <script>/*ZAMAK*/</script>
 <script>/*ABERTURA*/</script>
 <script>/*QUIZ3D*/</script>
+<script>/*CHAPEU3D*/</script>
 <script>/*SONS*/</script>
 </body>
 </html>

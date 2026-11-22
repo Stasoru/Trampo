@@ -292,7 +292,7 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
 @media (prefers-reduced-motion:reduce){.portal{transition:none}}
 
 /* ===== Chapéu falante: fala a casa antes do brasão surgir ===== */
-.chapeu{position:absolute;inset:-4% -10% 0;display:grid;align-items:end;z-index:3;pointer-events:none;
+.chapeu{position:absolute;inset:-12% -24% -2%;display:grid;align-items:end;z-index:3;pointer-events:none;
   opacity:0;transform:translateY(-46px) scale(.92);transition:opacity .55s var(--ease-out),transform .7s var(--ease-out)}
 .chapeu svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 24px rgba(0,0,0,.7))}
 .chapeu.on{opacity:1;transform:none}
@@ -314,3 +314,6 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
   .chapeu,.chapeu.sai{transition:none;transform:none}
   .chapeu .cp-tudo,.chapeu.grita .cp-tudo,.fala-casa.on{animation:none}
 }
+.chapeu canvas{display:none;width:100%;aspect-ratio:300/330}
+.chapeu.cp-3d canvas{display:block}
+.chapeu.cp-3d svg{display:none}

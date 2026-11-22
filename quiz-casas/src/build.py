@@ -19,7 +19,7 @@ vz = ",".join('%s:"data:audio/mpeg;base64,%s"' % (k, b64(f)) for k,f in vz.items
 if vz: t = t.replace("<script>/*SONS*/</script>", "<script>window.CHAPEU={%s}</script>\n<script>/*SONS*/</script>" % vz)
 tr = old/"trilha.mp3"
 t = t.replace("<script>/*SONS*/</script>", ('<script>window.TRILHA="data:audio/mpeg;base64,%s"</script>\n' % b64(tr) if tr.exists() else "") + "<script>/*SONS*/</script>")
-for tag, f in [("ZAMAK","zamak.js"),("ABERTURA","abertura.js"),("QUIZ3D","quiz3d.js"),("SONS","sons.js")]:
+for tag, f in [("ZAMAK","zamak.js"),("ABERTURA","abertura.js"),("QUIZ3D","quiz3d.js"),("CHAPEU3D","chapeu3d.js"),("SONS","sons.js")]:
     t = t.replace("<script>/*%s*/</script>" % tag, "<script>"+(src/f).read_text()+"</script>")
 out.write_text(t); print(out, len(t))
 # versão para Artifact: sem doctype/html/head/body (o publicador embrulha a página)
