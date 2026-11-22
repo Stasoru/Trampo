@@ -92,6 +92,9 @@ p{margin:0;text-wrap:pretty}
 .kc.gl-on #kcgl{display:block}
 .kc.gl-on .emblem{visibility:hidden}
 #emblemSvg .keep:last-of-type,#plateText,#plateShade{display:none}
+body.done #emblemSvg .keep:last-of-type,body.done #plateText,body.done #plateShade{display:inline}
+.erro{color:#FF8A7A;font-size:14px;font-weight:600}
+.field input[aria-invalid="true"]{border-color:#FF8A7A}
 .hero-title{font-size:clamp(34px,8.6vw,64px);max-width:14ch;text-transform:uppercase}
 .hero-title em{font-style:normal;color:var(--gold)}
 .lead{color:var(--print-2);max-width:38ch;font-size:18px;font-weight:300}

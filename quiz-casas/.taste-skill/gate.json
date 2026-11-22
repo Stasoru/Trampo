@@ -1,52 +1,34 @@
 {
- "start": "2026-11-21T14:05:51.498Z",
- "round": 3,
+ "start": "2026-11-22T12:37:14.512Z",
+ "round": 1,
  "idle": 0,
  "errors": 0,
- "status": "open",
+ "status": "fail",
  "history": [
   {
-   "at": "2026-11-21T14:08:45.834Z",
+   "at": "2026-11-22T12:39:49.561Z",
    "mode": "manual",
    "status": "fail",
-   "fails": 20,
+   "fails": 18,
    "round": 1,
    "reused": false,
    "stopHookActive": false
   },
   {
-   "at": "2026-11-21T14:08:48.640Z",
+   "at": "2026-11-22T12:39:53.428Z",
    "mode": "manual",
    "status": "fail",
-   "fails": 20,
+   "fails": 18,
    "round": 1,
    "reused": true,
    "stopHookActive": false
   },
   {
-   "at": "2026-11-21T14:11:51.623Z",
+   "at": "2026-11-22T12:39:53.495Z",
    "mode": "manual",
    "status": "fail",
    "fails": 18,
-   "round": 2,
-   "reused": false,
-   "stopHookActive": false
-  },
-  {
-   "at": "2026-11-21T14:11:56.418Z",
-   "mode": "manual",
-   "status": "fail",
-   "fails": 18,
-   "round": 2,
-   "reused": true,
-   "stopHookActive": false
-  },
-  {
-   "at": "2026-11-21T14:11:59.935Z",
-   "mode": "manual",
-   "status": "open",
-   "fails": 18,
-   "round": 3,
+   "round": 1,
    "reused": true,
    "stopHookActive": false
   }
@@ -57,18 +39,18 @@
   "url": null,
   "root": null,
   "kind": "product",
-  "category": "quiz de fã das casas, com chaveiro de brinde",
+  "category": "quiz de fã das casas, com brasão de brinde",
   "primary": "Fazer o quiz",
   "rounds": 3,
-  "start": "2026-11-21T14:05:51.498Z",
+  "start": "2026-11-22T12:37:14.512Z",
   "by": "gate.mjs --start"
  },
  "manual": true,
- "roundKey": "5cad14cb3689167d:38050e7c",
+ "roundKey": "ff347652d831902c:38050e7c",
  "roundFree": false,
  "idleFree": false,
  "blockKey": null,
- "fp": "5cad14cb3689167d",
+ "fp": "ff347652d831902c",
  "page": "index.html",
  "found": {
   "fails": [
@@ -189,7 +171,7 @@
    },
    {
     "check": "hero-screen",
-    "where": "section#stage \"SEU NOME SEU NOME Vamos fundir o seu cha\"",
+    "where": "section#stage \"SEU NOME SEU NOME Vamos fundir o seu bra\"",
     "msg": "the hero ends at 1660px on a 900px screen, 760px below the fold: it ends at the fold, 1px either way (SR-1)",
     "fix": "make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter",
     "widths": [
@@ -200,7 +182,7 @@
      "hero-screen"
     ],
     "wheres": [
-     "section#stage \"SEU NOME SEU NOME Vamos fundir o seu cha\""
+     "section#stage \"SEU NOME SEU NOME Vamos fundir o seu bra\""
     ]
    },
    {
@@ -239,7 +221,7 @@
    {
     "check": "one-section",
     "where": "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
-    "msg": "the screen at scroll 2384px (the top of section 3) shows 75px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+    "msg": "the screen at scroll 2353px (the top of section 3) shows 75px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
     "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
     "widths": [
      1440
@@ -255,7 +237,7 @@
    },
    {
     "check": "one-heading",
-    "where": "div#hero > h2.hero-title \"Vamos fundir o seu chaveiro\"",
+    "where": "div#hero > h2.hero-title \"Vamos fundir o seu brasão\"",
     "msg": "the hero holds an h2 (1): its heading is the h1, and an h2 opens the next section (SR-5)",
     "fix": "give each section one h2, first in its .wrap, and the hero only its h1",
     "widths": [
@@ -266,7 +248,7 @@
      "one-heading"
     ],
     "wheres": [
-     "div#hero > h2.hero-title \"Vamos fundir o seu chaveiro\""
+     "div#hero > h2.hero-title \"Vamos fundir o seu brasão\""
     ]
    },
    {
@@ -288,7 +270,7 @@
    {
     "check": "one-heading",
     "where": "h2#como \"Como funciona\"",
-    "msg": "headings of two sections show whole on one screen at 4 of 48 scroll positions (8.3%; at scroll 900, 950, 1000, 1050px), here with \"Vamos fundir o seu chaveiro\": at most 3% on a desktop (SR-5)",
+    "msg": "headings of two sections show whole on one screen at 4 of 48 scroll positions (8.3%; at scroll 900, 950, 1000, 1050px), here with \"Vamos fundir o seu brasão\": at most 3% on a desktop (SR-5)",
     "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
     "widths": [
      1440
@@ -319,7 +301,7 @@
    },
    {
     "check": "container-edges",
-    "where": "section#stage \"SEU NOME SEU NOME Vamos fundir o seu cha\"",
+    "where": "section#stage \"SEU NOME SEU NOME Vamos fundir o seu bra\"",
     "msg": "the content of section 1 runs 208px from the left and 208px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
     "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
     "widths": [
@@ -330,7 +312,7 @@
      "container-edges"
     ],
     "wheres": [
-     "section#stage \"SEU NOME SEU NOME Vamos fundir o seu cha\""
+     "section#stage \"SEU NOME SEU NOME Vamos fundir o seu bra\""
     ]
    },
    {
@@ -367,7 +349,7 @@
    },
    {
     "check": "container-edges",
-    "where": "section#abertura \"Qual casa vai no seu chaveiro? 10 pergun\"",
+    "where": "section#abertura \"Qual casa vai no seu brasão? 10 pergunta\"",
     "msg": "a <section> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 4 more like it: \"SEU NOME SEU NOME Vamos \", \"SEU NOME SEU NOME Vamos \", \"Como funciona O quiz lev\") (SR-6)",
     "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
     "widths": [
@@ -378,7 +360,7 @@
      "container-edges"
     ],
     "wheres": [
-     "section#abertura \"Qual casa vai no seu chaveiro? 10 pergun\""
+     "section#abertura \"Qual casa vai no seu brasão? 10 pergunta\""
     ]
    },
    {
@@ -399,8 +381,8 @@
    },
    {
     "check": "container-edges",
-    "where": "div#hero > h2.hero-title \"Vamos fundir o seu chaveiro\"",
-    "msg": "3 text blocks start on a left line at x 713, 505px from the container's left: text starts on the container's left, or on one split line (x 645, 732, 819) (also \"10 perguntas, uns 3 minutos. A c\", \"Seu nome (opcional)\") (SR-6)",
+    "where": "div#hero > h2.hero-title \"Vamos fundir o seu brasão\"",
+    "msg": "3 text blocks start on a left line at x 713, 505px from the container's left: text starts on the container's left, or on one split line (x 645, 732, 819) (also \"10 perguntas, uns 3 minutos. Cad\", \"Seu nome (vai gravado na plaquin\") (SR-6)",
     "fix": "start the text on the container's left, or on the one split line every split shares",
     "widths": [
      1440
@@ -410,12 +392,12 @@
      "container-edges"
     ],
     "wheres": [
-     "div#hero > h2.hero-title \"Vamos fundir o seu chaveiro\""
+     "div#hero > h2.hero-title \"Vamos fundir o seu brasão\""
     ]
    },
    {
     "check": "split-pair",
-    "where": "div#card > main > div.land > section.sec.gift \"O chaveiro existe de verdade É de Zamak \"",
+    "where": "div#card > main > div.land > section.sec.gift \"O brasão existe de verdade É de Zamak na\"",
     "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 778, on none of the split lines 645 (k=5), 732 (k=6), 819 (k=7) (SR-8)",
     "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
     "widths": [
@@ -426,7 +408,7 @@
      "split-pair"
     ],
     "wheres": [
-     "div#card > main > div.land > section.sec.gift \"O chaveiro existe de verdade É de Zamak \""
+     "div#card > main > div.land > section.sec.gift \"O brasão existe de verdade É de Zamak na\""
     ]
    },
    {
@@ -470,8 +452,8 @@
    },
    {
     "check": "one-screen",
-    "where": "section#stage \"VAMOS FUNDIR O SEU CHAVEIRO\"",
-    "msg": "3 sections are shorter than the screen, so the next one's heading or picture shows with them: \"VAMOS FUNDIR O SEU CHAVEIRO\" is 760px of the 900px under the nav, and \"COMO FUNCIONA\" shows below it (\"COMO FUNCIONA\", \"AS QUATRO CASAS\")",
+    "where": "section#stage \"VAMOS FUNDIR O SEU BRASÃO\"",
+    "msg": "3 sections are shorter than the screen, so the next one's heading or picture shows with them: \"VAMOS FUNDIR O SEU BRASÃO\" is 760px of the 900px under the nav, and \"COMO FUNCIONA\" shows below it (\"COMO FUNCIONA\", \"AS QUATRO CASAS\")",
     "fix": "give each section the screen (min-height: 100svh less the nav, its content centred), or join two short ones into one",
     "widths": [
      1440
@@ -510,7 +492,7 @@
    },
    {
     "check": "cut-text",
-    "where": "div#hero > h2.hero-title \"VAMOS FUNDIR O SEU CHAVEIRO\"",
+    "where": "div#hero > h2.hero-title \"VAMOS FUNDIR O SEU BRASÃO\"",
     "msg": "sits across the edge of a panel behind it",
     "fix": "give the text room: no overflow clipping a line, no line past its box",
     "widths": [
@@ -550,8 +532,8 @@
    },
    {
     "check": "heading-align",
-    "where": "div#hero > h2.hero-title \"VAMOS FUNDIR O SEU CHAVEIRO\"",
-    "msg": "3 section headings sit on the left, 1 centred: \"VAMOS FUNDIR O SEU CHAVE\"",
+    "where": "div#hero > h2.hero-title \"VAMOS FUNDIR O SEU BRASÃO\"",
+    "msg": "3 section headings sit on the left, 1 centred: \"VAMOS FUNDIR O SEU BRASÃ\"",
     "fix": "set every section heading in one place: all on the left grid, or all centred",
     "widths": [
      390
@@ -561,8 +543,8 @@
   ],
   "crashed": [],
   "seconds": {
-   "consistency": 150,
-   "layout": 21
+   "consistency": 136,
+   "layout": 18
   }
  },
  "open": [
@@ -668,7 +650,7 @@
   {
    "check": "one-section",
    "where": "div#card > main > footer.fine \"Beco Diagonal Personalizados · Brindes p\"",
-   "msg": "the screen at scroll 2384px (the top of section 3) shows 75px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+   "msg": "the screen at scroll 2353px (the top of section 3) shows 75px of section 3 and the content of 2 sections, over 24px each beside section 2: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
    "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
    "widths": [
     1440
@@ -684,7 +666,7 @@
   },
   {
    "check": "one-heading",
-   "where": "div#hero > h2.hero-title \"Vamos fundir o seu chaveiro\"",
+   "where": "div#hero > h2.hero-title \"Vamos fundir o seu brasão\"",
    "msg": "the hero holds an h2 (1): its heading is the h1, and an h2 opens the next section (SR-5)",
    "fix": "give each section one h2, first in its .wrap, and the hero only its h1",
    "widths": [
@@ -695,7 +677,7 @@
     "one-heading"
    ],
    "wheres": [
-    "div#hero > h2.hero-title \"Vamos fundir o seu chaveiro\""
+    "div#hero > h2.hero-title \"Vamos fundir o seu brasão\""
    ]
   },
   {
@@ -717,7 +699,7 @@
   {
    "check": "one-heading",
    "where": "h2#como \"Como funciona\"",
-   "msg": "headings of two sections show whole on one screen at 4 of 48 scroll positions (8.3%; at scroll 900, 950, 1000, 1050px), here with \"Vamos fundir o seu chaveiro\": at most 3% on a desktop (SR-5)",
+   "msg": "headings of two sections show whole on one screen at 4 of 48 scroll positions (8.3%; at scroll 900, 950, 1000, 1050px), here with \"Vamos fundir o seu brasão\": at most 3% on a desktop (SR-5)",
    "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
    "widths": [
     1440
@@ -748,7 +730,7 @@
   },
   {
    "check": "container-edges",
-   "where": "section#stage \"SEU NOME SEU NOME Vamos fundir o seu cha\"",
+   "where": "section#stage \"SEU NOME SEU NOME Vamos fundir o seu bra\"",
    "msg": "the content of section 1 runs 208px from the left and 208px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
    "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
    "widths": [
@@ -759,7 +741,7 @@
     "container-edges"
    ],
    "wheres": [
-    "section#stage \"SEU NOME SEU NOME Vamos fundir o seu cha\""
+    "section#stage \"SEU NOME SEU NOME Vamos fundir o seu bra\""
    ]
   },
   {
@@ -796,7 +778,7 @@
   },
   {
    "check": "container-edges",
-   "where": "section#abertura \"Qual casa vai no seu chaveiro? 10 pergun\"",
+   "where": "section#abertura \"Qual casa vai no seu brasão? 10 pergunta\"",
    "msg": "a <section> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 4 more like it: \"SEU NOME SEU NOME Vamos \", \"SEU NOME SEU NOME Vamos \", \"Como funciona O quiz lev\") (SR-6)",
    "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
    "widths": [
@@ -807,7 +789,7 @@
     "container-edges"
    ],
    "wheres": [
-    "section#abertura \"Qual casa vai no seu chaveiro? 10 pergun\""
+    "section#abertura \"Qual casa vai no seu brasão? 10 pergunta\""
    ]
   },
   {
@@ -828,8 +810,8 @@
   },
   {
    "check": "container-edges",
-   "where": "div#hero > h2.hero-title \"Vamos fundir o seu chaveiro\"",
-   "msg": "3 text blocks start on a left line at x 713, 505px from the container's left: text starts on the container's left, or on one split line (x 645, 732, 819) (also \"10 perguntas, uns 3 minutos. A c\", \"Seu nome (opcional)\") (SR-6)",
+   "where": "div#hero > h2.hero-title \"Vamos fundir o seu brasão\"",
+   "msg": "3 text blocks start on a left line at x 713, 505px from the container's left: text starts on the container's left, or on one split line (x 645, 732, 819) (also \"10 perguntas, uns 3 minutos. Cad\", \"Seu nome (vai gravado na plaquin\") (SR-6)",
    "fix": "start the text on the container's left, or on the one split line every split shares",
    "widths": [
     1440
@@ -839,12 +821,12 @@
     "container-edges"
    ],
    "wheres": [
-    "div#hero > h2.hero-title \"Vamos fundir o seu chaveiro\""
+    "div#hero > h2.hero-title \"Vamos fundir o seu brasão\""
    ]
   },
   {
    "check": "split-pair",
-   "where": "div#card > main > div.land > section.sec.gift \"O chaveiro existe de verdade É de Zamak \"",
+   "where": "div#card > main > div.land > section.sec.gift \"O brasão existe de verdade É de Zamak na\"",
    "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 778, on none of the split lines 645 (k=5), 732 (k=6), 819 (k=7) (SR-8)",
    "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
    "widths": [
@@ -855,7 +837,7 @@
     "split-pair"
    ],
    "wheres": [
-    "div#card > main > div.land > section.sec.gift \"O chaveiro existe de verdade É de Zamak \""
+    "div#card > main > div.land > section.sec.gift \"O brasão existe de verdade É de Zamak na\""
    ]
   }
  ],
@@ -914,7 +896,7 @@
   },
   {
    "check": "hero-screen",
-   "where": "section#stage \"SEU NOME SEU NOME Vamos fundir o seu cha\"",
+   "where": "section#stage \"SEU NOME SEU NOME Vamos fundir o seu bra\"",
    "msg": "the hero ends at 1660px on a 900px screen, 760px below the fold: it ends at the fold, 1px either way (SR-1)",
    "fix": "make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter",
    "widths": [
@@ -925,7 +907,7 @@
     "hero-screen"
    ],
    "wheres": [
-    "section#stage \"SEU NOME SEU NOME Vamos fundir o seu cha\""
+    "section#stage \"SEU NOME SEU NOME Vamos fundir o seu bra\""
    ],
    "reason": "O hero é a frente da cartela; a altura segue o conteúdo e o picote marca o fim, por escolha do contrato de direção, sem esticar para 100svh."
   },
@@ -949,6 +931,5 @@
   }
  ],
  "warnCount": 11,
- "at": "2026-11-21T14:11:59.935Z",
- "openTold": true
+ "at": "2026-11-22T12:39:53.495Z"
 }

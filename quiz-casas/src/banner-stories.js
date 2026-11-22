@@ -20,7 +20,7 @@ await p.addStyleTag({content:`
 .js .open-copy>*{animation:none!important}
 `});
 await p.evaluate(()=>{
-  document.querySelector('.open-lead').textContent='Responda 10 perguntas e ganhe o chaveiro de Zamak da sua casa.';
+  document.querySelector('.open-lead').textContent='Responda 10 perguntas e ganhe o brasão da sua casa com o seu nome gravado.';
   const c=document.querySelector('.open-copy');
   const t=document.createElement('div');t.className='story-tag';
   t.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Faça o quiz no link abaixo';

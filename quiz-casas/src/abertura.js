@@ -1,4 +1,4 @@
-/* ====== ABERTURA 3D: a caixa preta do Beco abre e solta os quatro chaveiros ====== */
+/* ====== ABERTURA 3D: a caixa preta do Beco abre e solta os quatro brasões ====== */
 (function(){
   const sec = document.getElementById("abertura");
   const cv = document.getElementById("gl");
@@ -126,7 +126,7 @@
   const pm = new THREE.PointsMaterial({map:dotTex, size:.07, transparent:true, opacity:0, depthWrite:false, blending:THREE.AdditiveBlending, color:0xffd28a});
   const dust = new THREE.Points(pg, pm); scene.add(dust);
 
-  /* --- os quatro chaveiros, com os brasões originais --- */
+  /* --- os quatro brasões de Zamak, com a arte original --- */
   const ALVO = [[-1.62,2.2,.32,.3],[-.54,2.72,.1,.1],[.54,2.72,.1,-.1],[1.62,2.2,.32,-.3]];
   const chav = [];
   function chaveiro(img, i){

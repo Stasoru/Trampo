@@ -1,4 +1,4 @@
-/* ====== CHAVEIRO 3D DO QUIZ: cada resposta derrama metal no molde; no fim o Zamak esfria e o símbolo aparece ====== */
+/* ====== BRASÃO 3D DO QUIZ: o molde fica vazio até o fim (surpresa); na revelação o Zamak derrete, esfria, mostra o símbolo e a plaquinha recebe o nome a laser ====== */
 (function(){
   const box = document.getElementById("kc"), cv = document.getElementById("kcgl");
   const svg = document.getElementById("emblemSvg");
@@ -41,7 +41,6 @@
   const kc = new THREE.Group(); scene.add(kc);
   const BASE_Y = -.06;
   const corpo = new THREE.Group(); kc.add(corpo);
-  const ouroArg = ZAMAK.argola();
   const geo = new THREE.PlaneGeometry(Wd*H, H);
 
   const FC = document.createElement("canvas"); FC.width = 320; FC.height = 358;
@@ -62,8 +61,51 @@
   const back = new THREE.Mesh(geo, verso); back.rotation.y = Math.PI; back.position.z = -.034; kc.add(back);
   for(let k=0;k<8;k++){ const s = new THREE.Mesh(geo, bordaM); s.position.z = -.03 + k*.0045; kc.add(s); }
 
+
+  const ouroArg = ZAMAK.argola();
   const argola = new THREE.Mesh(new THREE.TorusGeometry(.06,.017,12,36), ouroArg); argola.position.y = H/2+.035; kc.add(argola);
   const anel = new THREE.Mesh(new THREE.TorusGeometry(.13,.014,12,48), ouroArg); anel.rotation.y = Math.PI/2; anel.position.y = H/2+.2; kc.add(anel);
+
+  /* plaquinha com o nome gravado a laser */
+  const PW = .78, PH = .17;
+  const placa = new THREE.Group(); placa.visible = false; kc.add(placa);
+  const PLACA_Y = -H/2 - .17;
+  const chapa = new THREE.Mesh(new THREE.BoxGeometry(PW, PH, .03), new THREE.MeshStandardMaterial({color:0xD3A75C, metalness:.92, roughness:.3}));
+  placa.add(chapa);
+  const friso = new THREE.Mesh(new THREE.BoxGeometry(PW-.035, PH-.035, .002), new THREE.MeshStandardMaterial({color:0xB88A42, metalness:.95, roughness:.5}));
+  friso.position.z = .0155; placa.add(friso);
+  const NC = document.createElement("canvas"); NC.width = 1024; NC.height = 224;
+  const ng = NC.getContext("2d");
+  const nomeTex = new THREE.CanvasTexture(NC); nomeTex.colorSpace = THREE.SRGBColorSpace; nomeTex.anisotropy = 8;
+  const gravura = new THREE.Mesh(new THREE.PlaneGeometry(PW-.04, (PW-.04)*224/1024), new THREE.MeshStandardMaterial({map:nomeTex, transparent:true, metalness:.3, roughness:.7, emissiveMap:nomeTex, emissive:0xffffff, emissiveIntensity:0}));
+  gravura.position.z = .0172; placa.add(gravura);
+  const laser = new THREE.Sprite(new THREE.SpriteMaterial({map:null, color:0xffe6b0, blending:THREE.AdditiveBlending, transparent:true, depthWrite:false, opacity:0}));
+  laser.scale.set(.09,.09,1); laser.position.z = .03; placa.add(laser);
+  let grava = null, nomePlaca = "";
+  function textoPlaca(){
+    let n = (st.nome || "").toUpperCase().replace(/\s+/g," ").trim();
+    if(n.length > 20){ const p = n.split(" "); n = p.length > 1 ? p[0] + " " + p[p.length-1] : n.slice(0,20); }
+    return n;
+  }
+  function desenhaNome(prog){
+    const W = 1024, Hn = 224; ng.clearRect(0,0,W,Hn);
+    let fs = 120; ng.font = `800 ${fs}px Manrope, system-ui, sans-serif`;
+    try{ ng.letterSpacing = "5px"; }catch(e){}
+    while(ng.measureText(nomePlaca).width > 940 && fs > 48){ fs -= 4; ng.font = `800 ${fs}px Manrope, system-ui, sans-serif`; }
+    ng.textAlign = "center"; ng.textBaseline = "middle";
+    const largura = ng.measureText(nomePlaca).width, x0 = W/2 - largura/2 - 12, corte = x0 + (largura + 24)*prog;
+    ng.save(); ng.beginPath(); ng.rect(0,0,corte,Hn); ng.clip();
+    ng.fillStyle = "rgba(255,240,205,.55)"; ng.fillText(nomePlaca, W/2, Hn/2 + 4);   // luz na borda de baixo do sulco
+    ng.fillStyle = "#2b1a07"; ng.fillText(nomePlaca, W/2, Hn/2);
+    if(prog < 1){   // metal ainda quente perto do laser
+      ng.globalCompositeOperation = "source-atop";
+      const gr = ng.createLinearGradient(corte-90,0,corte,0); gr.addColorStop(0,"rgba(255,120,20,0)"); gr.addColorStop(1,"rgba(255,170,60,1)");
+      ng.fillStyle = gr; ng.fillRect(corte-90,0,90,Hn);
+    }
+    ng.restore();
+    nomeTex.needsUpdate = true;
+    return (corte/W - .5)*(PW-.04);
+  }
   // faíscas da revelação
   const NP = 120, pp = new Float32Array(NP*3), pv = new Float32Array(NP*3);
   const pgeo = new THREE.BufferGeometry(); pgeo.setAttribute("position", new THREE.BufferAttribute(pp,3));
@@ -96,34 +138,26 @@
     const d = g.getImageData(0,0,320,358), p = d.data;
     for(let i=0;i<p.length;i+=4){ const a = p[i+3]; p[i]=p[i+1]=p[i+2]=a; p[i+3]=255; }
     g.putImageData(d,0,0);
+    laser.material.map = dot; laser.material.needsUpdate = true;
     const sil = silhueta = new THREE.CanvasTexture(c); verso.alphaMap = sil; bordaM.alphaMap = sil; verso.needsUpdate = bordaM.needsUpdate = true;
     pronto = true; renderer.compile(scene, cam); if(!falhou) box.classList.add("gl-on");
     desenhaCampo(); ajusta(); pede();
   });
 
-  /* o esmalte: camadas de baixo pra cima, com a superfície ondulando enquanto escorre */
-  const FUNDO = (245-36)/223.75, TOPO = (54-36)/223.75;
-  let camadas = [], despejo = null, cheia = null;
-  function nivel(k, n){ return FUNDO - (FUNDO-TOPO)*k/n; }
+  /* o molde: fica vazio durante o quiz (a casa é surpresa); cada resposta só faz um reflexo dourado passar */
+  const FUNDO = (245-36)/223.75;
+  let reluz = null, cheia = null;
   function desenhaCampo(t){
     if(!mask) return;
     const Wc = 320, Hc = 358;
     fg.globalCompositeOperation = "source-over"; fg.clearRect(0,0,Wc,Hc);
     const gr = fg.createLinearGradient(0,0,0,Hc); gr.addColorStop(0,"#2a2419"); gr.addColorStop(1,"#4a3d27");
     fg.fillStyle = gr; fg.fillRect(0,0,Wc,Hc);
-    const n = (window.st && st.perguntas && st.perguntas.length) || 10;
-    for(let k=camadas.length-1;k>=0;k--){ const cor = camadas[k];
-      let topo = nivel(k+1,n), onda = 0;
-      if(despejo && k === camadas.length-1){
-        const p = Math.min(1, (t - despejo.t0)/ (reduz ? 1 : .75));
-        const e = 1-Math.pow(1-p,3);
-        topo = nivel(k,n) - (nivel(k,n)-nivel(k+1,n))*e; onda = (1-p)*.018;
-        if(p >= 1) despejo = null;
-      }
-      fg.fillStyle = cor; fg.beginPath(); fg.moveTo(0,Hc);
-      for(let x=0;x<=Wc;x+=8){ const y = (topo + Math.sin(x*.045 + (t||0)*9)*onda)*Hc; fg.lineTo(x,y); }
-      fg.lineTo(Wc,Hc); fg.closePath(); fg.fill();
-      fg.fillStyle = "rgba(255,255,255,.1)"; fg.fillRect(0, topo*Hc, Wc, 2);
+    if(reluz){
+      const p = Math.min(1, (t - reluz.t0)/.7), x = -Wc*.6 + p*Wc*2.2;
+      const b = fg.createLinearGradient(x-90,0,x+90,Hc*.4); b.addColorStop(0,"rgba(255,214,140,0)"); b.addColorStop(.5,"rgba(255,214,140,.55)"); b.addColorStop(1,"rgba(255,214,140,0)");
+      fg.fillStyle = b; fg.fillRect(0,0,Wc,Hc);
+      if(p >= 1) reluz = null;
     }
     if(cheia){
       const p = Math.min(1, (t - cheia.t0)/(reduz ? .01 : 1.25)), e = p<.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2;
@@ -132,8 +166,7 @@
       for(let x=0;x<=Wc;x+=8) fg.lineTo(x, (topo + Math.sin(x*.05 + t*8)*.015*(1-p))*Hc);
       fg.lineTo(Wc,Hc); fg.closePath(); fg.fill();
     }
-    // brilho do esmalte
-    const gl = fg.createLinearGradient(0,0,Wc*.8,Hc); gl.addColorStop(0,"rgba(255,255,255,.26)"); gl.addColorStop(.42,"rgba(255,255,255,0)");
+    const gl = fg.createLinearGradient(0,0,Wc*.8,Hc); gl.addColorStop(0,"rgba(255,255,255,.2)"); gl.addColorStop(.42,"rgba(255,255,255,0)");
     fg.fillStyle = gl; fg.fillRect(0,0,Wc,Hc);
     fg.globalCompositeOperation = "destination-in"; fg.drawImage(mask,0,0);
     fieldTex.needsUpdate = true;
@@ -148,18 +181,18 @@
   addEventListener("resize", ()=>{ ajusta(); pede(); });
   new ResizeObserver(()=>{ ajusta(); pede(); }).observe(box);
 
-  // arrastar para girar o chaveiro
+  // arrastar para girar o brasão
   cv.addEventListener("pointerdown", e=>{ mov.arrasta = {x:e.clientX, g:mov.giro}; cv.setPointerCapture(e.pointerId); mov.inercia = 0; pede(); });
   cv.addEventListener("pointermove", e=>{ if(!mov.arrasta) return; const dx = e.clientX - mov.arrasta.x;
     const novo = mov.arrasta.g + dx*.012; mov.inercia = (novo - mov.giro)*60; mov.giro = mov.giroAlvo = novo; pede(); });
   const solta = ()=>{ if(!mov.arrasta) return; mov.arrasta = null; mov.giroAlvo = Math.round((mov.giro + mov.inercia*.25)/(Math.PI*2))*Math.PI*2; pede(); };
   cv.addEventListener("pointerup", solta); cv.addEventListener("pointercancel", solta);
 
-  let t0 = 0, ult = 0, rodando = false, visivel = true;
+  let t0 = 0, ult = 0, rodando = false, visivel = true, alvoY = 0;
   function quadro(now){
     rodando = false;
     if(!t0) t0 = now; const t = (now-t0)/1000, dt = Math.min(.05,(now-ult)/1000 || .016); ult = now;
-    if(despejo || cheia) desenhaCampo(t);
+    if(reluz || cheia) desenhaCampo(t);
 
     // revelação: gira rápido, troca para o brasão no auge e assenta de frente
     let extra = 0;
@@ -174,8 +207,8 @@
         extra = e * Math.PI*6;
         if(p > .42 && !crest.visible) mostraBrasao();
         flash.intensity = 10*Math.max(0, 1-Math.abs(p-.45)*4);
-        if(p >= 1){ mov.revela = -1; mov.giro = mov.giroAlvo = Math.round(mov.giro/(Math.PI*2))*Math.PI*2; extra = 0; }
-      } else if(s > 0 && reduz && !crest.visible){ mostraBrasao(); mov.revela = -1; }
+        if(p >= 1){ mov.revela = -1; mov.giro = mov.giroAlvo = Math.round(mov.giro/(Math.PI*2))*Math.PI*2; extra = 0; iniciaGravura(t); }
+      } else if(s > 0 && reduz && !crest.visible){ mostraBrasao(); mov.revela = -1; iniciaGravura(t); }
     }
     if(crest.visible && crestMat.opacity < 1){ crestMat.opacity = Math.min(1, crestMat.opacity + dt*(reduz?60:4)); campoMat.opacity = aroMat.opacity = 1 - crestMat.opacity; }
     // o metal da revelação brilha quente e esfria
@@ -183,13 +216,28 @@
     if(crest.visible && crestMat.emissive){ crestMat.emissiveIntensity = Math.max(0, crestMat.emissiveIntensity - dt*.55); }
     corpo.visible = crestMat.opacity < 1;
 
+    // plaquinha: sobe até o brasão e o laser escreve o nome
+    let subida = placa.visible ? 1 : 0;
+    if(grava){
+      const r = t - grava.t0;
+      subida = reduz ? 1 : Math.min(1, r/.45); const es = 1-Math.pow(1-subida,3);
+      placa.position.y = PLACA_Y - .25*(1-es); placa.scale.setScalar(.85 + .15*es);
+      const g = reduz ? 1 : Math.min(1, Math.max(0, (r-.5)/1.5));
+      const lx = desenhaNome(g);
+      laser.position.x = lx; laser.material.opacity = g > 0 && g < 1 ? .9 + Math.sin(t*60)*.1 : 0;
+      gravura.material.emissiveIntensity = g < 1 ? .35 : Math.max(0, .35 - (r-2)*.4);
+      if(g >= 1 && r > 2.9){ grava = null; gravura.material.emissiveIntensity = 0; }
+    }
+    alvoY += ((placa.visible ? .08 : 0) - alvoY)*Math.min(1, dt*3);
+    cam.position.z += ((placa.visible ? 4.15 : 3.55) - cam.position.z)*Math.min(1, dt*3);
+
     if(!mov.arrasta){ mov.giro += (mov.giroAlvo - mov.giro)*Math.min(1, dt*4); }
     mov.pulso *= Math.pow(.02, dt);
     const balanco = reduz ? 0 : Math.sin(t*.7)*.32;
     kc.rotation.y = mov.giro + extra + (mov.revela >= 0 ? 0 : balanco);
     kc.rotation.z = reduz ? 0 : Math.sin(t*1.9)*.02*mov.pulso*4 + Math.sin(t*.9)*.015;
     kc.rotation.x = reduz ? 0 : Math.sin(t*.55)*.05;
-    kc.position.y = BASE_Y + (reduz ? 0 : Math.sin(t*1.2)*.02);
+    kc.position.y = BASE_Y + alvoY + (reduz ? 0 : Math.sin(t*1.2)*.02);
     const sc = 1 + mov.pulso*.06; kc.scale.setScalar(sc);
 
     if(sparkT >= 0){ sparkT += dt; const p = sparkT/1.4;
@@ -197,7 +245,7 @@
       pgeo.attributes.position.needsUpdate = true; pmat.opacity = Math.max(0, 1-p); if(p>=1) sparkT = -1; }
 
     renderer.render(scene, cam);
-    const anima = !reduz || despejo || cheia || mov.revela>=0 || sparkT>=0 || Math.abs(mov.giroAlvo-mov.giro)>.001 || (crest.visible && crestMat.opacity<1);
+    const anima = !reduz || reluz || cheia || grava || mov.revela>=0 || sparkT>=0 || Math.abs(mov.giroAlvo-mov.giro)>.001 || (crest.visible && crestMat.opacity<1);
     if(visivel && !document.hidden && anima) agenda();
   }
   function agenda(){ if(!rodando){ rodando = true; requestAnimationFrame(quadro); } }
@@ -205,6 +253,10 @@
   new IntersectionObserver(es=>{ visivel = es[0].isIntersecting; if(visivel) pede(); }).observe(box);
   document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) pede(); });
 
+  function iniciaGravura(t){
+    nomePlaca = textoPlaca(); if(!nomePlaca) return;
+    desenhaNome(0); placa.visible = true; placa.position.y = PLACA_Y; grava = {t0:t}; pede();
+  }
   function mostraBrasao(){
     const c = mov.casa; if(!c) return;
     const img = new Image();
@@ -221,19 +273,13 @@
   }
   /* ganchos do quiz */
   addEventListener("quiz:zera", ()=>{
-    camadas = []; despejo = null; cheia = null; mov.revela = -1; mov.casa = null;
+    reluz = null; cheia = null; grava = null; mov.revela = -1; mov.casa = null; placa.visible = false; laser.material.opacity = 0;
     crest.visible = false; crestMat.opacity = 0; campoMat.opacity = aroMat.opacity = 1; campoMat.emissiveIntensity = .16; corpo.visible = true;
     if(silhueta){ verso.alphaMap = bordaM.alphaMap = silhueta; verso.needsUpdate = bordaM.needsUpdate = true; }
     desenhaCampo(0); pede();
   });
   addEventListener("quiz:comeca", ()=>{ mov.giroAlvo += Math.PI*2; mov.pulso = 1; pede(); });
-  addEventListener("quiz:enche", ()=>{
-    const hist = st.hist;
-    if(hist.length < camadas.length){ camadas = camadas.slice(0, hist.length); despejo = null; desenhaCampo(0); pede(); return; }
-    const w = hist[hist.length-1], k = Object.keys(w).sort((a,b)=>w[b]-w[a])[0];
-    camadas.push(CASAS[k].cor); despejo = {t0: t0 ? (performance.now()-t0)/1000 : 0};
-    mov.pulso = 1; pede();
-  });
+  addEventListener("quiz:pinga", ()=>{ reluz = {t0: t0 ? (performance.now()-t0)/1000 : 0}; mov.pulso = 1; pede(); });
   addEventListener("quiz:revela", e=>{
     mov.casa = e.detail; const now = t0 ? (performance.now()-t0)/1000 : 0;
     cheia = {cor:"#E3921F", t0:now}; mov.revela = now; pede();

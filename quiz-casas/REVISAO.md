@@ -1,4 +1,14 @@
-GATE: OPEN 18 (taste-skill, 3 rodadas usadas)
+GATE: FAIL 18 (taste-skill; a rodada não avança sem mudança de código, os 18 são os mesmos itens de layout do kit listados abaixo, mais o effect-kind, cujo waiver o checador alterna entre "canvas#gl" e "(the page)")
+
+# Alterações pedidas pelo Lopez (2026-11-22)
+
+- O molde do brasão fica vazio durante o quiz: cada resposta só faz um reflexo dourado passar, e a gota que voa é dourada, sem a cor da casa. O resultado é surpresa.
+- Não dá para voltar nem recomeçar durante o quiz, e o botão "Fazer de novo" saiu do resultado.
+- O produto é chamado de Brasão em todo o texto. O objeto continua sendo o chaveiro com argola.
+- Na revelação, uma plaquinha sobe até o brasão e o laser grava o nome da pessoa, com o metal ainda quente perto do feixe. A imagem de compartilhar mostra o brasão com a plaquinha.
+- O nome é obrigatório (no mínimo 2 letras), com aviso de erro no campo.
+- copy-lint: 0 FAIL. Fluxo testado em 1440 e 390 sem erros de JavaScript.
+
 
 # Revisão do quiz das casas, versão 3D completa (2026-11-21)
 
