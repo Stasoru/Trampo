@@ -279,6 +279,17 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
   .q h2,.q .opt,.q .qtop,.q .qnav,.letras span,.result>*{animation:none!important}
   #screen.sai>*,.opts.feito .opt{transition:none!important}
 }
+
+/* ===== Botão de som ===== */
+.som{position:fixed;top:max(14px,env(safe-area-inset-top,0px));right:14px;z-index:15;width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(13,13,13,.72);border:1px solid var(--gold-ring);color:var(--gold);cursor:pointer;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:border-color .2s,color .2s}
+.som:hover{border-color:var(--gold)}
+.som svg{width:20px;height:20px}
+.som .x{display:none}
+.som.off{color:var(--print-3);border-color:var(--line-2)}
+.som.off .on{display:none}.som.off .x{display:inline}
+@media (min-width:900px){.som{top:26px;right:28px}}
 </style>
 </head>
 <body>
@@ -347,6 +358,9 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
     </footer>
   </main>
 </div>
+<button class="som" id="som" type="button" aria-pressed="true" aria-label="Desligar o som">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="x" d="M17 9l5 6M22 9l-5 6"/></svg>
+</button>
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script>
@@ -604,6 +618,7 @@ function escolhe(b){
   const p = st.perguntas[st.i], w = p.a[+b.dataset.k][1];
   screen.querySelectorAll(".opt").forEach(x => x.disabled = true);
   b.classList.add("picked"); b.parentElement.classList.add("feito");
+  emit("escolhe");
   st.hist.push(w);
   for(const c in w) st.pts[c] += w[c];
   const segue = () => { delete screen.dataset.busy; st.i++; st.i < st.perguntas.length ? pergunta() : decidir(); };
@@ -611,7 +626,7 @@ function escolhe(b){
   /* a resposta vira uma gota de metal dourada (sem cor de casa: o resultado é surpresa) que voa até o molde */
   gota(b, "#F0AD33").then(()=>{
     emit("pinga");
-    screen.classList.add("sai");
+    screen.classList.add("sai"); emit("sai");
     setTimeout(()=>{ screen.classList.remove("sai"); segue(); }, 310);
   });
 }
@@ -675,6 +690,7 @@ function resultado(casa){
   st.casa = casa; st.pct = pct;
   store.set("bd_ultimo",{nome:st.nome, casa, quando:Date.now()});
   document.body.classList.add("done");
+  emit("resultado", {gl: $("#kc").classList.contains("gl-on")});
   document.body.style.setProperty("--casa", c.cor);
   const zap = LOJA.whatsapp ? `https://wa.me/${LOJA.whatsapp.replace(/\D/g,"")}?text=${encodeURIComponent(`Oi! Fiz o quiz das casas e caí em ${c.nome}. Quero o meu brasão da ${c.nome} com o meu nome!`)}` : "";
   render(`
@@ -813,5 +829,6 @@ inicio();
 <script>/*ZAMAK*/</script>
 <script>/*ABERTURA*/</script>
 <script>/*QUIZ3D*/</script>
+<script>/*SONS*/</script>
 </body>
 </html>

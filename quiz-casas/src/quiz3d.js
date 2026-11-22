@@ -226,6 +226,7 @@
       const lx = desenhaNome(g);
       laser.position.x = lx; laser.material.opacity = g > 0 && g < 1 ? .9 + Math.sin(t*60)*.1 : 0;
       gravura.material.emissiveIntensity = g < 1 ? .35 : Math.max(0, .35 - (r-2)*.4);
+      if(g >= 1 && !grava.avisou){ grava.avisou = true; dispatchEvent(new CustomEvent("quiz:gravado")); }
       if(g >= 1 && r > 2.9){ grava = null; gravura.material.emissiveIntensity = 0; }
     }
     alvoY += ((placa.visible ? .08 : 0) - alvoY)*Math.min(1, dt*3);
@@ -255,7 +256,8 @@
 
   function iniciaGravura(t){
     nomePlaca = textoPlaca(); if(!nomePlaca) return;
-    desenhaNome(0); placa.visible = true; placa.position.y = PLACA_Y; grava = {t0:t}; pede();
+    desenhaNome(0); placa.visible = true; placa.position.y = PLACA_Y; grava = {t0:t, avisou:false}; pede();
+    setTimeout(()=>dispatchEvent(new CustomEvent("quiz:laser",{detail: reduz ? .4 : 1.5})), reduz ? 0 : 500);
   }
   function mostraBrasao(){
     const c = mov.casa; if(!c) return;
@@ -269,6 +271,7 @@
     };
     img.src = ESCUDO[c];
     crest.visible = true; crestMat.opacity = .001;
+    dispatchEvent(new CustomEvent("quiz:brasao"));
     explode("#F0AD33"); pede();
   }
   /* ganchos do quiz */

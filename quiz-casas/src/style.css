@@ -264,3 +264,14 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
   .q h2,.q .opt,.q .qtop,.q .qnav,.letras span,.result>*{animation:none!important}
   #screen.sai>*,.opts.feito .opt{transition:none!important}
 }
+
+/* ===== Botão de som ===== */
+.som{position:fixed;top:max(14px,env(safe-area-inset-top,0px));right:14px;z-index:15;width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(13,13,13,.72);border:1px solid var(--gold-ring);color:var(--gold);cursor:pointer;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:border-color .2s,color .2s}
+.som:hover{border-color:var(--gold)}
+.som svg{width:20px;height:20px}
+.som .x{display:none}
+.som.off{color:var(--print-3);border-color:var(--line-2)}
+.som.off .on{display:none}.som.off .x{display:inline}
+@media (min-width:900px){.som{top:26px;right:28px}}
