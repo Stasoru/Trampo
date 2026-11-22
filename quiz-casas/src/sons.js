@@ -34,12 +34,28 @@
       }catch(e){}
     });
   }
+  let analisa = null, amostra = null, suave = 0;
+  function nivel(){
+    if(!analisa || !ligado) return -1;
+    if(!amostra) amostra = new Float32Array(analisa.fftSize);
+    analisa.getFloatTimeDomainData(amostra);
+    let q = 0; for(let i=0;i<amostra.length;i++) q += amostra[i]*amostra[i];
+    const v = Math.min(1, Math.sqrt(q/amostra.length)*5.5);
+    suave += (v - suave) * (v > suave ? .6 : .25);
+    return suave;
+  }
   function fala(casa, t){
-    const buf = vozes[casa]; if(!buf) return;
+    const buf = vozes[casa]; if(!buf) return 0;
     const s = ctx.createBufferSource(); s.buffer = buf;
     const g = ctx.createGain(); g.gain.value = 1.15; s.connect(g).connect(mestre); s.start(t);
+    analisa = ctx.createAnalyser(); analisa.fftSize = 512; g.connect(analisa);
     if(trilha){ trilha.volume = .06; setTimeout(()=>{ if(trilha) trilha.volume = .22; }, (buf.duration + (t - ctx.currentTime))*1000 + 300); }
+    return buf.duration;
   }
+  window.sons = {
+    fala: casa => ok() ? fala(casa, agora() + .02) : 0,
+    nivel: () => (ctx && ligado) ? nivel() : -1
+  };
   const agora = () => ctx.currentTime;
   function saida(vol, comEco){
     const g = ctx.createGain(); g.gain.value = vol; g.connect(mestre);
@@ -145,10 +161,12 @@
   addEventListener("quiz:pinga", ()=>{ if(!ok()) return; const t = agora(); sino(1180 + Math.random()*260, t, .13, 1.1); sopro(t+.05, .3, 2200, 700, .05, 1.5); });
   addEventListener("quiz:sai", ()=>{ if(ok()) sopro(agora(), .32, 1800, 500, .06, 1); });
   addEventListener("quiz:revela", e=>{ if(!ok()) return; const t = agora();
-    fala(e.detail, t + .1);
     chiado(t, 1.4, .1); sino(196, t, .1, 2.2);
     sopro(t + 1.25, 1.6, 300, 3600, .2, .7);   // o giro
   });
+  addEventListener("quiz:chapeu", ()=>{ if(!ok()) return; const t = agora(); sopro(t, .7, 2600, 500, .1, .9); });
+  addEventListener("quiz:chapeu-diz", e=>{ if(!ok()) return; const t = agora(); if(e.detail && e.detail.mudo){ sino(523.25, t, .18, 2.2); brilho(t, 8, .05); } });
+  addEventListener("quiz:chapeu-sai", ()=>{ if(ok()) sopro(agora(), .5, 600, 2800, .08, 1); });
   addEventListener("quiz:brasao", ()=>{ if(!ok()) return; const t = agora(); sino(261.63, t, .22, 3); brilho(t, 12, .06); });
   addEventListener("quiz:laser", e=>{ if(ok()) laser(agora(), (e.detail || 1.5)); });
   addEventListener("quiz:gravado", ()=>{ if(ok()) acorde(agora() + .05); });

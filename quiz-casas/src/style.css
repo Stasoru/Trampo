@@ -290,3 +290,27 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
 .portal-on .open-copy>*{animation-play-state:paused}
 .portal-on .som{visibility:hidden}
 @media (prefers-reduced-motion:reduce){.portal{transition:none}}
+
+/* ===== Chapéu falante: fala a casa antes do brasão surgir ===== */
+.chapeu{position:absolute;inset:-4% -10% 0;display:grid;align-items:end;z-index:3;pointer-events:none;
+  opacity:0;transform:translateY(-46px) scale(.92);transition:opacity .55s var(--ease-out),transform .7s var(--ease-out)}
+.chapeu svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 24px rgba(0,0,0,.7))}
+.chapeu.on{opacity:1;transform:none}
+.chapeu.sai{opacity:0;transform:translateY(-90px) scale(.9) rotate(-6deg);transition:opacity .5s ease-in,transform .6s cubic-bezier(.5,0,.75,0)}
+.chapeu .cp-tudo{transform-box:view-box;transform-origin:150px 290px;animation:cpBalanca 2.6s ease-in-out infinite}
+.chapeu .cp-corpo,.chapeu .cp-sobr{transform-box:view-box;transform-origin:150px 280px}
+.chapeu.grita .cp-tudo{animation:cpGrita .5s var(--ease-out)}
+@keyframes cpBalanca{0%,100%{transform:rotate(-2.2deg)}50%{transform:rotate(2.2deg)}}
+@keyframes cpGrita{0%{transform:scale(1)}35%{transform:scale(1.08,.94) translateY(-10px)}100%{transform:none}}
+.kc .emblem,#kcgl{transition:opacity .5s var(--ease-out),filter .5s var(--ease-out)}
+.kc.chapeu-on .emblem,.kc.chapeu-on #kcgl{opacity:.12;filter:blur(3px)}
+.fala{display:grid;gap:10px;justify-items:center;text-align:center;min-height:120px}
+.fala-txt{font-size:clamp(18px,4.6vw,22px);font-weight:300;font-style:italic;color:var(--print-2);min-height:1.5em}
+.fala-casa{font-size:clamp(40px,10vw,72px);text-transform:uppercase;letter-spacing:-.03em;color:var(--gold);line-height:1;min-height:1em}
+.fala-casa.on{animation:cpNome .6s var(--ease-out) both}
+@keyframes cpNome{from{opacity:0;transform:scale(1.35);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@media (min-width:900px){.fala{justify-items:start;text-align:left}}
+@media (prefers-reduced-motion:reduce){
+  .chapeu,.chapeu.sai{transition:none;transform:none}
+  .chapeu .cp-tudo,.chapeu.grita .cp-tudo,.fala-casa.on{animation:none}
+}

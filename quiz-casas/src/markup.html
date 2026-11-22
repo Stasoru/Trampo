@@ -23,7 +23,59 @@
 <div class="card" id="card">
   <main>
     <section class="stage" id="stage" aria-label="Quiz">
-      <div class="kc" id="kc"><canvas id="kcgl" aria-hidden="true"></canvas><!--EMBLEM--></div>
+      <div class="kc" id="kc"><canvas id="kcgl" aria-hidden="true"></canvas><!--EMBLEM-->
+<div class="chapeu" id="chapeu" aria-hidden="true" hidden>
+  <svg viewBox="0 0 300 330" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="cpCone" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#0b0b0c"/><stop offset=".38" stop-color="#2a2622"/><stop offset=".55" stop-color="#1a1714"/><stop offset="1" stop-color="#050505"/>
+      </linearGradient>
+      <radialGradient id="cpAba" cx=".5" cy=".35" r=".7">
+        <stop offset="0" stop-color="#2b2723"/><stop offset=".7" stop-color="#121110"/><stop offset="1" stop-color="#060606"/>
+      </radialGradient>
+      <linearGradient id="cpFaixa" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#7a4f0c"/><stop offset=".45" stop-color="#F7C25C"/><stop offset=".6" stop-color="#F0AD33"/><stop offset="1" stop-color="#6b440a"/>
+      </linearGradient>
+      <radialGradient id="cpBoca" cx=".5" cy=".3" r=".8">
+        <stop offset="0" stop-color="#3a1d05"/><stop offset="1" stop-color="#050302"/>
+      </radialGradient>
+    </defs>
+    <ellipse class="cp-sombra" cx="150" cy="312" rx="110" ry="12" fill="#000" opacity=".55"/>
+    <g class="cp-tudo">
+      <!-- aba -->
+      <ellipse cx="150" cy="276" rx="138" ry="32" fill="url(#cpAba)" stroke="#F0AD33" stroke-opacity=".3" stroke-width="1.4"/>
+      <path d="M14 272c30 22 238 22 272 0" fill="none" stroke="#F0AD33" stroke-opacity=".35" stroke-width="1.5"/>
+      <g class="cp-corpo">
+        <!-- cone com a ponta torta -->
+        <path d="M70 272C82 214 98 160 116 116C130 82 140 58 152 40C160 28 172 20 188 18C204 16 218 24 226 36C214 30 200 32 192 42C184 54 184 76 188 104C194 150 210 214 230 272Z" fill="url(#cpCone)" stroke="#F0AD33" stroke-opacity=".38" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M152 40C160 28 172 20 188 18" fill="none" stroke="#F0AD33" stroke-opacity=".25" stroke-width="2"/>
+        <!-- estrelinhas bordadas -->
+        <g fill="#F0AD33" opacity=".55">
+          <circle cx="132" cy="112" r="1.6"/><circle cx="176" cy="92" r="1.3"/><circle cx="118" cy="150" r="1.2"/><circle cx="190" cy="140" r="1.5"/>
+        </g>
+        <!-- faixa dourada com fivela -->
+        <path d="M74 252C120 262 180 262 226 252L230 272C182 284 118 284 70 272Z" fill="url(#cpFaixa)"/>
+        <rect x="136" y="254" width="28" height="26" rx="2" fill="none" stroke="#141005" stroke-width="3"/>
+        <rect x="146" y="258" width="8" height="18" fill="#141005" opacity=".55"/>
+        <!-- rosto: olhos bordados e boca -->
+        <g class="cp-rosto">
+          <g class="cp-olhos" fill="none" stroke="#F0AD33" stroke-width="3" stroke-linecap="round">
+            <path class="cp-olho" d="M118 176q14-12 28 0"/>
+            <path class="cp-olho" d="M162 176q14-12 28 0"/>
+          </g>
+          <g class="cp-sobr" fill="none" stroke="#F0AD33" stroke-opacity=".6" stroke-width="2.4" stroke-linecap="round">
+            <path d="M116 160l26 -6"/><path d="M166 154l26 6"/>
+          </g>
+          <ellipse id="cpBoca" cx="154" cy="218" rx="30" ry="3" fill="url(#cpBoca)" stroke="#F0AD33" stroke-width="2"/>
+          <g class="cp-pontos" stroke="#F0AD33" stroke-width="1.6" stroke-linecap="round" opacity=".7">
+            <path d="M118 214l-6 2"/><path d="M190 214l6 2"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+</div>
       <div class="hero-copy" id="hero">
         <h2 class="hero-title">Vamos fundir o seu <em>brasão</em></h2>
       </div>
