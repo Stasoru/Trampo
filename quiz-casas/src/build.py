@@ -14,6 +14,9 @@ crests = ",".join('%s:"data:image/webp;base64,%s"' % (k, b64(old/("img%d.webp" %
 t = t.replace("/*ESCUDOS*/", crests)
 three = (old/"three-0.160.0.min.js").read_text().replace("</script","<\\/script")
 t = t.replace("<script>/*THREE*/</script>", "<script>"+three+"</script>")
+vz = {k: old/("chapeu-%s.mp3" % k) for k in ["gri","cor","luf","son"]}
+vz = ",".join('%s:"data:audio/mpeg;base64,%s"' % (k, b64(f)) for k,f in vz.items() if f.exists())
+if vz: t = t.replace("<script>/*SONS*/</script>", "<script>window.CHAPEU={%s}</script>\n<script>/*SONS*/</script>" % vz)
 tr = old/"trilha.mp3"
 t = t.replace("<script>/*SONS*/</script>", ('<script>window.TRILHA="data:audio/mpeg;base64,%s"</script>\n' % b64(tr) if tr.exists() else "") + "<script>/*SONS*/</script>")
 for tag, f in [("ZAMAK","zamak.js"),("ABERTURA","abertura.js"),("QUIZ3D","quiz3d.js"),("SONS","sons.js")]:

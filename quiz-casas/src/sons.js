@@ -17,8 +17,28 @@
     const volta = ctx.createGain(); volta.gain.value = .28;
     const filtro = ctx.createBiquadFilter(); filtro.type = "lowpass"; filtro.frequency.value = 2600;
     eco.connect(filtro).connect(volta).connect(eco); volta.connect(mestre);
+    carregaVozes();
     if(window.TRILHA){ trilha = new Audio(window.TRILHA); trilha.loop = true; trilha.volume = .22; if(ligado) trilha.play().catch(()=>{}); }
     return true;
+  }
+  /* voz do chapéu seletor: um trecho por casa, decodificado uma vez */
+  const vozes = {};
+  function carregaVozes(){
+    const V = window.CHAPEU; if(!V) return;
+    Object.keys(V).forEach(k=>{
+      try{
+        const bin = atob(V[k].split(",")[1]), u = new Uint8Array(bin.length);
+        for(let i=0;i<bin.length;i++) u[i] = bin.charCodeAt(i);
+        const p = ctx.decodeAudioData(u.buffer, buf=>{ vozes[k] = buf; }, ()=>{});
+        if(p && p.catch) p.catch(()=>{});
+      }catch(e){}
+    });
+  }
+  function fala(casa, t){
+    const buf = vozes[casa]; if(!buf) return;
+    const s = ctx.createBufferSource(); s.buffer = buf;
+    const g = ctx.createGain(); g.gain.value = 1.15; s.connect(g).connect(mestre); s.start(t);
+    if(trilha){ trilha.volume = .06; setTimeout(()=>{ if(trilha) trilha.volume = .22; }, (buf.duration + (t - ctx.currentTime))*1000 + 300); }
   }
   const agora = () => ctx.currentTime;
   function saida(vol, comEco){
@@ -124,8 +144,9 @@
   addEventListener("quiz:escolhe", ()=>{ toque(660, .1); if(ok()) sopro(agora()+.02, .5, 900, 3200, .07, 2); });
   addEventListener("quiz:pinga", ()=>{ if(!ok()) return; const t = agora(); sino(1180 + Math.random()*260, t, .13, 1.1); sopro(t+.05, .3, 2200, 700, .05, 1.5); });
   addEventListener("quiz:sai", ()=>{ if(ok()) sopro(agora(), .32, 1800, 500, .06, 1); });
-  addEventListener("quiz:revela", ()=>{ if(!ok()) return; const t = agora();
-    chiado(t, 1.4, .12); sino(196, t, .14, 2.2);
+  addEventListener("quiz:revela", e=>{ if(!ok()) return; const t = agora();
+    fala(e.detail, t + .1);
+    chiado(t, 1.4, .1); sino(196, t, .1, 2.2);
     sopro(t + 1.25, 1.6, 300, 3600, .2, .7);   // o giro
   });
   addEventListener("quiz:brasao", ()=>{ if(!ok()) return; const t = agora(); sino(261.63, t, .22, 3); brilho(t, 12, .06); });
