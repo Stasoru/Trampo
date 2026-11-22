@@ -268,7 +268,10 @@
   }
   function agenda(){ if(!rodando){ rodando = true; requestAnimationFrame(quadro); } }
   function pede(){ if(t0 || reduz) agenda(); }
-  function comeca(){ t0 = 0; ultimo = 0; ajusta(); agenda(); }
+  function comeca(){
+    if(document.documentElement.classList.contains("portal-on")){ addEventListener("quiz:entra", comeca, {once:true}); return; }
+    t0 = 0; ultimo = 0; ajusta(); agenda();
+  }
 
   new IntersectionObserver(es=>{ visivel = es[0].isIntersecting; if(visivel) pede(); }).observe(sec);
   document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) pede(); });

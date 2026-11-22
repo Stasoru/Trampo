@@ -275,3 +275,18 @@ body.done{background:radial-gradient(70% 50% at 30% 18%,color-mix(in srgb,var(--
 .som.off{color:var(--print-3);border-color:var(--line-2)}
 .som.off .on{display:none}.som.off .x{display:inline}
 @media (min-width:900px){.som{top:26px;right:28px}}
+
+/* ===== Portal de entrada: o toque que libera o som ===== */
+.portal{position:fixed;inset:0;z-index:50;display:grid;place-content:center;justify-items:center;gap:22px;padding:24px 20px;text-align:center;
+  background:radial-gradient(60% 40% at 50% 42%, rgba(240,173,51,.12), rgba(240,173,51,0) 70%), var(--bg);
+  transition:opacity .7s var(--ease-out), visibility 0s linear .7s}
+.portal img{width:150px;height:auto}
+.portal-tit{font-weight:800;font-size:clamp(28px,7.4vw,46px);line-height:1;text-transform:uppercase;letter-spacing:-.03em;max-width:13ch}
+.portal .btn{width:min(100%,320px)}
+.portal-som{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.portal-som svg{width:18px;height:18px}
+.portal.sai{opacity:0;visibility:hidden;pointer-events:none}
+.portal-on body{overflow:hidden}
+.portal-on .open-copy>*{animation-play-state:paused}
+.portal-on .som{visibility:hidden}
+@media (prefers-reduced-motion:reduce){.portal{transition:none}}

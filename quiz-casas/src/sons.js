@@ -4,7 +4,7 @@
   const btn = document.getElementById("som");
   if(!AC || !btn){ if(btn) btn.hidden = true; return; }
   let ctx = null, mestre = null, eco = null, ligado = true, trilha = null;
-  try{ ligado = localStorage.getItem("bd_som") !== "0"; }catch(e){}
+  // o som começa sempre ligado; o botão desliga só durante a visita
 
   function prepara(){
     if(ctx) { if(ctx.state === "suspended") ctx.resume(); return true; }
@@ -132,7 +132,7 @@
     btn.classList.toggle("off", !ligado);
   }
   btn.addEventListener("click", ()=>{
-    ligado = !ligado; try{ localStorage.setItem("bd_som", ligado ? "1" : "0"); }catch(e){}
+    ligado = !ligado; 
     pinta();
     if(ligado && prepara()){ mestre.gain.setTargetAtTime(.9, agora(), .05); if(trilha) trilha.play().catch(()=>{}); toque(880,.12); }
     else if(ctx){ mestre.gain.setTargetAtTime(0, agora(), .05); if(trilha) trilha.pause(); }
